@@ -5,32 +5,60 @@ export default class SampleScene extends Phaser.Scene {
 
     preload(){
         this.load.image({
-            key: 'mecha_side', 
-            url: './assets/sprites/mecha_lowres_side.png',
-            normalMap: './assets/sprites/mecha_lowres_side_normal.png'
+            key: 'test_background', 
+            url: './assets/sprites/test_background.png',
+            normalMap: './assets/sprites/test_background_n.png'
         });
 
-        this.load.image({
-            key: 'mecha_angle', 
-            url: './assets/sprites/testPixelArt_lowRes.png',
-            normalMap: './assets/sprites/testPixelArt_lowRes_normal.png'
+        this.load.atlas({
+            key: 'character_atlas',
+            textureURL: './assets/sprites/character_atlas.png',
+            normalMap: './assets/sprites/character_atlas_n.png',
+            atlasURL: './assets/sprites/character_atlas.json'
         });
     }
 
     create(){
-        this.add.image(64, 128, 'mecha_side').setOrigin(0.5, 0.5).setPipeline('Light2D');
+        // Animations
+        this.anims.create({
+            key: 'character_run_right',
+            frames: this.anims.generateFrameNames("character_atlas", {
+              prefix: 'character_run_right_',
+              suffix: '.png',
+              start: 0,
+              end: 19,
+              zeroPad: 2
+            }),
+            frameRate: 30,
+            repeat: -1,
+        });
+        this.anims.create({
+            key: 'character_run_left',
+            frames: this.anims.generateFrameNames("character_atlas", {
+                prefix: 'character_run_left_',
+                suffix: '.png',
+                start: 0,
+                end: 19,
+                zeroPad: 2
+              }),
+            frameRate: 30,
+            repeat: -1,
+        });
 
-        this.add.image(196, 128, 'mecha_angle').setOrigin(0.5, 0.5).setPipeline('Light2D');
+        this.add.image(0, 0, 'test_background').setOrigin(0, 0).setPipeline('Light2D').setDepth(0);
 
-        var light  = this.lights.addLight(0, 0, 100, 0xFF8888);
+        this.testCharacter = this.add.sprite(256, 274, 'character_atlas').setOrigin(0.5, 1).setPipeline('Light2D').setDepth(0);
+        this.testCharacter.anims.play("character_run_left");
 
-        this.lights.enable().setAmbientColor(0x222222);
+        // Lights
+        this.spotlight = this.lights.addLight(128, 128, 200, 0xFF8800, 2);
 
         this.input.on('pointermove', function (pointer) {
+            this.context.spotlight.x = pointer.x;
+            this.context.spotlight.y = pointer.y;
+            
+        }).context = this;
 
-            light.x = pointer.x;
-            light.y = pointer.y;
-
-        });
+        this.lights.enable()//.setAmbientColor(0x888888);
     }
 }
