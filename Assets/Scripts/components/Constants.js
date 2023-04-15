@@ -1,5 +1,5 @@
 // Debug mode
-const DEBUG = false;
+const DEBUG = true;
 const VERSION_NUMBER = "12.04.23_00.00";
 
 // Dimensions

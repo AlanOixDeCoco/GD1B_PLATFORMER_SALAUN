@@ -5,12 +5,17 @@ import SampleScene from "./scenes/SampleScene.js"
 // #region GAME CONFIGURATION
 const config = {
     type: Phaser.WEBGL,
-    width: GAME_WIDTH, height: GAME_HEIGHT,
-    parent: 'game_viewport',
+    scale: {
+        parent: 'game_viewport',
+        mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH,
+        width: GAME_WIDTH, 
+        height: GAME_HEIGHT,
+    },
     physics: {
         default: 'arcade',
         arcade: {
-            gravity: { y: 0 }, // deactivate vertical gravity
+            gravity: { y: 9.81 * 32 },
             debug: DEBUG
         }
     },
