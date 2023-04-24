@@ -8,7 +8,7 @@ export default class TestBehaviour extends Behaviour{
     }
 
     update(time, deltatime){
-        console.log(this._parent);
+        
     }
 
     destroy(){
