@@ -1,5 +1,5 @@
 //#region imports
-import SampleScene from "./scenes/SampleScene.js"
+import SampleScene from "./scenes/SampleScene.js";
 //#endregion
 
 // #region GAME CONFIGURATION
