@@ -4,7 +4,7 @@ import PlayerInput from "../Behaviours/PlayerInput.js";
 
 export default class SampleScene extends BehaviourScene {
     constructor() {
-        super('sample_scene');
+        super('sample_scene', false);
         this._playerSpeed = 128;
     }
 
