@@ -27,9 +27,12 @@ export default class SampleScene extends BehaviourScene {
             normalMap: './assets/sprites/character_atlas_n.png',
             atlasURL: './assets/sprites/character_atlas.json'
         });
+
+        this.load.bitmapFont('CursedScript', 'Assets/Fonts/CursedScript.png', 'Assets/Fonts/CursedScript.fnt');
     }
 
     create(){
+        // create the background
         this.add.image(0, 0, 'test_background').setOrigin(0, 0).setPipeline('Light2D').setDepth(0);
 
         // create a platform
@@ -47,8 +50,7 @@ export default class SampleScene extends BehaviourScene {
         // create collision between player and platform
         this.physics.add.collider(this.testCharacter, platform);
 
-
-        // Lights
+        // create lights & assign mouse movement events
         this.spotlight = this.lights.addLight(128, 128, 200, 0xFF8800, 2);
 
         this.input.on('pointermove', function (pointer) {
@@ -58,6 +60,7 @@ export default class SampleScene extends BehaviourScene {
 
         this.lights.enable()//.setAmbientColor(0x888888);
 
-        
+        // create a playfab player id feedback message
+        this.add.text(10, 10, `Playfab ID: ${PlayFab._internalSettings.authenticationContext.PlayFabId}`, {fontFamily: 'Monogram', fontSize: 24});
     }
 }

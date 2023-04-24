@@ -26,11 +26,11 @@ export default class PlayerInput extends Behaviour{
         this._parent.setVelocityX(horizontalMove, this._parent.body.velocity.y);
 
         //#region jump
-        if(this._movementKeys.jump.isDown && !this.testCharacter.isJumping){
+        if(this._movementKeys.jump.isDown && !this._parent._isJumping){
             this._parent.body.setVelocityY(-150);
         }
         //#endregion
 
-        this._parent.isJumping = !this._parent.body.blocked.down;
+        this._parent._isJumping = !this._parent.body.blocked.down;
     }
 }
