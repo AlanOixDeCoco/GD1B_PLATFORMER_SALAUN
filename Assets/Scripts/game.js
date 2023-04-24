@@ -28,4 +28,5 @@ const config = {
     },
 };
 let game = new Phaser.Game(config); // creates the game object
+console.log(`${GAME_TITLE} - Version ${GAME_VERSION}`);
 // #endregion

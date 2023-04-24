@@ -1,4 +1,8 @@
-export default class SampleScene extends Phaser.Scene {
+import Behaviour from "../Behaviour.js";
+import BehaviourScene from "../BehaviourScene.js";
+import TestBehaviour from "../Behaviours/TestBehaviour.js";
+
+export default class SampleScene extends BehaviourScene {
     constructor() {
         super('scene-sample');
 
@@ -111,9 +115,20 @@ export default class SampleScene extends Phaser.Scene {
             right: Phaser.Input.Keyboard.KeyCodes.D, 
             right_arrow: Phaser.Input.Keyboard.KeyCodes.RIGHT
         });
+
+        this.MakeBehaviour(this.testCharacter);
+        this.testCharacter.AddBehaviour("characterTestBehaviour", new TestBehaviour());
+
+        this.MakeBehaviour(platform);
+        platform.AddBehaviour("testBehaviour", new TestBehaviour());
+        platform.AddBehaviour("test1", new TestBehaviour());
+
+        platform.destroy(true);
     }
 
-    update(){
+    update(time, deltatime){
+        super.update(time, deltatime);
+
         var horizontalMove = (this._movementKeys.left.isDown * -1) + (this._movementKeys.right.isDown * 1);
         horizontalMove *= this._playerSpeed;
         this.testCharacter.setVelocityX(horizontalMove, this.testCharacter.body.velocity.y);
