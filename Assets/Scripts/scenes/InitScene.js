@@ -6,6 +6,11 @@ export default class InitScene extends BehaviourScene{
     }
 
     preload(){
+        // If we are already logged in
+        if (PlayFab._internalSettings.authenticationContext.PlayFabId) {
+            return;
+        }
+
         SetupPlayfab(PLAYFAB_TITLE_ID);
 
         // create Playfab login request
@@ -24,6 +29,11 @@ export default class InitScene extends BehaviourScene{
     }
 
     create(){
+        if (PlayFab._internalSettings.authenticationContext.PlayFabId) {
+            this.scene.start("sample_scene");
+            return;
+        }
+        
         var loggingText = this.add.text(GAME_WIDTH/2 - 64, GAME_HEIGHT/2 - 18, "Logging in.", {fontFamily: "Monogram", fontSize: 36});
         var loggingDots = 2;
         this.loggingInterval = setInterval(()=>{

@@ -27,7 +27,7 @@ export default class BehaviourScene extends Phaser.Scene {
                 gameobject._behaviours[identifier].update(time, deltatime);
             }
         };
-        gameobject.AddBehaviour = (identifier, behaviour) => {
+        gameobject.AddBehaviour = (behaviour, identifier = "unamed behaviour") => {
             behaviour.init(gameobject, identifier);
         };
         gameobject.on('destroy', () => {

@@ -1,4 +1,5 @@
 import BehaviourScene from "../BehaviourScene.js";
+import LevelManager from "../Behaviours/LevelManager.js";
 import PlayerAnimator from "../Behaviours/PlayerAnimator.js";
 import PlayerInput from "../Behaviours/PlayerInput.js";
 
@@ -18,7 +19,7 @@ export default class SampleScene extends BehaviourScene {
         this.load.image({
             key: 'test_platform', 
             url: './assets/sprites/test_platform.png',
-            normalMap: './assets/sprites/test_platform.png'
+            //normalMap: './assets/sprites/test_platform.png'
         });
 
         this.load.atlas({
@@ -32,20 +33,25 @@ export default class SampleScene extends BehaviourScene {
     }
 
     create(){
+        // create the levelManager
+        this._levelManager = this.add.container();
+        this.MakeBehaviour(this._levelManager);
+        this._levelManager.AddBehaviour(new LevelManager(), "levelManager");
+
         // create the background
-        this.add.image(0, 0, 'test_background').setOrigin(0, 0).setPipeline('Light2D').setDepth(0);
+        this.add.image(GAME_WIDTH/2, GAME_HEIGHT/2, 'test_background').setOrigin(.5, .5).setPipeline('Light2D').setDepth(0);
 
         // create a platform
-        var platform = this.physics.add.sprite(256, 288, 'test_platform').setOrigin(0.5, 1).setPipeline('Light2D').setDepth(0);
+        var platform = this.physics.add.sprite(GAME_WIDTH/2, GAME_HEIGHT/2 + 144, 'test_platform').setOrigin(0.5, 1).setPipeline('Light2D').setDepth(0);
         platform.setImmovable(true);
         platform.body.allowGravity = false;
         platform.setGravity(0);
         
         // create the player object and add its behaviors
-        this.testCharacter = this.physics.add.sprite(256, 270, 'character_atlas').setOrigin(0.5, 1).setPipeline('Light2D').setDepth(0);
+        this.testCharacter = this.physics.add.sprite(GAME_WIDTH/2, GAME_HEIGHT/2 + 112, 'character_atlas').setOrigin(0.5, 1).setPipeline('Light2D').setDepth(0);
         this.MakeBehaviour(this.testCharacter);
-        this.testCharacter.AddBehaviour("playerInput", new PlayerInput());
-        this.testCharacter.AddBehaviour("playerAnimator", new PlayerAnimator());
+        this.testCharacter.AddBehaviour(new PlayerInput(), "playerInput");
+        this.testCharacter.AddBehaviour(new PlayerAnimator(), "playerAnimator");
 
         // create collision between player and platform
         this.physics.add.collider(this.testCharacter, platform);
@@ -58,9 +64,6 @@ export default class SampleScene extends BehaviourScene {
             this.context.spotlight.y = pointer.y;
         }).context = this;
 
-        this.lights.enable()//.setAmbientColor(0x888888);
-
-        // create a playfab player id feedback message
-        this.add.text(10, 10, `Playfab ID: ${PlayFab._internalSettings.authenticationContext.PlayFabId}`, {fontFamily: 'Monogram', fontSize: 24});
+        this.lights.enable().setAmbientColor(0xAAAAAA);
     }
 }

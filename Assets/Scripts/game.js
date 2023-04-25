@@ -11,11 +11,12 @@ const config = {
     type: Phaser.WEBGL,
     scale: {
         parent: 'game_viewport',
-        mode: Phaser.Scale.FIT,
+        mode: Phaser.Scale.LANDSCAPE,
         autoCenter: Phaser.Scale.CENTER_BOTH,
         width: GAME_WIDTH, 
         height: GAME_HEIGHT,
     },
+    backgroundColor: '#000',
     physics: {
         default: 'arcade',
         arcade: {
