@@ -1,4 +1,4 @@
-import Behaviour from "../Behaviour.js";
+import Behaviour from "../../Behaviour.js";
 
 export default class LevelManager extends Behaviour{
     start(){

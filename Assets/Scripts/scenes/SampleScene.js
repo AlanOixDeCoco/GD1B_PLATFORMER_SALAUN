@@ -1,7 +1,7 @@
 import BehaviourScene from "../BehaviourScene.js";
-import LevelManager from "../Behaviours/LevelManager.js";
-import PlayerAnimator from "../Behaviours/PlayerAnimator.js";
-import PlayerInput from "../Behaviours/PlayerInput.js";
+import LevelManager from "../Behaviours/Level/LevelManager.js";
+import PlayerAnimator from "../Behaviours/Player/PlayerAnimator.js";
+import PlayerInput from "../Behaviours/Player/PlayerInput.js";
 
 export default class SampleScene extends BehaviourScene {
     constructor() {
