@@ -24,12 +24,10 @@ export default class SampleScene extends BehaviourScene {
 
         this.load.atlas({
             key: 'character_atlas',
-            textureURL: './assets/sprites/character_atlas.png',
-            normalMap: './assets/sprites/character_atlas_n.png',
-            atlasURL: './assets/sprites/character_atlas.json'
+            textureURL: './assets/sprites/characters/player/character_atlas.png',
+            normalMap: './assets/sprites/characters/player/character_atlas_n.png',
+            atlasURL: './assets/sprites/characters/player/character_atlas.json'
         });
-
-        this.load.bitmapFont('CursedScript', 'Assets/Fonts/CursedScript.png', 'Assets/Fonts/CursedScript.fnt');
     }
 
     create(){
