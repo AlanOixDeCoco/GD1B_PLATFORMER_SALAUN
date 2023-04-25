@@ -11,13 +11,13 @@ export default class SampleScene extends BehaviourScene {
 
     preload(){
         this.load.image({
-            key: 'test_background', 
+            key: 'test_background',
             url: './assets/sprites/test_background.png',
             normalMap: './assets/sprites/test_background_n.png'
         });
 
         this.load.image({
-            key: 'test_platform', 
+            key: 'test_platform',
             url: './assets/sprites/test_platform.png',
             //normalMap: './assets/sprites/test_platform.png'
         });
