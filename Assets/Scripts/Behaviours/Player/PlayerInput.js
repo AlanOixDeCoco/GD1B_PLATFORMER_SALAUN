@@ -27,7 +27,7 @@ export default class PlayerInput extends Behaviour{
 
         //#region jump
         if(this._movementKeys.jump.isDown && !this._parent._isJumping){
-            this._parent.body.setVelocityY(-150);
+            this._parent.body.setVelocityY(-300);
         }
         //#endregion
 

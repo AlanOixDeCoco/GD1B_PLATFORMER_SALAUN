@@ -62,20 +62,29 @@ export default class PlayerAnimator extends Behaviour{
 
     update(){
         //#region horizontal movement
-        if(this._parent.body.velocity.x < 0){
-            this._parent.anims.play("character_run_left", true);
-            this._facingRight = false;
+        if(this._parent.body.blocked.down || this._parent.body.velocity.y < 0){
+            if(this._parent.body.velocity.x < 0){
+                this._parent.anims.play("character_run_left", true);
+                this._facingRight = false;
+            }
+    
+            if(this._parent.body.velocity.x > 0){
+                this._parent.anims.play("character_run_right", true);
+                this._facingRight = true;
+            }
+    
+            if(this._parent.body.velocity.x == 0){
+                if(this._facingRight) this._parent.anims.play("character_idle_right", true);
+                else this._parent.anims.play("character_idle_left", true);
+            }
         }
-
-        if(this._parent.body.velocity.x > 0){
-            this._parent.anims.play("character_run_right", true);
-            this._facingRight = true;
+        else {
+            if(this._parent.body.velocity.x < 0) this._facingRight = false;
+            if(this._parent.body.velocity.x > 0) this._facingRight = true;
+    
+            this._parent.anims.play(`character_idle_${this._facingRight ? "right" : "left"}`, true);
         }
-
-        if(this._parent.body.velocity.x == 0){
-            if(this._facingRight) this._parent.anims.play("character_idle_right", true);
-            else this._parent.anims.play("character_idle_left", true);
-        }
+        
         //#endregion
     }
 }

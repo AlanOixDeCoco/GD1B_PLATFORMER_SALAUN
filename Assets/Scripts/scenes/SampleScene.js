@@ -1,7 +1,10 @@
 import BehaviourScene from "../BehaviourScene.js";
 import LevelManager from "../Behaviours/Level/LevelManager.js";
 import PlayerAnimator from "../Behaviours/Player/PlayerAnimator.js";
+import PlayerBody from "../Behaviours/Player/PlayerBody.js";
 import PlayerInput from "../Behaviours/Player/PlayerInput.js";
+import TestTorch from "../Behaviours/Player/TestTorch.js";
+import TestUIPopup from "../Behaviours/Player/TestUIPopup.js";
 
 export default class SampleScene extends BehaviourScene {
     constructor() {
@@ -46,21 +49,24 @@ export default class SampleScene extends BehaviourScene {
         platform.setGravity(0);
         
         // create the player object and add its behaviors
-        this.testCharacter = this.physics.add.sprite(GAME_WIDTH/2, GAME_HEIGHT/2 + 112, 'character_atlas').setOrigin(0.5, 1).setPipeline('Light2D').setDepth(0);
-        this.MakeBehaviour(this.testCharacter);
-        this.testCharacter.AddBehaviour(new PlayerInput(), "playerInput");
-        this.testCharacter.AddBehaviour(new PlayerAnimator(), "playerAnimator");
+        this._testCharacter = this.physics.add.sprite(GAME_WIDTH/2, GAME_HEIGHT/2 + 112, 'character_atlas').setOrigin(0.5, 1).setPipeline('Light2D').setDepth(0);
+        this.MakeBehaviour(this._testCharacter);
+        this._testCharacter.AddBehaviour(new PlayerBody(), "playerBody");
+        this._testCharacter.AddBehaviour(new PlayerInput(), "playerInput");
+        this._testCharacter.AddBehaviour(new PlayerAnimator(), "playerAnimator");
+        this._testCharacter.AddBehaviour(new TestTorch(), "testTorch");
+        this._testCharacter.AddBehaviour(new TestUIPopup(), "testUIPopup");
 
         // create collision between player and platform
-        this.physics.add.collider(this.testCharacter, platform);
+        this.physics.add.collider(this._testCharacter, platform);
 
         // create lights & assign mouse movement events
-        this.spotlight = this.lights.addLight(128, 128, 200, 0xFF8800, 2);
-
-        this.input.on('pointermove', function (pointer) {
-            this.context.spotlight.x = pointer.x;
-            this.context.spotlight.y = pointer.y;
-        }).context = this;
+        //this.spotlight = this.lights.addLight(128, 128, 200, 0xFF8800, 2);
+//
+        //this.input.on('pointermove', function (pointer) {
+        //    this.context.spotlight.x = pointer.x;
+        //    this.context.spotlight.y = pointer.y;
+        //}).context = this;
 
         this.lights.enable().setAmbientColor(0xAAAAAA);
     }
