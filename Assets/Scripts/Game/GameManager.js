@@ -1,5 +1,6 @@
 import Behaviour from "../Behaviour.js";
 import PlayfabManager from "./PlayfabManager.js";
+import SaveManager from "./SaveManager.js";
 
 export default class GameManager extends Behaviour{
     start(){
@@ -7,6 +8,7 @@ export default class GameManager extends Behaviour{
         this._startTime = this._scene.time.now;
 
         this._playfabManager = new PlayfabManager();
+        this._saveManager = new SaveManager();
 
         // create a playfab player id feedback message
         if(DEBUG){
