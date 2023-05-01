@@ -1,9 +1,4 @@
 export default class Behaviour {
-    constructor() {
-        this._parent;
-        this._identifier;
-    }
-
     init(gameobject, identifier){
         this._parent = gameobject;
         this._identifier = identifier;

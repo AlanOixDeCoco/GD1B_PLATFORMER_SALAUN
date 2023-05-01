@@ -30,6 +30,9 @@ export default class BehaviourScene extends Phaser.Scene {
         gameobject.AddBehaviour = (behaviour, identifier = "unamed behaviour") => {
             behaviour.init(gameobject, identifier);
         };
+        gameobject.GetBehaviour = (identifier) => {
+            return gameobject._behaviours[identifier];
+        };
         gameobject.on('destroy', () => {
             for(let identifier in gameobject._behaviours){
                 gameobject._behaviours[identifier].destroy();
@@ -39,5 +42,12 @@ export default class BehaviourScene extends Phaser.Scene {
 
         // Add the modified gameobject to the scene update loop
         this._behaviourObjects.push(gameobject);
+    }
+
+    MakeBehaviors(gameobject, behaviors){
+        this.MakeBehaviour(gameobject);
+        for(let identifier in behaviors){
+            gameobject.AddBehaviour(behaviors[identifier], identifier);
+        }
     }
 }

@@ -12,6 +12,7 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: Lexend, Helvetica, sans-serif;
 }
 
 #game_viewport{
@@ -22,4 +23,99 @@ canvas {
     display: block;
     width: 100%;
     height: 100%;
+}
+
+#overlay {
+    position: absolute;
+    display: flex;
+    background: #FFF;
+    padding: 2vh;
+    border-radius: 2vh;
+}
+
+#menuHeader {
+    display: flex;
+    height: 6vh;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2vh;
+}
+
+#menuTitle{
+    font-size: 5vh;
+    font-weight: 900;
+}
+
+#nextLoginOptionButton{
+    transition: 50ms;
+    background: #000;
+    border-radius: 1.5vh;
+    padding: 1vh .5vh 1vh 8vh;
+    height: 4vh;
+}
+
+#nextLoginOptionButton:hover {
+    transition: 50ms;
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+#inputFields{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: #000;
+    border-radius: 1.5vh;
+    padding: 1vh;
+}
+
+.inputField{
+    display: flex;
+    align-items: center;
+    margin-top: 1vh;
+}
+
+#usernameField{
+    margin-top: 0;
+}
+
+.inputField img {
+    margin-left: .5vh;
+    height: 4.5vh;
+}
+
+.textInput {
+    margin-left: 1.5vh;
+    background: #333;
+    border: 1px solid #FFF;
+    border-radius: 1vh;
+    padding: 1vh 1.5vh;
+    color: #FFF;
+    font-size: 3vh;
+    font-family: Lexend;
+    font-weight: 300;
+}
+
+.confirmButton {
+    display: flex;
+    height: 8vh;
+    justify-content: center;
+    align-items: center;
+    background: #00A;
+    color: #FFF;
+    border-radius: 1.5vh;
+    font-size: 3vh;
+    font-weight: 600;
+    margin-top: 1vh;
+}
+
+.confirmButton:hover{
+    transition: 50ms;
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+#localButton {
+    background: #444;
+    height: 6vh;
 }

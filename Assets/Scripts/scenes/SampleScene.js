@@ -1,15 +1,29 @@
 import BehaviourScene from "../BehaviourScene.js";
-import LevelManager from "../Behaviours/Level/LevelManager.js";
-import PlayerAnimator from "../Behaviours/Player/PlayerAnimator.js";
-import PlayerBody from "../Behaviours/Player/PlayerBody.js";
-import PlayerInput from "../Behaviours/Player/PlayerInput.js";
-import TestTorch from "../Behaviours/Player/TestTorch.js";
-import TestUIPopup from "../Behaviours/Player/TestUIPopup.js";
+import LevelManager from "../Level/FloorManager.js";
+import PlayerAnimator from "../Player/PlayerAnimator.js";
+import PlayerBody from "../Player/PlayerBody.js";
+import PlayerManager from "../Player/PlayerManager.js";
 
 export default class SampleScene extends BehaviourScene {
     constructor() {
         super('sample_scene', false);
-        this._playerSpeed = 128;
+    }
+
+    init(data){
+        // pass the needed data to create the level
+        this._initData = data;
+
+        // should be passed in the init function data
+        this._initData.floor = 1;
+        this._initData.playerStats = {
+            level: 1,
+            experience: 0,
+            skills: [],
+            maxHealth: PLAYER_DEFAULT_HEALTH,
+            health: PLAYER_DEFAULT_HEALTH,
+            maxSpeed: PLAYER_DEFAULT_SPEED,
+            speed: PLAYER_DEFAULT_SPEED,
+        }
     }
 
     preload(){
@@ -23,6 +37,12 @@ export default class SampleScene extends BehaviourScene {
             key: 'test_platform',
             url: './assets/sprites/test_platform.png',
             //normalMap: './assets/sprites/test_platform.png'
+        });
+
+        this.load.spritesheet({
+            key: "character_placeholder_spritesheet",
+            url: './assets/sprites/characters/player/character_placeholder_spritesheet.png',
+            frameConfig: {frameWidth: 32}
         });
 
         this.load.atlas({
@@ -49,25 +69,18 @@ export default class SampleScene extends BehaviourScene {
         platform.setGravity(0);
         
         // create the player object and add its behaviors
-        this._testCharacter = this.physics.add.sprite(GAME_WIDTH/2, GAME_HEIGHT/2 + 112, 'character_atlas').setOrigin(0.5, 1).setPipeline('Light2D').setDepth(0);
-        this.MakeBehaviour(this._testCharacter);
-        this._testCharacter.AddBehaviour(new PlayerBody(), "playerBody");
-        this._testCharacter.AddBehaviour(new PlayerInput(), "playerInput");
-        this._testCharacter.AddBehaviour(new PlayerAnimator(), "playerAnimator");
-        this._testCharacter.AddBehaviour(new TestTorch(), "testTorch");
-        this._testCharacter.AddBehaviour(new TestUIPopup(), "testUIPopup");
+        this._player = this.physics.add.sprite(GAME_WIDTH/2, GAME_HEIGHT/2 + 80, 'character_atlas').setOrigin(0.5, 1).setPipeline('Light2D').setDepth(0);
+
+        this.MakeBehaviors(this._player, {
+            "player_animator": new PlayerAnimator(),
+            "player_body": new PlayerBody(),
+            "player_manager": new PlayerManager(this._initData.playerStats),
+        });
 
         // create collision between player and platform
-        this.physics.add.collider(this._testCharacter, platform);
+        this.physics.add.collider(this._player, platform);
 
-        // create lights & assign mouse movement events
-        //this.spotlight = this.lights.addLight(128, 128, 200, 0xFF8800, 2);
-//
-        //this.input.on('pointermove', function (pointer) {
-        //    this.context.spotlight.x = pointer.x;
-        //    this.context.spotlight.y = pointer.y;
-        //}).context = this;
-
+        // activate lights 2D in this scene
         this.lights.enable().setAmbientColor(0xAAAAAA);
     }
 }

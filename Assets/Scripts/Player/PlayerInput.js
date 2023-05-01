@@ -1,9 +1,16 @@
-import Behaviour from "../../Behaviour.js";
+import Behaviour from "../Behaviour.js";
+import StateMachine from "../components/StateMachine.js";
+import { PlayerIdleState } from "./PlayerStates.js";
 
 export default class PlayerInput extends Behaviour{
     start(){
         this._scene = this._parent.scene;
-        this._movementKeys;
+
+        this._stateMachine = new StateMachine();
+
+        var playerIdleState = new PlayerIdleState(this);
+
+        this._stateMachine.SetState(playerIdleState);
 
         this._playerSpeed = 128;
 

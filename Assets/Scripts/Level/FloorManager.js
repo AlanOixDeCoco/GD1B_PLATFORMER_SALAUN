@@ -1,6 +1,6 @@
-import Behaviour from "../../Behaviour.js";
+import Behaviour from "../Behaviour.js";
 
-export default class LevelManager extends Behaviour{
+export default class FloorManager extends Behaviour{
     start(){
         this._scene = this._parent.scene;
         this._startTime = this._scene.time.now;
@@ -20,7 +20,7 @@ export default class LevelManager extends Behaviour{
     
     update(){
         if(this._reloadKey.isDown){
-            this._scene.scene.start("init_scene");
+            this._scene.scene.start(SCENE_INIT);
         }
     }
 }

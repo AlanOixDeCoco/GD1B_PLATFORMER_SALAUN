@@ -1,17 +1,9 @@
-export default class State {
-    constructor(context){
-        this._context = context;
+// Not an actual Interface (thanks js...)
+export default class IState {
+    constructor(stateType){
+        this._type = stateType;
     }
-
-    onEnterState(previousState){
-
-    }
-
-    Update(){
-
-    }
-
-    onExitState(nextState){
-        delete this;
-    }
+    Tick(){}
+    OnEnterState(){}
+    OnExitState(){}
 }

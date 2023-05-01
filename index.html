@@ -13,6 +13,33 @@
 <body>
     <div id="game_viewport"></div>
 
+    <div id="overlay" style="display: none;">
+        <div id="loginMenu">
+            <div id="menuHeader">
+                <h1 id="menuTitle">GUEST</h1>
+                <img id="nextLoginOptionButton" src="Assets/Images/Icons/icon_next.png">
+            </div>
+            <div id="inputFields">
+                <div class="inputField" id="usernameField">
+                    <img src="Assets/Images/Icons/icon_username.png">
+                    <input type="text" class="textInput" id="usernameInput" name="username" required minlength="3" maxlength="20">
+                </div>
+                <div class="inputField" id="passwordField">
+                    <img src="Assets/Images/Icons/icon_password.png">
+                    <input type="password" class="textInput" id="passwordInput" name="password" required minlength="6">
+                </div>
+                <div class="inputField" id="confirmPasswordField">
+                    <img src="Assets/Images/Icons/icon_password_confirm.png">
+                    <input type="password" class="textInput" id="confirmPasswordInput" name="confirmPassword" required minlength="6">
+                </div>
+            </div>
+            <div class="confirmButton" id="loginGuestButton">LOGIN AS GUEST</div>
+            <div class="confirmButton" id="loginButton">LOGIN</div>
+            <div class="confirmButton" id="registerButton">REGISTER & LOGIN</div>
+            <div class="confirmButton" id="localButton">PLAY LOCAL</div>
+        </div>
+    </div>
+
     <script src="Assets/Scripts/Components/Constants.js"></script>
     <script type="module" src="Assets/Scripts/game.js"></script>
 </body>
