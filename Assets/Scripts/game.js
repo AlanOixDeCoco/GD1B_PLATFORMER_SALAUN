@@ -11,8 +11,6 @@ import PreloadScene from "./Scenes/PreloadScene.js";
 import LoginScene from "./Scenes/LoginScene.js";
 //#endregion
 
-document.getElementById("overlay").style.display = "none";
-
 // #region GAME CONFIGURATION
 const config = {
     type: Phaser.WEBGL,
@@ -23,7 +21,6 @@ const config = {
         width: GAME_WIDTH, 
         height: GAME_HEIGHT,
     },
-    backgroundColor: '#000',
     physics: {
         default: 'arcade',
         arcade: {

@@ -1,4 +1,4 @@
-import Behaviour from "../Behaviour.js";
+import Behaviour from "../components/Behaviour.js";
 
 export default class PlayerBody extends Behaviour{
     start(){

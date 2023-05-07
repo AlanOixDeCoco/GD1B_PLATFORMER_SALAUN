@@ -1,4 +1,5 @@
-import BehaviourScene from "../BehaviourScene.js";
+import CameraController from "../Camera/CameraController.js";
+import BehaviourScene from "../components/BehaviourScene.js";
 import LoginPopup from "../components/LoginPopup.js";
 
 export default class LoginScene extends BehaviourScene {

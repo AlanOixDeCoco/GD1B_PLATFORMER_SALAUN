@@ -1,4 +1,4 @@
-import Behaviour from "../Behaviour.js";
+import Behaviour from "../components/Behaviour.js";
 import StateMachine from "../components/StateMachine.js";
 import { PlayerIdleState } from "./PlayerStates.js";
 

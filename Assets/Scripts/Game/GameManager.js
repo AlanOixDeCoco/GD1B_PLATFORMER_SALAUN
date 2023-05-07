@@ -1,4 +1,4 @@
-import Behaviour from "../Behaviour.js";
+import Behaviour from "../components/Behaviour.js";
 import PlayfabManager from "./PlayfabManager.js";
 import SaveManager from "./SaveManager.js";
 
@@ -15,7 +15,7 @@ export default class GameManager extends Behaviour{
             this._debugPlayfabID = this._scene.add.text(
                 GAME_WIDTH/2, 8, 
                 `Not logged in ...`, 
-                {fontFamily: 'Arial', fontSize: 24}
+                {fontFamily: 'Arial', fontSize: 24},
             ).setOrigin(.5, 0);
         }
 
@@ -24,6 +24,5 @@ export default class GameManager extends Behaviour{
     
     update(){
         if(DEBUG) this._debugPlayfabID.setText(this._playfabManager._connected ? `Playfab ID: ${PlayFab._internalSettings.authenticationContext.PlayFabId}` : "Not logged in ...");
-        
     }
 }

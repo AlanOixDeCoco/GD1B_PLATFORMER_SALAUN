@@ -1,4 +1,4 @@
-import BehaviourScene from "../BehaviourScene.js";
+import BehaviourScene from "../components/BehaviourScene.js";
 import LevelManager from "../Level/FloorManager.js";
 import PlayerAnimator from "../Player/PlayerAnimator.js";
 import PlayerBody from "../Player/PlayerBody.js";
@@ -70,7 +70,6 @@ export default class SampleScene extends BehaviourScene {
         
         // create the player object and add its behaviors
         this._player = this.physics.add.sprite(GAME_WIDTH/2, GAME_HEIGHT/2 + 80, 'character_atlas').setOrigin(0.5, 1).setPipeline('Light2D').setDepth(0);
-
         this.MakeBehaviors(this._player, {
             "player_animator": new PlayerAnimator(),
             "player_body": new PlayerBody(),

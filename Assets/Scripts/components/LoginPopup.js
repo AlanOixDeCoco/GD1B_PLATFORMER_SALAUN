@@ -20,7 +20,8 @@ export default class LoginPopup {
     }
 
     HidePopup(){
-        this._overlayElement.style.display = "none";
+        this._overlayElement.classList.remove("show");
+        this._overlayElement.classList.add("hide");
     }
 
     ShowPopup(state){
@@ -53,7 +54,9 @@ export default class LoginPopup {
         document.getElementById("usernameInput").value = localStorage.getItem("savedUsername") ? localStorage.getItem("savedUsername") : "Username";
 
         this._currentState = state;
-        this._overlayElement.style.display = "flex";
+
+        this._overlayElement.classList.remove("hide");
+        this._overlayElement.classList.add("show");
     }
 
     ResetPopup(){

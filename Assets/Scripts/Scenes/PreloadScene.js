@@ -1,4 +1,4 @@
-import BehaviourScene from "../BehaviourScene.js";
+import BehaviourScene from "../components/BehaviourScene.js";
 
 export default class PreloadScene extends BehaviourScene{
     constructor() {
@@ -6,6 +6,7 @@ export default class PreloadScene extends BehaviourScene{
     }
 
     preload(){
+        //#region image files
         this.load.image({
             key: 'test_background',
             url: './assets/sprites/test_background.png',
@@ -31,6 +32,13 @@ export default class PreloadScene extends BehaviourScene{
             atlasURL: './assets/sprites/characters/player/character_atlas.json'
         });
 
+        this.load.image("circle_mask", "Assets/sprites/masks/circle_mask.png", {frameWidth: 2048});
+        //#endregion
+
+        //#region audio files
+        //#endregion
+
+        //#region loading states
         this.load.on('progress', (value) => {
             console.log(value);
         });
@@ -42,6 +50,7 @@ export default class PreloadScene extends BehaviourScene{
             console.log('complete');
             this.scene.start(SCENE_BACKGROUND);
         });
+        //#endregion
     }
 }
 //#endregion

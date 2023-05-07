@@ -4,7 +4,7 @@
 }
 
 html, body { 
-    background: #333;
+    background: #000;
     width: 100%;
     height: 100%;
     margin: 0; 
@@ -25,9 +25,31 @@ canvas {
     height: 100%;
 }
 
-#overlay {
+#overlay{
+    background: #000000AA;
     position: absolute;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.show {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.hide {
+    opacity: 0;
+    pointer-events: none;
+    transition: 250ms;
+}
+
+#loginMenu {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
     background: #FFF;
     padding: 2vh;
     border-radius: 2vh;

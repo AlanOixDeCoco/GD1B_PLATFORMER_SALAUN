@@ -1,4 +1,4 @@
-import BehaviourScene from "../BehaviourScene.js";
+import BehaviourScene from "../components/BehaviourScene.js";
 import LevelManager from "../Level/FloorManager.js";
 
 export default class DungeonScene extends BehaviourScene {
