@@ -8,6 +8,7 @@ export default class MainMenuScene extends BehaviourScene {
 
     init(data){
         this._gameManager = data.gameManager;
+        this._gameManager.SetCurrentScene(this);
     }
 
     create(){
@@ -21,5 +22,7 @@ export default class MainMenuScene extends BehaviourScene {
             `MAIN MENU SCENE`, 
             {fontFamily: 'Monogram', fontSize: 48}
         ).setOrigin(.5, .5);
+
+        this.scene.start("sample_scene", {gameManager: this._gameManager});
     }
 }

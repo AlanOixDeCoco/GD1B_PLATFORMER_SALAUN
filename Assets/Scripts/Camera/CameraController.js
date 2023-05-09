@@ -21,12 +21,12 @@ export default class CameraController extends Behaviour{
         var scale = 1;
         this._fadeOutInterval = setInterval(() => {
             this._circle.setScale(scale);
-            scale -= .05;
+            scale -= .01;
             if(scale <= 0) {
                 this._circle.setScale(0);
                 clearInterval(this._fadeOutInterval);
             }
-        }, 15);
+        }, 5);
     }
 
     FadeIn(x, y){
@@ -36,21 +36,21 @@ export default class CameraController extends Behaviour{
         var scale = 0;
         this._fadeInInterval = setInterval(() => {
             this._circle.setScale(scale);
-            scale += .05;
+            scale += .01;
             if(scale >= 1) {
                 this._circle.setScale(1);
                 clearInterval(this._fadeInInterval);
                 this._parent.clearMask();
             }
-        }, 15);
+        }, 5);
     }
 
     update(){
         if(Phaser.Input.Keyboard.JustDown(this._fadeOutKey)) {
-            this.FadeOut(700, GAME_HEIGHT/2);
+            this.FadeOut(GAME_WIDTH/2, GAME_HEIGHT/2 + 96);
             setTimeout(() => {
-                this.FadeIn(200, GAME_HEIGHT/2);
-            }, 500)
+                this.FadeIn(GAME_WIDTH/2, GAME_HEIGHT/2 + 96);
+            }, 750)
         }
     }
 }

@@ -6,36 +6,32 @@ export default class PreloadScene extends BehaviourScene{
     }
 
     preload(){
-        //#region image files
+        //#region placeholder content
         this.load.image({
-            key: 'test_background',
-            url: './assets/sprites/test_background.png',
-            normalMap: './assets/sprites/test_background_n.png'
+            key: 'prototype_background',
+            url: './Assets/Sprites/Environment/prototype_background.png',
         });
-
-        this.load.image({
-            key: 'test_platform',
-            url: './assets/sprites/test_platform.png',
-            //normalMap: './assets/sprites/test_platform.png'
-        });
-
+        
         this.load.spritesheet({
             key: "character_placeholder_spritesheet",
-            url: './assets/sprites/characters/player/character_placeholder_spritesheet.png',
+            url: './Assets/Sprites/characters/player/character_placeholder_spritesheet.png',
             frameConfig: {frameWidth: 32}
         });
+        //#endregion
 
-        this.load.atlas({
-            key: 'character_atlas',
-            textureURL: './assets/sprites/characters/player/character_atlas.png',
-            normalMap: './assets/sprites/characters/player/character_atlas_n.png',
-            atlasURL: './assets/sprites/characters/player/character_atlas.json'
-        });
+        //#region image files
+        //this.load.atlas({
+        //    key: 'character_atlas',
+        //    textureURL: './Assets/Sprites/characters/player/character_atlas.png',
+        //    normalMap: './Assets/Sprites/characters/player/character_atlas_n.png',
+        //    atlasURL: './Assets/Sprites/characters/player/character_atlas.json'
+        //});
 
-        this.load.image("circle_mask", "Assets/sprites/masks/circle_mask.png", {frameWidth: 2048});
+        this.load.image("circle_mask", "Assets/Sprites/masks/circle_mask.png", {frameWidth: 2048});
         //#endregion
 
         //#region audio files
+        // ...
         //#endregion
 
         //#region loading states

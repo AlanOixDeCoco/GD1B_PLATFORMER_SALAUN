@@ -16,13 +16,17 @@ export default class PlayerInput extends Behaviour{
 
         // inputs
         this._movementKeys = this._scene.input.keyboard.addKeys({
-            jump: Phaser.Input.Keyboard.KeyCodes.SPACE, 
+            jump: Phaser.Input.Keyboard.KeyCodes.Z, 
             jump_arrow: Phaser.Input.Keyboard.KeyCodes.UP, 
             left: Phaser.Input.Keyboard.KeyCodes.Q, 
             left_arrow: Phaser.Input.Keyboard.KeyCodes.LEFT,
             right: Phaser.Input.Keyboard.KeyCodes.D, 
-            right_arrow: Phaser.Input.Keyboard.KeyCodes.RIGHT
+            right_arrow: Phaser.Input.Keyboard.KeyCodes.RIGHT,
+            dash: Phaser.Input.Keyboard.KeyCodes.SHIFT,
+            dash_arrow: Phaser.Input.Keyboard.KeyCodes.SHIFT,
         });
+
+        this.
 
         super.start();
     }

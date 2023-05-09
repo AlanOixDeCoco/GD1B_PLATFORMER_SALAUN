@@ -10,6 +10,7 @@ export default class LoginScene extends BehaviourScene {
 
     init(data){
         this._gameManager = data.gameManager;
+        this._gameManager.SetCurrentScene(this);
     }
 
     create(){

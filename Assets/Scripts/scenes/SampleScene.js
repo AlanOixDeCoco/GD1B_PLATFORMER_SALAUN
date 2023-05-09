@@ -1,3 +1,4 @@
+import CameraController from "../Camera/CameraController.js";
 import BehaviourScene from "../components/BehaviourScene.js";
 import LevelManager from "../Level/FloorManager.js";
 import PlayerAnimator from "../Player/PlayerAnimator.js";
@@ -10,6 +11,9 @@ export default class SampleScene extends BehaviourScene {
     }
 
     init(data){
+        this._gameManager = data.gameManager;
+        this._gameManager.SetCurrentScene(this);
+
         // pass the needed data to create the level
         this._initData = data;
 
@@ -23,50 +27,29 @@ export default class SampleScene extends BehaviourScene {
             health: PLAYER_DEFAULT_HEALTH,
             maxSpeed: PLAYER_DEFAULT_SPEED,
             speed: PLAYER_DEFAULT_SPEED,
+            maxJumpVelocity: PLAYER_DEFAULT_JUMP_VELOCITY,
+            jumpVelocity: PLAYER_DEFAULT_JUMP_VELOCITY,
+            maxDashVelocity: PLAYER_DEFAULT_DASH_VELOCITY,
+            dashVelocity: PLAYER_DEFAULT_DASH_VELOCITY,
+            maxDashDuration: PLAYER_DEFAULT_DASH_DURATION,
+            dashDuration: PLAYER_DEFAULT_DASH_DURATION,
+            dashAvailableDuration: PLAYER_DEFAULT_DASH_AVAILABLE_DURATION,
         }
     }
 
-    preload(){
-        this.load.image({
-            key: 'test_background',
-            url: './assets/sprites/test_background.png',
-            normalMap: './assets/sprites/test_background_n.png'
-        });
-
-        this.load.image({
-            key: 'test_platform',
-            url: './assets/sprites/test_platform.png',
-            //normalMap: './assets/sprites/test_platform.png'
-        });
-
-        this.load.spritesheet({
-            key: "character_placeholder_spritesheet",
-            url: './assets/sprites/characters/player/character_placeholder_spritesheet.png',
-            frameConfig: {frameWidth: 32}
-        });
-
-        this.load.atlas({
-            key: 'character_atlas',
-            textureURL: './assets/sprites/characters/player/character_atlas.png',
-            normalMap: './assets/sprites/characters/player/character_atlas_n.png',
-            atlasURL: './assets/sprites/characters/player/character_atlas.json'
-        });
-    }
-
     create(){
+        this._camera = this.cameras.main;
+        this.MakeBehaviors(this._camera, {
+            "camera_controller": new CameraController(),
+        });
+
         // create the levelManager
         this._levelManager = this.add.container();
         this.MakeBehaviour(this._levelManager);
         this._levelManager.AddBehaviour(new LevelManager(), "levelManager");
 
         // create the background
-        this.add.image(GAME_WIDTH/2, GAME_HEIGHT/2, 'test_background').setOrigin(.5, .5).setPipeline('Light2D').setDepth(0);
-
-        // create a platform
-        var platform = this.physics.add.sprite(GAME_WIDTH/2, GAME_HEIGHT/2 + 144, 'test_platform').setOrigin(0.5, 1).setPipeline('Light2D').setDepth(0);
-        platform.setImmovable(true);
-        platform.body.allowGravity = false;
-        platform.setGravity(0);
+        this.add.image(GAME_WIDTH/2, GAME_HEIGHT/2, 'prototype_background').setOrigin(.5, .5).setDepth(0);
         
         // create the player object and add its behaviors
         this._player = this.physics.add.sprite(GAME_WIDTH/2, GAME_HEIGHT/2 + 80, 'character_atlas').setOrigin(0.5, 1).setPipeline('Light2D').setDepth(0);
@@ -77,7 +60,7 @@ export default class SampleScene extends BehaviourScene {
         });
 
         // create collision between player and platform
-        this.physics.add.collider(this._player, platform);
+        this._player.setCollideWorldBounds(true);
 
         // activate lights 2D in this scene
         this.lights.enable().setAmbientColor(0xAAAAAA);

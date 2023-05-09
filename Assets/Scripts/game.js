@@ -9,6 +9,7 @@ import GameoverScene from "./Scenes/GameoverScene.js";
 import MainMenuScene from "./Scenes/MainMenuScene.js";
 import PreloadScene from "./Scenes/PreloadScene.js";
 import LoginScene from "./Scenes/LoginScene.js";
+import SampleScene from "./Scenes/SampleScene.js";
 //#endregion
 
 // #region GAME CONFIGURATION
@@ -40,6 +41,8 @@ const config = {
         DungeonBossScene,
         DungeonBossTransitionScene,
         GameoverScene,
+
+        SampleScene
     ],
     input: {
         gamepad: true,

@@ -43,25 +43,43 @@ export default class PlayerAnimator extends Behaviour{
             frames: this._parent.anims.generateFrameNumbers("character_placeholder_spritesheet", {start:1, end:1}),
             frameRate: 30,
             repeat: -1,
-      });
-      this._parent.anims.create({
-          key: 'character_jump',
-          frames: this._parent.anims.generateFrameNumbers("character_placeholder_spritesheet", {start:2, end:2}),
-          frameRate: 30,
-          repeat: 0,
-      });
-      this._parent.anims.create({
-        key: 'character_jumping',
-        frames: this._parent.anims.generateFrameNumbers("character_placeholder_spritesheet", {start:3, end:3}),
-        frameRate: 30,
-        repeat: -1,
-    });
-    this._parent.anims.create({
-      key: 'character_falling',
-      frames: this._parent.anims.generateFrameNumbers("character_placeholder_spritesheet", {start:4, end:4}),
-      frameRate: 30,
-      repeat: -1,
-  });
+        });
+        this._parent.anims.create({
+            key: 'character_jump',
+            frames: this._parent.anims.generateFrameNumbers("character_placeholder_spritesheet", {start:2, end:2}),
+            frameRate: 30,
+            repeat: 0,
+        });
+        this._parent.anims.create({
+            key: 'character_jumping',
+            frames: this._parent.anims.generateFrameNumbers("character_placeholder_spritesheet", {start:3, end:3}),
+            frameRate: 30,
+            repeat: -1,
+        });
+        this._parent.anims.create({
+            key: 'character_falling',
+            frames: this._parent.anims.generateFrameNumbers("character_placeholder_spritesheet", {start:4, end:4}),
+            frameRate: 30,
+            repeat: -1,
+        });
+        this._parent.anims.create({
+            key: 'character_land',
+            frames: this._parent.anims.generateFrameNumbers("character_placeholder_spritesheet", {start:5, end:5}),
+            frameRate: 30,
+            repeat: 0,
+        });
+        this._parent.anims.create({
+            key: 'character_dash',
+            frames: this._parent.anims.generateFrameNumbers("character_placeholder_spritesheet", {start:6, end:6}),
+            frameRate: 30,
+            repeat: 0,
+        });
+        this._parent.anims.create({
+            key: 'character_dashing',
+            frames: this._parent.anims.generateFrameNumbers("character_placeholder_spritesheet", {start:7, end:7}),
+            frameRate: 30,
+            repeat: 0,
+        });
         //#endregion
 
         super.start();
