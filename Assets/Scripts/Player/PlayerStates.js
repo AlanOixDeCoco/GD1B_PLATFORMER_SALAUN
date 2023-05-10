@@ -129,8 +129,6 @@ export class PlayerDashState extends IState {
     }
 
     OnEnterState(){
-        console.log(this._playerManager._parent.body.allowGravity);
-
         this._playerManager._dashAvailable = false;
         this._playerManager._isDashing = true;
         this._playerManager._parent.body.allowGravity = false;

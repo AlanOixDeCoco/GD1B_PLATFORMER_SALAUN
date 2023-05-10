@@ -1,0 +1,72 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "",
+    "expandedProjectPaths": [
+    ],
+    "fileStates": {
+        "floor_10x5.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 307,
+                "y": 228
+            }
+        },
+        "floor_10x5.tmx#playerSketch": {
+            "scaleInDock": 1
+        },
+        "floor_10x5.tmx#prototype_tileset": {
+            "scaleInDock": 0.75
+        },
+        "floor_boss.tmx": {
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 286,
+                "y": 248
+            }
+        },
+        "floor_boss.tmx#playerSketch": {
+            "scaleInDock": 1
+        },
+        "floor_boss.tmx#prototype_tileset": {
+            "scaleInDock": 0.75
+        },
+        "floor_seller.tmx": {
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 277,
+                "y": 264
+            }
+        },
+        "floor_seller.tmx#playerSketch": {
+            "scaleInDock": 1
+        },
+        "floor_seller.tmx#prototype_tileset": {
+            "scaleInDock": 0.75
+        },
+        "playerSketch.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        }
+    },
+    "last.exportedFilePath": "D:/Git/GD1B_PLATFORMER_SALAUN/Assets/Maps/Floors",
+    "last.imagePath": "D:/Git/GD1B_PLATFORMER_SALAUN/Documentation/Recherches",
+    "map.height": 15,
+    "map.lastUsedExportFilter": "Fichiers de carte JSON (*.tmj *.json)",
+    "map.lastUsedFormat": "tmx",
+    "map.renderOrder": null,
+    "map.width": 20,
+    "openFiles": [
+    ],
+    "project": "NightKnight.tiled-project",
+    "recentFiles": [
+        "playerSketch.tsx"
+    ],
+    "tileset.embedInMap": true,
+    "tileset.lastUsedFormat": "tsx"
+}
