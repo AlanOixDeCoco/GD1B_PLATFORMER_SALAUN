@@ -49,7 +49,7 @@ export default class SampleScene extends BehaviourScene {
         this._levelManager.AddBehaviour(new LevelManager(), "levelManager");
 
         // create the background
-        this.add.image(GAME_WIDTH/2, GAME_HEIGHT/2, 'prototype_background').setOrigin(.5, .5).setDepth(0);
+        this.add.image(GAME_WIDTH/2, GAME_HEIGHT/2, 'prototype_background_full').setOrigin(.5, .5).setDepth(0).setPipeline('Light2D');
         
         // create the player object and add its behaviors
         this._player = this.physics.add.sprite(GAME_WIDTH/2, GAME_HEIGHT/2 + 80, 'character_atlas').setOrigin(0.5, 1).setPipeline('Light2D').setDepth(0);
@@ -63,6 +63,6 @@ export default class SampleScene extends BehaviourScene {
         this._player.setCollideWorldBounds(true);
 
         // activate lights 2D in this scene
-        this.lights.enable().setAmbientColor(0xAAAAAA);
+        this.lights.enable().setAmbientColor(0x222222);
     }
 }

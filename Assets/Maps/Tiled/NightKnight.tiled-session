@@ -8,46 +8,46 @@
     ],
     "fileStates": {
         "floor_10x5.tmx": {
-            "scale": 1,
+            "scale": 3,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 307,
-                "y": 228
+                "x": 320.16666666666663,
+                "y": 239.66666666666666
             }
         },
         "floor_10x5.tmx#playerSketch": {
             "scaleInDock": 1
         },
         "floor_10x5.tmx#prototype_tileset": {
-            "scaleInDock": 0.75
+            "scaleInDock": 1
         },
         "floor_boss.tmx": {
-            "scale": 1,
+            "scale": 1.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 286,
-                "y": 248
+                "x": 373,
+                "y": 221.33333333333331
             }
         },
         "floor_boss.tmx#playerSketch": {
             "scaleInDock": 1
         },
         "floor_boss.tmx#prototype_tileset": {
-            "scaleInDock": 0.75
+            "scaleInDock": 1
         },
         "floor_seller.tmx": {
-            "scale": 1,
+            "scale": 3,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 277,
-                "y": 264
+                "x": 325.83333333333337,
+                "y": 233.66666666666666
             }
         },
         "floor_seller.tmx#playerSketch": {
             "scaleInDock": 1
         },
         "floor_seller.tmx#prototype_tileset": {
-            "scaleInDock": 0.75
+            "scaleInDock": 1
         },
         "playerSketch.tsx": {
             "scaleInDock": 1,

@@ -9,27 +9,27 @@ export default class PreloadScene extends BehaviourScene{
         //#region placeholder content
         this.load.image({
             key: 'prototype_background_10x5',
-            url: './Assets/Sprites/Environment/prototype_background_10x5.png',
+            url: './Assets/Sprites/Environment/Prototype/prototype_background_10x5.png',
         });
         this.load.image({
             key: 'prototype_background_14x9',
-            url: './Assets/Sprites/Environment/prototype_background_14x9.png',
+            url: './Assets/Sprites/Environment/Prototype/prototype_background_14x9.png',
         });
         this.load.image({
             key: 'prototype_background_16x5',
-            url: './Assets/Sprites/Environment/prototype_background_16x5.png',
+            url: './Assets/Sprites/Environment/Prototype/prototype_background_16x5.png',
         });
         this.load.image({
             key: 'prototype_background_16x9',
-            url: './Assets/Sprites/Environment/prototype_background_16x9.png',
+            url: './Assets/Sprites/Environment/Prototype/prototype_background_16x9.png',
         });
         this.load.image({
             key: 'prototype_background_18x13',
-            url: './Assets/Sprites/Environment/prototype_background_18x13.png',
+            url: './Assets/Sprites/Environment/Prototype/prototype_background_18x13.png',
         });
         this.load.image({
             key: 'prototype_background_full',
-            url: './Assets/Sprites/Environment/prototype_background_full.png',
+            url: './Assets/Sprites/Environment/Prototype/prototype_background_full.png',
         });
         
         this.load.spritesheet({
