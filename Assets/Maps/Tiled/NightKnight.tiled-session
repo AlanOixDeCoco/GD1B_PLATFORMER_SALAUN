@@ -325,10 +325,10 @@
                 11
             ],
             "scale": 2,
-            "selectedLayer": 1,
+            "selectedLayer": 5,
             "viewCenter": {
-                "x": 331,
-                "y": 251
+                "x": 320.5,
+                "y": 254
             }
         },
         "map_floor_08.tmx#playerSketch": {
