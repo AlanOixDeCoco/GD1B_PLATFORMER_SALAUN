@@ -1,6 +1,6 @@
 import Behaviour from "../components/Behaviour.js";
 import StateMachine from "../components/StateMachine.js";
-import { PlayerDashState, PlayerDashingState, PlayerFallingState, PlayerIdleState, PlayerJumpState, PlayerJumpingState, PlayerLandState, PlayerRunState } from "./PlayerStates.js";
+import { PlayerAttackJumpState, PlayerAttackRunState, PlayerAttackStaticState, PlayerDashState, PlayerDashingState, PlayerFallingState, PlayerIdleState, PlayerJumpState, PlayerJumpingState, PlayerLandState, PlayerRunState } from "./PlayerStates.js";
 
 export default class PlayerManager extends Behaviour {
     constructor(playerStats){
@@ -25,9 +25,23 @@ export default class PlayerManager extends Behaviour {
         var playerDashState = new PlayerDashState(this);
         var playerDashingState = new PlayerDashingState(this);
 
+        var playerAttackStaticState = new PlayerAttackStaticState(this);
+        var playerAttackRunState = new PlayerAttackRunState(this);
+        var playerAttackJumpState = new PlayerAttackJumpState(this);
+
         // Idle --> Run
         this._stateMachine.AddTransition(playerIdleState, playerRunState, () => {
             return (this._horizontalMovement != 0);
+        });
+
+        // Idle --> Attack static
+        this._stateMachine.AddTransition(playerIdleState, playerAttackStaticState, () => {
+            return (this._attack);
+        });
+
+        // Attack static --> Idle
+        this._stateMachine.AddTransition(playerAttackStaticState, playerIdleState, () => {
+            return !this._parent.anims.isPlaying;
         });
 
         // Run --> Idle
@@ -35,16 +49,44 @@ export default class PlayerManager extends Behaviour {
             return (this._horizontalMovement == 0);
         });
 
-        // Idle/Run --> Jump
+        // Run --> Attack run
+        this._stateMachine.AddTransition(playerRunState, playerAttackRunState, () => {
+            return (this._attack);
+        });
+
+        // Attack run --> Run
+        this._stateMachine.AddTransition(playerAttackRunState, playerRunState, () => {
+            return !this._parent.anims.isPlaying;
+        });
+
+        // Idle/Run/Falling (ghost jump) --> Jump
         this._stateMachine.AddTransition(playerIdleState, playerJumpState, () => {
             return (this._movementKeys.jump.isDown && this._canJump);
         });
         this._stateMachine.AddTransition(playerRunState, playerJumpState, () => {
             return (this._movementKeys.jump.isDown && this._canJump);
         });
+        this._stateMachine.AddTransition(playerFallingState, playerJumpState, () => {
+            return (this._movementKeys.jump.isDown && this._canJump);
+        });
 
         // Jump --> Jumping
         this._stateMachine.AddTransition(playerJumpState, playerJumpingState, () => {
+            return !this._parent.anims.isPlaying;
+        });
+
+        // Jumping --> Attack jump
+        this._stateMachine.AddTransition(playerJumpingState, playerAttackJumpState, () => {
+            return (this._attack);
+        });
+
+        // Falling --> Attack jump
+        this._stateMachine.AddTransition(playerFallingState, playerAttackJumpState, () => {
+            return (this._attack);
+        });
+
+        // Attack jump --> Idle
+        this._stateMachine.AddTransition(playerAttackJumpState, playerIdleState, () => {
             return !this._parent.anims.isPlaying;
         });
 
@@ -65,7 +107,7 @@ export default class PlayerManager extends Behaviour {
 
         // Falling --> Land
         this._stateMachine.AddTransition(playerFallingState, playerLandState, () => {
-            return this._grounded;
+            return this._parent.body.blocked.down;
         });
 
         // Land --> Idle
@@ -108,9 +150,15 @@ export default class PlayerManager extends Behaviour {
             left_arrow: Phaser.Input.Keyboard.KeyCodes.LEFT,
             right: Phaser.Input.Keyboard.KeyCodes.D, 
             right_arrow: Phaser.Input.Keyboard.KeyCodes.RIGHT,
+            bottom: Phaser.Input.Keyboard.KeyCodes.S, 
+            bottom_arrow: Phaser.Input.Keyboard.KeyCodes.DOWN, 
             dash: Phaser.Input.Keyboard.KeyCodes.SHIFT,
             dash_arrow: Phaser.Input.Keyboard.KeyCodes.SHIFT,
+            attack: Phaser.Input.Keyboard.KeyCodes.SPACE,
+            attack_arrow: Phaser.Input.Keyboard.KeyCodes.SPACE,
         });
+
+        this._interactKey = this._scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
 
         this._parent.flipX = false;
         this._dashAvailable = true;
@@ -119,21 +167,39 @@ export default class PlayerManager extends Behaviour {
     }
 
     update(){
+        // Horizontal movement input handling
         this._horizontalMovement = (this._movementKeys.left.isDown * -1) + (this._movementKeys.right.isDown * 1);
+
+        // Attack input handling
+        this._attack = this._movementKeys.attack.isDown;
+
+        // Interaction input handling
+        this._interact = this._interactKey.isDown;
+
+        // Jump (with tolerance)
         if(!this._parent.body.blocked.down){
             setTimeout(() => {
                 this._grounded = this._parent.body.blocked.down;
             }, PLAYER_GHOST_JUMP_DURATION);
         }
         else this._grounded = true;
-
         this._canJump = this._grounded;
 
+        // Get off platform
+        if(this._parent.body.blocked.down && this._movementKeys.bottom.isDown) {
+            this._ignorePlatform = true;
+            setTimeout(() => {
+                this._ignorePlatform = false;
+            }, 200);
+        }
+
+        // Dash availability
         this._canDash = !this._parent.body.blocked.left;
         this._canDash = this._canDash && !this._parent.body.blocked.right;
         this._canDash = this._canDash && this._parent.body.velocity.x != 0;
         this._canDash = this._canDash && this._dashAvailable;
 
-        this._stateMachine.Tick();       
+        // Update the statemachine each frame
+        this._stateMachine.Tick();
     }
 }

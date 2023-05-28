@@ -18,7 +18,7 @@ export default class LoginScene extends BehaviourScene {
         
         // If we are already logged in
         if (PlayFab._internalSettings.authenticationContext.PlayFabId) {
-            this.scene.start(SCENE_MAIN_MENU);
+            this.StartMainMenuScene();
         }
 
         // Display the Login popup
@@ -30,7 +30,7 @@ export default class LoginScene extends BehaviourScene {
                 console.log("connected!");
                 console.log(response);
                 this._loginPopup.HidePopup();
-                this.scene.start(SCENE_MAIN_MENU, {gameManager: this._gameManager});
+                this.StartMainMenuScene();
             }, (error) => {
                 console.log(error.errorMessage);
             });
@@ -41,7 +41,7 @@ export default class LoginScene extends BehaviourScene {
                 console.log("connected!");
                 console.log(response);
                 this._loginPopup.HidePopup();
-                this.scene.start(SCENE_MAIN_MENU, {gameManager: this._gameManager});
+                this.StartMainMenuScene();
             }, (error) => {
                 alert(error.errorMessage);
             });
@@ -56,7 +56,7 @@ export default class LoginScene extends BehaviourScene {
                     console.log("connected!");
                     console.log(response);
                     this._loginPopup.HidePopup();
-                    this.scene.start(SCENE_MAIN_MENU, {gameManager: this._gameManager});
+                    this.StartMainMenuScene();
                 }, (error) => {
                     alert(error.errorMessage);
                 });
@@ -68,7 +68,11 @@ export default class LoginScene extends BehaviourScene {
         this._loginPopup.SetPlayLocalCallback(() => {
             console.log("playing local!");
             this._loginPopup.HidePopup();
-            this.scene.start(SCENE_MAIN_MENU, {gameManager: this._gameManager});
+            this.StartMainMenuScene();
         });
+    }
+
+    StartMainMenuScene(){
+        this.scene.start(SCENE_MAIN_MENU, {gameManager: this._gameManager});
     }
 }

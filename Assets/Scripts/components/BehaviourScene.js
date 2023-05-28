@@ -1,9 +1,10 @@
-let behaviourMixin = {
-    update(time, deltatime){
-
-    }
-}
-
+import CameraController from "../Camera/CameraController.js";
+import Torch from "../Decorations/Torch.js";
+import DoorController from "../InteractObjects/Door/DoorController.js";
+import PlayerAnimator from "../Player/PlayerAnimator.js";
+import PlayerAura from "../Player/PlayerAura.js";
+import PlayerBody from "../Player/PlayerBody.js";
+import PlayerManager from "../Player/PlayerManager.js";
 
 export default class BehaviourScene extends Phaser.Scene {
     constructor(key, active = true, visible = true) {
@@ -11,8 +12,6 @@ export default class BehaviourScene extends Phaser.Scene {
         this._behaviourObjects = [];
     }
 
-    
-    
     update(time, deltatime){
         this._behaviourObjects.forEach(behaviourObject => {
             behaviourObject.update(time, deltatime);
@@ -49,5 +48,93 @@ export default class BehaviourScene extends Phaser.Scene {
         for(let identifier in behaviors){
             gameobject.AddBehaviour(behaviors[identifier], identifier);
         }
+    }
+
+    CreateDoor(x, y, unlocked){
+        var doorSprite = this.physics.add.sprite(x, y, "environment_atlas", SPRITE_KEYS.door.locked)
+        .setDepth(LAYERS.interactObjects)
+        .setOrigin(0, 0)
+        .setPipeline('Light2D');
+        this.MakeBehaviors(doorSprite, {
+            "door_controller": new DoorController(),
+        });
+        if(unlocked) {
+            doorSprite.GetBehaviour("door_controller").SetUnlocked();
+        }
+        doorSprite.body.allowGravity = false;
+        doorSprite.body.immovable = true;
+
+        return doorSprite.GetBehaviour("door_controller");
+    }
+
+    CreateDecorativeDoor(x, y){
+        var doorSprite = this.add.sprite(x, y, "environment_atlas", SPRITE_KEYS.door.opened)
+        .setDepth(LAYERS.interactObjects)
+        .setOrigin(0, 0)
+        .setPipeline('Light2D');
+
+        return doorSprite;
+    }
+
+    CreateSign(x, y, text){
+        var signSprite = this.physics.add.sprite(x, y, "environment_atlas", SPRITE_KEYS.sign)
+        .setDepth(LAYERS.interactObjects)
+        .setOrigin(0, 0)
+        .setPipeline('Light2D');
+        //this.MakeBehaviors(signSprite, {
+        //    "sign_controller": new (),
+        //});
+
+        signSprite.body.allowGravity = false;
+        signSprite.body.immovable = true;
+    }
+
+    CreateTorch(x, y, intensity){
+        var torchSprite = this.add.sprite(x, y, "environment_atlas", SPRITE_KEYS.torch)
+        .setDepth(LAYERS.interactObjects)
+        .setPipeline('Light2D')
+        .setOrigin(0.5, 0);
+        this.MakeBehaviors(torchSprite, {
+            "torch_controller": new Torch(),
+        });
+        torchSprite.GetBehaviour("torch_controller").SetIntensity(EFFECTS.torchIntensity);
+    }
+
+    CreatePlatform(x, y, width = 2){
+        width -= 1;
+        var platformSprite = this.physics.add.sprite(x, y, 'environment_atlas', SPRITE_KEYS.platform[width])
+        .setOrigin(0, 0)
+        .setPipeline('Light2D')
+        .setDepth(LAYERS.platforms);
+
+        platformSprite.body.allowGravity = false;
+        platformSprite.body.immovable = true;
+
+        var leftRope = this.add.sprite(x + 3, y, 'environment_atlas', SPRITE_KEYS.rope)
+        .setDepth(LAYERS.platforms)
+        .setPipeline('Light2D')
+        .setOrigin(0, 1);
+        
+        var rightRope = this.add.sprite(x + ((width) * 32) + 26, y, 'environment_atlas', SPRITE_KEYS.rope)
+        .setDepth(LAYERS.platforms)
+        .setPipeline('Light2D')
+        .setOrigin(0, 1);
+
+        return platformSprite;
+    }
+
+    CreatePlayer(x, y, playerStats){
+        var playerSprite = this.physics.add.sprite(x, y, 'character_placeholder_spritesheet')
+        .setOrigin(0.5, 1)
+        .setPipeline('Light2D')
+        .setDepth(LAYERS.player);
+        this.MakeBehaviors(playerSprite, {
+            "player_animator": new PlayerAnimator(),
+            "player_body": new PlayerBody(),
+            "player_manager": new PlayerManager(playerStats),
+            "player_aura": new PlayerAura(),
+        });
+
+        return playerSprite;
     }
 }

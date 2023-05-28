@@ -23,6 +23,6 @@ export default class MainMenuScene extends BehaviourScene {
             {fontFamily: 'Monogram', fontSize: 48}
         ).setOrigin(.5, .5);
 
-        this.scene.start("sample_scene", {gameManager: this._gameManager});
+        this.scene.start(SCENE_DUNGEON_ENTRANCE, {gameManager: this._gameManager});
     }
 }

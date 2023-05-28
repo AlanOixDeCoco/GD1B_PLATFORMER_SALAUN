@@ -7,12 +7,10 @@ export default class CameraController extends Behaviour{
         this._circle = this._scene.make.image({x: 0, y: 0, key: "circle_mask", add: false});
         this._circleMask = this._circle.createBitmapMask();
 
-        this._fadeOutKey = this._scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
-
         super.start();
     }
 
-    FadeOut(x, y){
+    FadeOut(x, y, callback){
         this._circle.x = x;
         this._circle.y = y;
 
@@ -25,13 +23,21 @@ export default class CameraController extends Behaviour{
             if(scale <= 0) {
                 this._circle.setScale(0);
                 clearInterval(this._fadeOutInterval);
+                callback();
             }
         }, 5);
+    }
+
+    SetFadeOut(){
+        this._parent.setMask(this._circleMask);
+        this._circle.setScale(0);
     }
 
     FadeIn(x, y){
         this._circle.x = x;
         this._circle.y = y;
+
+        this._parent.setMask(this._circleMask);
 
         var scale = 0;
         this._fadeInInterval = setInterval(() => {
@@ -46,11 +52,11 @@ export default class CameraController extends Behaviour{
     }
 
     update(){
-        if(Phaser.Input.Keyboard.JustDown(this._fadeOutKey)) {
-            this.FadeOut(GAME_WIDTH/2, GAME_HEIGHT/2 + 96);
-            setTimeout(() => {
-                this.FadeIn(GAME_WIDTH/2, GAME_HEIGHT/2 + 96);
-            }, 750)
-        }
+        //if(Phaser.Input.Keyboard.JustDown(this._fadeOutKey)) {
+        //    this.FadeOut(GAME_WIDTH/2, GAME_HEIGHT/2 + 96);
+        //    setTimeout(() => {
+        //        this.FadeIn(GAME_WIDTH/2, GAME_HEIGHT/2 + 96);
+        //    }, 750)
+        //}
     }
 }

@@ -6,13 +6,14 @@
     "activeFile": "",
     "expandedProjectPaths": [
     ],
+    "file.lastUsedOpenFilter": "Tous les Fichiers (*)",
     "fileStates": {
         "floor_10x5.tmx": {
             "scale": 3,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 320.16666666666663,
-                "y": 239.66666666666666
+                "x": 319.99999999999994,
+                "y": 240
             }
         },
         "floor_10x5.tmx#playerSketch": {
@@ -25,8 +26,8 @@
             "scale": 1.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 373,
-                "y": 221.33333333333331
+                "x": 320,
+                "y": 239.66666666666669
             }
         },
         "floor_boss.tmx#playerSketch": {
@@ -35,12 +36,26 @@
         "floor_boss.tmx#prototype_tileset": {
             "scaleInDock": 1
         },
+        "floor_entrance.tmx": {
+            "scale": 2,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 300.5,
+                "y": 251
+            }
+        },
+        "floor_entrance.tmx#playerSketch": {
+            "scaleInDock": 1
+        },
+        "floor_entrance.tmx#prototype_tileset": {
+            "scaleInDock": 1
+        },
         "floor_seller.tmx": {
-            "scale": 3,
+            "scale": 1.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 325.83333333333337,
-                "y": 233.66666666666666
+                "x": 430.66666666666674,
+                "y": 255.33333333333331
             }
         },
         "floor_seller.tmx#playerSketch": {
@@ -49,13 +64,325 @@
         "floor_seller.tmx#prototype_tileset": {
             "scaleInDock": 1
         },
+        "map_10x5.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 337.99999999999994,
+                "y": 244
+            }
+        },
+        "map_10x5.tmx#playerSketch": {
+            "scaleInDock": 1
+        },
+        "map_10x5.tmx#prototype_tileset": {
+            "scaleInDock": 1
+        },
+        "map_boss.tmx": {
+            "expandedObjectLayers": [
+                16,
+                11,
+                12
+            ],
+            "scale": 1.5,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 322.66666666666663,
+                "y": 266
+            }
+        },
+        "map_boss.tmx#playerSketch": {
+            "scaleInDock": 1
+        },
+        "map_boss.tmx#prototype_tileset": {
+            "scaleInDock": 1
+        },
+        "map_boss.tmx#tileset": {
+            "scaleInDock": 1
+        },
+        "map_entrance.tmx": {
+            "expandedObjectLayers": [
+                11,
+                12
+            ],
+            "scale": 1.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 268.66666666666663,
+                "y": 264
+            }
+        },
+        "map_entrance.tmx#playerSketch": {
+            "scaleInDock": 1
+        },
+        "map_entrance.tmx#prototype_tileset": {
+            "scaleInDock": 1
+        },
+        "map_entrance.tmx#tileset": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "map_floor.tmx": {
+            "expandedObjectLayers": [
+                11,
+                12
+            ],
+            "scale": 2,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 349.5,
+                "y": 257.5
+            }
+        },
+        "map_floor.tmx#playerSketch": {
+            "scaleInDock": 1
+        },
+        "map_floor.tmx#prototype_tileset": {
+            "scaleInDock": 1
+        },
+        "map_floor.tmx#tileset": {
+            "scaleInDock": 1
+        },
+        "map_floor_00.tmx": {
+            "expandedObjectLayers": [
+                11,
+                15,
+                12
+            ],
+            "scale": 1.5,
+            "selectedLayer": -1,
+            "viewCenter": {
+                "x": 345.33333333333326,
+                "y": 249.33333333333331
+            }
+        },
+        "map_floor_00.tmx#playerSketch": {
+            "scaleInDock": 1
+        },
+        "map_floor_00.tmx#prototype_tileset": {
+            "scaleInDock": 1
+        },
+        "map_floor_00.tmx#tileset": {
+            "scaleInDock": 1
+        },
+        "map_floor_01.tmx": {
+            "expandedObjectLayers": [
+                16,
+                11,
+                12
+            ],
+            "scale": 1.5,
+            "selectedLayer": 5,
+            "viewCenter": {
+                "x": 404.66666666666674,
+                "y": 232.66666666666666
+            }
+        },
+        "map_floor_01.tmx#playerSketch": {
+            "scaleInDock": 1
+        },
+        "map_floor_01.tmx#prototype_tileset": {
+            "scaleInDock": 1
+        },
+        "map_floor_01.tmx#tileset": {
+            "scaleInDock": 1
+        },
+        "map_floor_02.tmx": {
+            "expandedObjectLayers": [
+                16,
+                11,
+                12
+            ],
+            "scale": 2,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 456,
+                "y": 237
+            }
+        },
+        "map_floor_02.tmx#playerSketch": {
+            "scaleInDock": 1
+        },
+        "map_floor_02.tmx#prototype_tileset": {
+            "scaleInDock": 1
+        },
+        "map_floor_02.tmx#tileset": {
+            "scaleInDock": 1
+        },
+        "map_floor_03.tmx": {
+            "expandedObjectLayers": [
+                16,
+                11,
+                12
+            ],
+            "scale": 1.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 364.66666666666674,
+                "y": 230.66666666666666
+            }
+        },
+        "map_floor_03.tmx#playerSketch": {
+            "scaleInDock": 1
+        },
+        "map_floor_03.tmx#prototype_tileset": {
+            "scaleInDock": 1
+        },
+        "map_floor_03.tmx#tileset": {
+            "scaleInDock": 1
+        },
+        "map_floor_04.tmx": {
+            "expandedObjectLayers": [
+                16,
+                11,
+                12
+            ],
+            "scale": 2,
+            "selectedLayer": 5,
+            "viewCenter": {
+                "x": 373,
+                "y": 257.5
+            }
+        },
+        "map_floor_04.tmx#playerSketch": {
+            "scaleInDock": 1
+        },
+        "map_floor_04.tmx#prototype_tileset": {
+            "scaleInDock": 1
+        },
+        "map_floor_04.tmx#tileset": {
+            "scaleInDock": 1
+        },
+        "map_floor_05.tmx": {
+            "expandedObjectLayers": [
+                16,
+                11,
+                12
+            ],
+            "scale": 1.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 257.99999999999994,
+                "y": 246
+            }
+        },
+        "map_floor_05.tmx#playerSketch": {
+            "scaleInDock": 1
+        },
+        "map_floor_05.tmx#prototype_tileset": {
+            "scaleInDock": 1
+        },
+        "map_floor_05.tmx#tileset": {
+            "scaleInDock": 1
+        },
+        "map_floor_06.tmx": {
+            "expandedObjectLayers": [
+                16,
+                11,
+                12
+            ],
+            "scale": 1.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 291.33333333333326,
+                "y": 230.66666666666666
+            }
+        },
+        "map_floor_06.tmx#playerSketch": {
+            "scaleInDock": 1
+        },
+        "map_floor_06.tmx#prototype_tileset": {
+            "scaleInDock": 1
+        },
+        "map_floor_06.tmx#tileset": {
+            "scaleInDock": 1
+        },
+        "map_floor_07.tmx": {
+            "expandedObjectLayers": [
+                16,
+                11,
+                12
+            ],
+            "scale": 2,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 333,
+                "y": 229
+            }
+        },
+        "map_floor_07.tmx#playerSketch": {
+            "scaleInDock": 1
+        },
+        "map_floor_07.tmx#prototype_tileset": {
+            "scaleInDock": 1
+        },
+        "map_floor_07.tmx#tileset": {
+            "scaleInDock": 1
+        },
+        "map_floor_08.tmx": {
+            "expandedObjectLayers": [
+                16,
+                11
+            ],
+            "scale": 2,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 331,
+                "y": 251
+            }
+        },
+        "map_floor_08.tmx#playerSketch": {
+            "scaleInDock": 1
+        },
+        "map_floor_08.tmx#prototype_tileset": {
+            "scaleInDock": 1
+        },
+        "map_floor_08.tmx#tileset": {
+            "scaleInDock": 1
+        },
+        "map_floor_09.tmx": {
+            "expandedObjectLayers": [
+                16,
+                11,
+                12
+            ],
+            "scale": 1.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 369.99999999999994,
+                "y": 236.66666666666666
+            }
+        },
+        "map_floor_09.tmx#playerSketch": {
+            "scaleInDock": 1
+        },
+        "map_floor_09.tmx#prototype_tileset": {
+            "scaleInDock": 1
+        },
+        "map_floor_09.tmx#tileset": {
+            "scaleInDock": 1
+        },
+        "map_seller.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 333.33333333333326,
+                "y": 244.66666666666666
+            }
+        },
+        "map_seller.tmx#playerSketch": {
+            "scaleInDock": 1
+        },
+        "map_seller.tmx#prototype_tileset": {
+            "scaleInDock": 1
+        },
         "playerSketch.tsx": {
             "scaleInDock": 1,
             "scaleInEditor": 1
         }
     },
-    "last.exportedFilePath": "D:/Git/GD1B_PLATFORMER_SALAUN/Assets/Maps/Floors",
-    "last.imagePath": "D:/Git/GD1B_PLATFORMER_SALAUN/Documentation/Recherches",
+    "last.exportedFilePath": "D:/Git/GD1B_PLATFORMER_SALAUN/Assets/Maps/JSON",
+    "last.imagePath": "D:/Git/GD1B_PLATFORMER_SALAUN/Assets/Maps",
     "map.height": 15,
     "map.lastUsedExportFilter": "Fichiers de carte JSON (*.tmj *.json)",
     "map.lastUsedFormat": "tmx",
@@ -64,7 +391,18 @@
     "openFiles": [
     ],
     "project": "NightKnight.tiled-project",
+    "property.type": "int",
     "recentFiles": [
+        "map_floor_08.tmx",
+        "map_boss.tmx",
+        "map_floor_02.tmx",
+        "map_floor_05.tmx",
+        "map_floor_04.tmx",
+        "map_10x5.tmx",
+        "map_seller.tmx",
+        "floor_10x5.tmx",
+        "floor_boss.tmx",
+        "floor_seller.tmx",
         "playerSketch.tsx"
     ],
     "tileset.embedInMap": true,

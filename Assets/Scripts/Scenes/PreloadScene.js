@@ -6,52 +6,73 @@ export default class PreloadScene extends BehaviourScene{
     }
 
     preload(){
+        // image used as transition mask
+        this.load.image("circle_mask", "Assets/Sprites/masks/circle_mask.png", {frameWidth: 2048});
+
         //#region placeholder content
-        this.load.image({
-            key: 'prototype_background_10x5',
-            url: './Assets/Sprites/Environment/Prototype/prototype_background_10x5.png',
-        });
-        this.load.image({
-            key: 'prototype_background_14x9',
-            url: './Assets/Sprites/Environment/Prototype/prototype_background_14x9.png',
-        });
-        this.load.image({
-            key: 'prototype_background_16x5',
-            url: './Assets/Sprites/Environment/Prototype/prototype_background_16x5.png',
-        });
-        this.load.image({
-            key: 'prototype_background_16x9',
-            url: './Assets/Sprites/Environment/Prototype/prototype_background_16x9.png',
-        });
-        this.load.image({
-            key: 'prototype_background_18x13',
-            url: './Assets/Sprites/Environment/Prototype/prototype_background_18x13.png',
-        });
-        this.load.image({
-            key: 'prototype_background_full',
-            url: './Assets/Sprites/Environment/Prototype/prototype_background_full.png',
-        });
-        
-        this.load.spritesheet({
-            key: "character_placeholder_spritesheet",
-            url: './Assets/Sprites/characters/player/character_placeholder_spritesheet.png',
-            frameConfig: {frameWidth: 32}
-        });
+        // Background
+        this.load.image(SPRITE_KEYS.background, './Assets/Sprites/Environment/Prototype/prototype_background.png')
         //#endregion
 
         //#region image files
-        //this.load.atlas({
-        //    key: 'character_atlas',
-        //    textureURL: './Assets/Sprites/characters/player/character_atlas.png',
-        //    normalMap: './Assets/Sprites/characters/player/character_atlas_n.png',
-        //    atlasURL: './Assets/Sprites/characters/player/character_atlas.json'
-        //});
+        // Tileset
+        this.load.image({
+            key: TILESET_00,
+            url: './Assets/Maps/tileset.png',
+            normalMap: './Assets/Maps/tileset_n.png'
+        });
 
-        this.load.image("circle_mask", "Assets/Sprites/masks/circle_mask.png", {frameWidth: 2048});
+        // Environment
+        this.load.atlas({
+            key: 'environment_atlas',
+            textureURL: './Assets/Sprites/Environment/environment_atlas.png',
+            normalMap: './Assets/Sprites/Environment/environment_atlas_n.png',
+            atlasURL: './Assets/Sprites/Environment/environment_atlas.json'
+        });
+
+        // Characters
+        this.load.atlas({
+            key: 'character_atlas',
+            textureURL: './Assets/Sprites/characters/player/character_atlas.png',
+            normalMap: './Assets/Sprites/characters/player/character_atlas_n.png',
+            atlasURL: './Assets/Sprites/characters/player/character_atlas.json'
+        });
+        this.load.atlas({
+            key: 'sword_areas_atlas',
+            textureURL: './Assets/Sprites/characters/player/sword_areas_atlas.png',
+            atlasURL: './Assets/Sprites/characters/player/sword_areas_atlas.json'
+        });
+        //#endregion
+
+        //#region tilemaps
+        this.load.tilemapTiledJSON(MAP_DUNGEON_ENTRANCE, './Assets/Maps/JSON/map_entrance.tmj');
+        this.load.tilemapTiledJSON(MAP_DUNGEON_BOSS, './Assets/Maps/JSON/map_boss.tmj');
+        this.load.tilemapTiledJSON(MAP_DUNGEON_FLOORS[0], './Assets/Maps/JSON/map_floor_00.tmj');
+        this.load.tilemapTiledJSON(MAP_DUNGEON_FLOORS[1], './Assets/Maps/JSON/map_floor_01.tmj');
+        this.load.tilemapTiledJSON(MAP_DUNGEON_FLOORS[2], './Assets/Maps/JSON/map_floor_02.tmj');
+        this.load.tilemapTiledJSON(MAP_DUNGEON_FLOORS[3], './Assets/Maps/JSON/map_floor_03.tmj');
+        this.load.tilemapTiledJSON(MAP_DUNGEON_FLOORS[4], './Assets/Maps/JSON/map_floor_04.tmj');
+        this.load.tilemapTiledJSON(MAP_DUNGEON_FLOORS[5], './Assets/Maps/JSON/map_floor_05.tmj');
+        this.load.tilemapTiledJSON(MAP_DUNGEON_FLOORS[6], './Assets/Maps/JSON/map_floor_06.tmj');
+        this.load.tilemapTiledJSON(MAP_DUNGEON_FLOORS[7], './Assets/Maps/JSON/map_floor_07.tmj');
+        this.load.tilemapTiledJSON(MAP_DUNGEON_FLOORS[8], './Assets/Maps/JSON/map_floor_08.tmj');
+        this.load.tilemapTiledJSON(MAP_DUNGEON_FLOORS[9], './Assets/Maps/JSON/map_floor_09.tmj');
         //#endregion
 
         //#region audio files
-        // ...
+        // Ambiance
+        this.load.audio(AUDIO_KEYS.ambianceOwl, './Assets/Audio/Ambiance/audio_ambiance_owl.ogg');
+
+        // Player
+        this.load.audio(AUDIO_KEYS.playerJump, './Assets/Audio/Player/audio_player_jump.wav');
+        this.load.audio(AUDIO_KEYS.playerDash, './Assets/Audio/Player/audio_player_dash.wav');
+
+        // Door
+        this.load.audio(AUDIO_KEYS.doorUnlock, './Assets/Audio/Door/audio_door_unlock.wav');
+        this.load.audio(AUDIO_KEYS.doorOpen, './Assets/Audio/Door/audio_door_open.wav');
+
+        // Torch
+        this.load.audio(AUDIO_KEYS.torch, './Assets/Audio/Torch/audio_torch_fire.wav');
         //#endregion
 
         //#region loading states
@@ -64,9 +85,13 @@ export default class PreloadScene extends BehaviourScene{
         });
         this.load.on('complete', () => {
             console.log('complete');
-            this.scene.start(SCENE_BACKGROUND);
+            this.StartBackgroundScene();
         });
         //#endregion
+    }
+
+    StartBackgroundScene(){
+        this.scene.start(SCENE_BACKGROUND);
     }
 }
 //#endregion

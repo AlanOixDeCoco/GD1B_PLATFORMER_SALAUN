@@ -33,7 +33,7 @@ export default class SampleScene extends BehaviourScene {
             dashVelocity: PLAYER_DEFAULT_DASH_VELOCITY,
             maxDashDuration: PLAYER_DEFAULT_DASH_DURATION,
             dashDuration: PLAYER_DEFAULT_DASH_DURATION,
-            dashAvailableDuration: PLAYER_DEFAULT_DASH_AVAILABLE_DURATION,
+            dashRecoverTime: PLAYER_DEFAULT_DASH_RECOVER_TIME,
         }
     }
 

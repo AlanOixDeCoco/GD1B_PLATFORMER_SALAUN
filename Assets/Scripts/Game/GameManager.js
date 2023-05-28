@@ -16,7 +16,7 @@ export default class GameManager extends Behaviour{
                 GAME_WIDTH/2, 8, 
                 `Not logged in ...`, 
                 {fontFamily: 'Arial', fontSize: 24},
-            ).setOrigin(.5, 0);
+            ).setOrigin(.5, 0).setTint(0xFF0000).setDepth(LAYERS.player);
         }
 
         // inputs

@@ -1,0 +1,238 @@
+<Project>
+  <Name>Night Knight</Name>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>Game Architecture</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>BackgroundScene</Name>
+        <Access>Public</Access>
+        <Location left="1353" top="498" />
+        <Size width="205" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">BehaviourScene _currentScene</Member>
+        <Member type="Method">public void NewMethod()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Scene</Name>
+        <Access>Public</Access>
+        <Location left="1261" top="72" />
+        <Size width="162" height="77" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>LoginScene</Name>
+        <Access>Public</Access>
+        <Location left="728" top="789" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public void NewMethod()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>BehaviourScene</Name>
+        <Access>Public</Access>
+        <Location left="1261" top="183" />
+        <Size width="162" height="266" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>PreloadScene</Name>
+        <Access>Public</Access>
+        <Location left="1145" top="498" />
+        <Size width="184" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public void StartBackgroundScene()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>MainMenuScene</Name>
+        <Access>Public</Access>
+        <Location left="921" top="789" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public void NewMethod()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>DungeonEntranceScene</Name>
+        <Access>Public</Access>
+        <Location left="1111" top="789" />
+        <Size width="182" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public void NewMethod()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>DungeonTransitionScene</Name>
+        <Access>Public</Access>
+        <Location left="1324" top="789" />
+        <Size width="190" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public void NewMethod()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>DungeonFloorScene</Name>
+        <Access>Public</Access>
+        <Location left="1543" top="789" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public void NewMethod()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>DungeonBossTransitionScene</Name>
+        <Access>Public</Access>
+        <Location left="1736" top="789" />
+        <Size width="224" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public void NewMethod()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>DungeonBossScene</Name>
+        <Access>Public</Access>
+        <Location left="1991" top="789" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public void NewMethod()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>GameoverScene</Name>
+        <Access>Public</Access>
+        <Location left="2187" top="789" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public void NewMethod()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Generalization" first="3" second="1">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="0" second="3">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1457</X>
+          <Y>473</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1342</X>
+          <Y>475</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="4" second="3">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>1342</X>
+          <Y>475</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="2" second="3">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1097</X>
+          <Y>752</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1098</X>
+          <Y>206</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="5" second="3">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1097</X>
+          <Y>752</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1098</X>
+          <Y>206</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="6" second="3">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1097</X>
+          <Y>752</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1202</X>
+          <Y>206</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="7" second="3">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1097</X>
+          <Y>752</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1175</X>
+          <Y>206</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="8" second="3">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1097</X>
+          <Y>752</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1180</X>
+          <Y>206</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="9" second="3">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1097</X>
+          <Y>752</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1183</X>
+          <Y>206</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="10" second="3">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1097</X>
+          <Y>752</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1192</X>
+          <Y>206</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="11" second="3">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1097</X>
+          <Y>752</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1181</X>
+          <Y>206</Y>
+        </BendPoint>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+</Project>
