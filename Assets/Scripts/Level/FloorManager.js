@@ -8,9 +8,10 @@ export default class FloorManager extends Behaviour{
 
     SetGameManager(gameManager){
         this._gameManager = gameManager;
+        console.log(this._gameManager);
     }
 
     update(){
-
+        
     }
 }

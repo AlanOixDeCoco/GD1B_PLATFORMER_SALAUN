@@ -10,7 +10,9 @@ export default class DungeonScene extends BehaviourScene {
 
     init(data){
         // pass the needed data to create the level
-        this._initData = data;
+        this._gameManager = data.gameManager;
+        this._gameManager.SetCurrentScene(this);
+        this._gameManager._paused = false;
     }
 
     create(){
@@ -30,6 +32,7 @@ export default class DungeonScene extends BehaviourScene {
             "floor_manager": new FloorManager(),
         });
         this._floorManager = floorManagerContainer.GetBehaviour("floor_manager");
+        this._floorManager.SetGameManager(this._gameManager);
 
         // Tilemap
         var mapIndex = 8;
@@ -55,7 +58,7 @@ export default class DungeonScene extends BehaviourScene {
         spawnsObjectLayer.objects.forEach(spawn => {
             switch(spawn.properties[0].value){
                 case "player": 
-                    this._playerManager = this.CreatePlayer(spawn.x, spawn.y, this._initData.playerStats)
+                    this._playerManager = this.CreatePlayer(spawn.x, spawn.y, this._gameManager._data.playerStats)
                     .GetBehaviour("player_manager");
                     break;
                 default:
@@ -68,7 +71,7 @@ export default class DungeonScene extends BehaviourScene {
         interactObjectLayer.objects.forEach(interactObject => {
             switch(interactObject.properties[1].value){
                 case "door": 
-                    var doorController = this.CreateDoor(interactObject.x, interactObject.y, interactObject.properties[0].value);
+                    var doorController = this.CreateDoor(interactObject.x, interactObject.y, true);
                     doorController.SetOpenCallback(() => {
                         this.NextFloor();
                     });
@@ -96,12 +99,18 @@ export default class DungeonScene extends BehaviourScene {
             this._platformsGroup.add(platform);
         });
 
+        // Enemies group
+        this._enemiesGroup = this.add.group();
+
         // Collisions
-        this.physics.add.collider(this._layers.platforms, this._playerManager._parent);
-        this.physics.add.collider(this._platformsGroup, this._playerManager._parent, () => {}, (platform, player) => {
+        this.physics.add.collider(this._layers.platforms, this._playerManager._parent); // Player / ground
+        this.physics.add.collider(this._platformsGroup, this._playerManager._parent, () => {}, (platform, player) => { // Player / platforms
             if(this._playerManager._ignorePlatform) return false;
             return player.y < (platform.y + 3);
         });
+
+        this.physics.add.collider(this._layers.platforms, this._enemiesGroup); // Enemies / ground
+        this.physics.add.collider(this._platformsGroup, this._enemiesGroup); // Enemies / platforms
 
         // Fade in
         this._cameraController.FadeIn(this._playerManager._parent.x, this._playerManager._parent.y - PLAYER_HEIGHT);
@@ -111,6 +120,12 @@ export default class DungeonScene extends BehaviourScene {
     }
 
     NextFloor(){
-
+        this.scene.pause();
+        this._gameManager._paused = true;
+        this._cameraController.FadeOut(this._playerManager._parent.x, this._playerManager._parent.y - PLAYER_HEIGHT, () => {
+            setTimeout(() => {
+                this.scene.start(this._gameManager.GetNextFloor(), {gameManager: this._gameManager});
+            }, 500);
+        });
     }
 }

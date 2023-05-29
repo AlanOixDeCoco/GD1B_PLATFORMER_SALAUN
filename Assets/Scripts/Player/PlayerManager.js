@@ -6,6 +6,8 @@ export default class PlayerManager extends Behaviour {
     constructor(playerStats){
         super();
         this._playerStats = playerStats;
+        this._gamepad = null;
+        this._isGamepadConnected = false;
     }
 
     start(){
@@ -61,13 +63,13 @@ export default class PlayerManager extends Behaviour {
 
         // Idle/Run/Falling (ghost jump) --> Jump
         this._stateMachine.AddTransition(playerIdleState, playerJumpState, () => {
-            return (this._movementKeys.jump.isDown && this._canJump);
+            return (this._jump && this._canJump);
         });
         this._stateMachine.AddTransition(playerRunState, playerJumpState, () => {
-            return (this._movementKeys.jump.isDown && this._canJump);
+            return (this._jump && this._canJump);
         });
         this._stateMachine.AddTransition(playerFallingState, playerJumpState, () => {
-            return (this._movementKeys.jump.isDown && this._canJump);
+            return (this._jump && this._canJump);
         });
 
         // Jump --> Jumping
@@ -117,17 +119,17 @@ export default class PlayerManager extends Behaviour {
 
         // Running --> Dash
         this._stateMachine.AddTransition(playerRunState, playerDashState, () => {
-            return this._movementKeys.dash.isDown && this._canDash;
+            return (this._dash && this._canDash);
         });
 
         // Jumping --> Dash
         this._stateMachine.AddTransition(playerJumpingState, playerDashState, () => {
-            return (this._movementKeys.dash.isDown && this._canDash);
+            return (this._dash && this._canDash);
         });
 
         // Falling --> Dash
         this._stateMachine.AddTransition(playerFallingState, playerDashState, () => {
-            return (this._movementKeys.dash.isDown && this._canDash);
+            return (this._dash && this._canDash);
         });
 
         // Dash --> Dashing
@@ -143,22 +145,17 @@ export default class PlayerManager extends Behaviour {
         this._stateMachine.SetState(playerIdleState);
 
         // inputs
-        this._movementKeys = this._scene.input.keyboard.addKeys({
-            jump: Phaser.Input.Keyboard.KeyCodes.Z, 
-            jump_arrow: Phaser.Input.Keyboard.KeyCodes.UP, 
-            left: Phaser.Input.Keyboard.KeyCodes.Q, 
-            left_arrow: Phaser.Input.Keyboard.KeyCodes.LEFT,
-            right: Phaser.Input.Keyboard.KeyCodes.D, 
-            right_arrow: Phaser.Input.Keyboard.KeyCodes.RIGHT,
-            bottom: Phaser.Input.Keyboard.KeyCodes.S, 
-            bottom_arrow: Phaser.Input.Keyboard.KeyCodes.DOWN, 
+        this._keyboardKeys = this._scene.input.keyboard.addKeys({
+            jump: Phaser.Input.Keyboard.KeyCodes.Z,
+            left: Phaser.Input.Keyboard.KeyCodes.Q,
+            right: Phaser.Input.Keyboard.KeyCodes.D,
+            bottom: Phaser.Input.Keyboard.KeyCodes.S,
             dash: Phaser.Input.Keyboard.KeyCodes.SHIFT,
-            dash_arrow: Phaser.Input.Keyboard.KeyCodes.SHIFT,
             attack: Phaser.Input.Keyboard.KeyCodes.SPACE,
-            attack_arrow: Phaser.Input.Keyboard.KeyCodes.SPACE,
+            interact: Phaser.Input.Keyboard.KeyCodes.F,
         });
 
-        this._interactKey = this._scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
+        this.AssignGamepadEvents();
 
         this._parent.flipX = false;
         this._dashAvailable = true;
@@ -167,14 +164,57 @@ export default class PlayerManager extends Behaviour {
     }
 
     update(){
-        // Horizontal movement input handling
-        this._horizontalMovement = (this._movementKeys.left.isDown * -1) + (this._movementKeys.right.isDown * 1);
+        // Gamepad inputs handling
+        if(this._gamepad){
+            // Horizontal movement input handling
+            if(this._gamepad.leftStick.x != 0){
+                this._horizontalMovement = this._gamepad.leftStick.x;
+            } 
+            else {
+            this._horizontalMovement = (this._gamepad.isButtonDown(BUTTON_LEFT) * -1) + (this._gamepad.isButtonDown(BUTTON_RIGHT) * 1);
+            }
 
-        // Attack input handling
-        this._attack = this._movementKeys.attack.isDown;
+            // Attack input handling
+            this._attack = this._gamepad.isButtonDown(BUTTON_ATTACK);
 
-        // Interaction input handling
-        this._interact = this._interactKey.isDown;
+            // Interaction input handling
+            this._interact = this._gamepad.isButtonDown(BUTTON_INTERACT);
+
+            // Jump input handling
+            this._jump = this._gamepad.isButtonDown(BUTTON_JUMP);
+
+            // Dash input handling
+            this._dash = this._gamepad.isButtonDown(BUTTON_DASH);
+
+            // Ignore platform handling
+            if(this._gamepad.leftStick.y > 0.8) this._ignorePlatformButton = true;
+            else this._ignorePlatformButton = this._gamepad.isButtonDown(BUTTON_DOWN);
+        } 
+        // Keyboard inputs handling
+        else {
+            // Horizontal movement input handling
+            this._horizontalMovement = (this._keyboardKeys.left.isDown * -1) + (this._keyboardKeys.right.isDown * 1);
+
+            // Attack input handling
+            this._attack = this._keyboardKeys.attack.isDown;
+
+            // Interaction input handling
+            this._interact = this._keyboardKeys.interact.isDown;
+
+            // Jump input handling
+            this._jump = this._keyboardKeys.jump.isDown;
+
+            // Dash input handling
+            this._dash = this._keyboardKeys.dash.isDown;
+
+            // Ignore platform handling
+            this._ignorePlatformButton = this._keyboardKeys.bottom.isDown;
+        }
+
+        // Animation speed handling
+        if(this._parent.anims.currentAnim.key == "character_run"){
+            this._parent.anims.msPerFrame = 1000 / (80 * Math.max(Math.abs(this._horizontalMovement), 0.01));
+        }
 
         // Jump (with tolerance)
         if(!this._parent.body.blocked.down){
@@ -186,7 +226,7 @@ export default class PlayerManager extends Behaviour {
         this._canJump = this._grounded;
 
         // Get off platform
-        if(this._parent.body.blocked.down && this._movementKeys.bottom.isDown) {
+        if(this._parent.body.blocked.down && this._ignorePlatformButton) {
             this._ignorePlatform = true;
             setTimeout(() => {
                 this._ignorePlatform = false;
@@ -201,5 +241,38 @@ export default class PlayerManager extends Behaviour {
 
         // Update the statemachine each frame
         this._stateMachine.Tick();
+    }
+
+    AssignGamepadEvents(){
+        // setup the controller connected/disconnected event
+        this._scene.input.gamepad.on('connected', this.onGamepadConnect, this);
+        this._scene.input.gamepad.on('disconnected', this.onGamepadDisconnect, this);
+
+        this.TryConnect();
+    }
+
+    TryConnect(){
+        if(this._scene.input.gamepad.pad1){
+            this.onGamepadConnect();
+        }
+    }
+
+    onGamepadConnect(){
+        console.log("Controller connected!");
+
+        this._gamepad = this._scene.input.gamepad.pad1;
+        this._isGamepadConnected = true;
+    }
+
+    // called when the gamepad is disconnected
+    onGamepadDisconnect(){
+        console.log("Controller disconnected!");
+
+        // clear the gamepad
+        this._gamepad = null;
+        this._isGamepadConnected = false;
+
+        // resets inputs when disconnected
+        this.ResetInputs();
     }
 }

@@ -1,5 +1,5 @@
 // Debug mode
-const DEBUG = false;
+const DEBUG = true;
 
 //#region Game constants
 const GAME_TITLE = "Night Knight";
@@ -141,4 +141,14 @@ const EFFECTS = {
     torchVariationRange: 0.2,
     torchVariationInterval: 100,
 }
+//#endregion
+
+//#region Gamepad buttons
+const BUTTON_ATTACK = 1;
+const BUTTON_JUMP = 0;
+const BUTTON_DASH = 3;
+const BUTTON_INTERACT = 2;
+const BUTTON_LEFT = 14;
+const BUTTON_RIGHT = 15;
+const BUTTON_DOWN = 13;
 //#endregion

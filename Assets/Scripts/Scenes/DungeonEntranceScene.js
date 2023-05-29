@@ -12,30 +12,9 @@ export default class DungeonEntranceScene extends BehaviourScene {
     }
 
     init(data){
+        // Assign the gamemanager
         this._gameManager = data.gameManager;
         this._gameManager.SetCurrentScene(this);
-
-        // pass the needed data to create the level
-        this._initData = data;
-
-        // should be passed in the init function data
-        this._initData.floor = 0;
-        this._initData.playerStats = {
-            level: 1,
-            experience: 0,
-            skills: [],
-            maxHealth: PLAYER_DEFAULT_HEALTH,
-            health: PLAYER_DEFAULT_HEALTH,
-            maxSpeed: PLAYER_DEFAULT_SPEED,
-            speed: PLAYER_DEFAULT_SPEED,
-            maxJumpVelocity: PLAYER_DEFAULT_JUMP_VELOCITY,
-            jumpVelocity: PLAYER_DEFAULT_JUMP_VELOCITY,
-            maxDashVelocity: PLAYER_DEFAULT_DASH_VELOCITY,
-            dashVelocity: PLAYER_DEFAULT_DASH_VELOCITY,
-            maxDashDuration: PLAYER_DEFAULT_DASH_DURATION,
-            dashDuration: PLAYER_DEFAULT_DASH_DURATION,
-            dashRecoverTime: PLAYER_DEFAULT_DASH_RECOVER_TIME,
-        }
     }
 
     create(){
@@ -68,7 +47,7 @@ export default class DungeonEntranceScene extends BehaviourScene {
         spawnsObjectLayer.objects.forEach(spawn => {
             switch(spawn.properties[0].value){
                 case "player": 
-                    this._playerManager = this.CreatePlayer(spawn.x, spawn.y, this._initData.playerStats)
+                    this._playerManager = this.CreatePlayer(spawn.x, spawn.y, this._gameManager._data.playerStats)
                     .GetBehaviour("player_manager");
                     break;
                 default:
@@ -110,9 +89,10 @@ export default class DungeonEntranceScene extends BehaviourScene {
 
     StartDungeonTransitionScene(){
         this.scene.pause();
+        this._gameManager._paused = true;
         this._cameraController.FadeOut(this._playerManager._parent.x, this._playerManager._parent.y - PLAYER_HEIGHT, () => {
             setTimeout(() => {
-                this.scene.start(SCENE_DUNGEON_FLOOR, this._initData);
+                this.scene.start(SCENE_DUNGEON_FLOOR, {gameManager: this._gameManager});
             }, 500);
         });
     }
