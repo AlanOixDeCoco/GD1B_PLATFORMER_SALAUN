@@ -13,10 +13,10 @@ export default class DoorController extends Behaviour{
                 prefix: 'door_',
                 suffix: '.png',
                 start: 0,
-                end: 0,
+                end: 1,
                 zeroPad: 2
             }),
-            frameRate: 0,
+            frameRate: 60,
             repeat: 0,
         });
         this._parent.anims.create({
@@ -54,14 +54,14 @@ export default class DoorController extends Behaviour{
     }
 
     Unlock(){
-        this._parent.anims.play(ANIMATIONS_KEYS.doorUnlock, true);
-        this._scene.sound.play(AUDIO_KEYS.doorUnlock);
+        this._parent.anims.play(ANIMATIONS_KEYS.doorUnlock);
+        this._scene.sound.play(AUDIO_KEYS.doorUnlock, {volume: VOLUME.door, loop: false});
         this._locked = false;
     }
 
     Open(){
         this._parent.anims.play(ANIMATIONS_KEYS.doorOpen, true);
-        this._scene.sound.play(AUDIO_KEYS.doorOpen, {volume: VOLUME.door});
+        this._scene.sound.play(AUDIO_KEYS.doorOpen, {volume: VOLUME.door, loop: false});
         this._openCallback();
     }
 

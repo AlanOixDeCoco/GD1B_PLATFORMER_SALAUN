@@ -17,6 +17,7 @@ export default class GameManager extends Behaviour{
                 skills: [],
                 maxHealth: PLAYER_DEFAULT_HEALTH,
                 health: PLAYER_DEFAULT_HEALTH,
+                invincibleDuration: PLAYER_DEFAULT_INVINCIBLE_DURATION,
                 maxSpeed: PLAYER_DEFAULT_SPEED,
                 speed: PLAYER_DEFAULT_SPEED,
                 maxJumpVelocity: PLAYER_DEFAULT_JUMP_VELOCITY,
@@ -26,6 +27,9 @@ export default class GameManager extends Behaviour{
                 maxDashDuration: PLAYER_DEFAULT_DASH_DURATION,
                 dashDuration: PLAYER_DEFAULT_DASH_DURATION,
                 dashRecoverTime: PLAYER_DEFAULT_DASH_RECOVER_TIME,
+                attackDamage: PLAYER_DEFAULT_ATTACK_DAMAGE,
+                attackSpeed: PLAYER_DEFAULT_ATTACK_SPEED,
+                attackLifetime: PLAYER_DEFAULT_ATTACK_LIFETIME
             }
         }
 
@@ -60,22 +64,31 @@ export default class GameManager extends Behaviour{
         }
 
         if(!this._paused) this._data.time += deltatime;
-        this.MillisToMinutes(this._data.time.toFixed(0));
     }
 
     GetNextFloor(){
-        // Return correct scene
-        return SCENE_DUNGEON_FLOOR;
+        if(this._data.floor < 9){
+            this._data.floor++;
+            return SCENE_DUNGEON_FLOOR;
+        }
+        else {
+            this._data.floor = 0;
+            return SCENE_DUNGEON_BOSS;
+        }
     }
 
     SetCurrentScene(scene){
         this._currentScene = scene;
     }
 
-    MillisToMinutes(millis){
-        var seconds = (Math.round(millis / 1000));
+    SetFloorManager(floorManager){
+        this._floorManager = floorManager;
+    }
+
+    GetTimeInMinutes(){
+        var seconds = (Math.round(this._data.time / 1000));
         var remainingSeconds = seconds % 60;
         var minutes = (seconds - remainingSeconds) / 60;
-        console.log(`${minutes}',${remainingSeconds}"`);
+        return `${minutes}' ${remainingSeconds}"`;
     }
 }

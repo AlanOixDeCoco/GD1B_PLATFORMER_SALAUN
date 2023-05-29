@@ -50,13 +50,4 @@ export default class CameraController extends Behaviour{
             }
         }, 5);
     }
-
-    update(){
-        //if(Phaser.Input.Keyboard.JustDown(this._fadeOutKey)) {
-        //    this.FadeOut(GAME_WIDTH/2, GAME_HEIGHT/2 + 96);
-        //    setTimeout(() => {
-        //        this.FadeIn(GAME_WIDTH/2, GAME_HEIGHT/2 + 96);
-        //    }, 750)
-        //}
-    }
 }

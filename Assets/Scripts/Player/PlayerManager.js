@@ -3,11 +3,12 @@ import StateMachine from "../components/StateMachine.js";
 import { PlayerAttackJumpState, PlayerAttackRunState, PlayerAttackStaticState, PlayerDashState, PlayerDashingState, PlayerFallingState, PlayerIdleState, PlayerJumpState, PlayerJumpingState, PlayerLandState, PlayerRunState } from "./PlayerStates.js";
 
 export default class PlayerManager extends Behaviour {
-    constructor(playerStats){
+    constructor(gameManager){
         super();
-        this._playerStats = playerStats;
+        this._gameManager = gameManager;
         this._gamepad = null;
         this._isGamepadConnected = false;
+        this._alive = true;
     }
 
     start(){
@@ -164,6 +165,8 @@ export default class PlayerManager extends Behaviour {
     }
 
     update(){
+        if(!this._alive) return;
+
         // Gamepad inputs handling
         if(this._gamepad){
             // Horizontal movement input handling
@@ -243,6 +246,45 @@ export default class PlayerManager extends Behaviour {
         this._stateMachine.Tick();
     }
 
+    TakeDamage(enemySprite){
+        // Deal damage to the player
+        var enemyStats = enemySprite.GetBehaviour("enemyManager")._stats;
+        this._gameManager._data.playerStats.health -= enemyStats.damage;
+        console.log(this._gameManager._data.playerStats.health);
+        if(this._gameManager._data.playerStats.health <= 0){
+            this.Die();
+            return;
+        } 
+
+        // Set invincible & blink during invincible duration
+        this._invincible = true;
+        var blinkVisible = true;
+        var blinkInterval = setInterval(() => {
+            blinkVisible = !blinkVisible;
+            this._parent.setAlpha(blinkVisible ? 1 : 0);
+        }, 100);
+
+        // Reset invincibility after the invincible duration
+        this._endInvicibleTimeout = setTimeout(() => {
+            clearInterval(blinkInterval);
+            this._parent.setAlpha(1);
+            this._invincible = false;
+        }, this._gameManager._data.playerStats.invincibleDuration);
+    }
+
+    Die(){
+        console.log("Player dies!");
+        this._alive = false;
+        
+        // Death animation
+        this._parent.setTint(0xFF0000);
+
+        // Then switch to gameover scene
+        setTimeout(() => {
+            this._scene.scene.start(SCENE_GAMEOVER, {gameManager: this._gameManager});
+        }, 1000);
+    }
+
     AssignGamepadEvents(){
         // setup the controller connected/disconnected event
         this._scene.input.gamepad.on('connected', this.onGamepadConnect, this);
@@ -274,5 +316,9 @@ export default class PlayerManager extends Behaviour {
 
         // resets inputs when disconnected
         this.ResetInputs();
+    }
+
+    destroy(){
+        clearInterval(this._endInvicibleTimeout);
     }
 }

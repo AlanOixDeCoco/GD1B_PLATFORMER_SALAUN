@@ -123,7 +123,7 @@ export default class BehaviourScene extends Phaser.Scene {
         return platformSprite;
     }
 
-    CreatePlayer(x, y, playerStats){
+    CreatePlayer(x, y, gameManager){
         var playerSprite = this.physics.add.sprite(x, y, 'character_placeholder_spritesheet')
         .setOrigin(0.5, 1)
         .setPipeline('Light2D')
@@ -131,7 +131,7 @@ export default class BehaviourScene extends Phaser.Scene {
         this.MakeBehaviors(playerSprite, {
             "player_animator": new PlayerAnimator(),
             "player_body": new PlayerBody(),
-            "player_manager": new PlayerManager(playerStats),
+            "player_manager": new PlayerManager(gameManager),
             "player_aura": new PlayerAura(),
         });
 

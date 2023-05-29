@@ -119,8 +119,8 @@
                  "rotation":0,
                  "visible":true,
                  "width":64,
-                 "x":352.001111660079,
-                 "y":297.999258893281
+                 "x":352.001,
+                 "y":297.999
                 }, 
                 {
                  "class":"",
@@ -141,7 +141,7 @@
                  "rotation":0,
                  "visible":true,
                  "width":128,
-                 "x":256.001111660079,
+                 "x":256.001,
                  "y":242
                 }],
          "opacity":1,
@@ -266,8 +266,8 @@
                  "rotation":0,
                  "visible":true,
                  "width":0,
-                 "x":112.001111660079,
-                 "y":319.999258893281
+                 "x":112.001,
+                 "y":319.999
                 }, 
                 {
                  "class":"",
@@ -288,8 +288,8 @@
                  "rotation":0,
                  "visible":true,
                  "width":64,
-                 "x":128.001111660079,
-                 "y":287.999258893281
+                 "x":128.001,
+                 "y":287.999
                 }, 
                 {
                  "class":"",
@@ -311,7 +311,7 @@
                  "rotation":0,
                  "visible":true,
                  "width":0,
-                 "x":272.001111660079,
+                 "x":272.001,
                  "y":216
                 }, 
                 {
@@ -334,7 +334,7 @@
                  "rotation":0,
                  "visible":true,
                  "width":0,
-                 "x":368.001111660079,
+                 "x":368.001,
                  "y":216
                 }, 
                 {
@@ -357,8 +357,8 @@
                  "rotation":0,
                  "visible":true,
                  "width":0,
-                 "x":384.001111660079,
-                 "y":271.999258893281
+                 "x":384.001,
+                 "y":271.999
                 }, 
                 {
                  "class":"",
@@ -432,8 +432,25 @@
                  "rotation":0,
                  "visible":true,
                  "width":0,
-                 "x":160.001111660079,
-                 "y":351.999258893281
+                 "x":160.001,
+                 "y":351.999
+                }, 
+                {
+                 "class":"",
+                 "height":224,
+                 "id":24,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"type",
+                         "type":"string",
+                         "value":"enemies"
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":448,
+                 "x":96,
+                 "y":128
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -442,7 +459,7 @@
          "y":0
         }],
  "nextlayerid":18,
- "nextobjectid":24,
+ "nextobjectid":25,
  "orientation":"orthogonal",
  "renderorder":"left-up",
  "tiledversion":"1.9.2",

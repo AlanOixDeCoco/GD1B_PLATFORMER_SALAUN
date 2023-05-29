@@ -502,6 +502,23 @@
                  "width":0,
                  "x":160,
                  "y":384
+                }, 
+                {
+                 "class":"",
+                 "height":256,
+                 "id":32,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"type",
+                         "type":"string",
+                         "value":"enemies"
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":448,
+                 "x":96,
+                 "y":128
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -510,7 +527,7 @@
          "y":0
         }],
  "nextlayerid":18,
- "nextobjectid":32,
+ "nextobjectid":33,
  "orientation":"orthogonal",
  "renderorder":"left-up",
  "tiledversion":"1.9.2",

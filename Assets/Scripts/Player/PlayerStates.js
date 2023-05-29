@@ -25,7 +25,8 @@ export class PlayerRunState extends IState {
     }
 
     Tick(){
-        var horizontalMovement = this._playerManager._horizontalMovement * this._playerManager._playerStats.speed;
+        console.log()
+        var horizontalMovement = this._playerManager._horizontalMovement * this._playerManager._gameManager._data.playerStats.speed;
         this._playerManager._parent.setVelocityX(horizontalMovement);
 
         if(this._playerManager._parent.body.velocity.x < 0) this._playerManager._parent.flipX = true;
@@ -50,7 +51,7 @@ export class PlayerJumpState extends IState {
     }
 
     OnEnterState(){
-        this._playerManager._parent.body.setVelocityY(-this._playerManager._playerStats.jumpVelocity);
+        this._playerManager._parent.body.setVelocityY(-this._playerManager._gameManager._data.playerStats.jumpVelocity);
         this._playerManager._parent.anims.play("character_jump");
     }
 
@@ -65,7 +66,7 @@ export class PlayerJumpingState extends IState {
     }
 
     Tick(){
-        var horizontalMovement = this._playerManager._horizontalMovement * (this._playerManager._playerStats.speed);
+        var horizontalMovement = this._playerManager._horizontalMovement * (this._playerManager._gameManager._data.playerStats.speed);
         this._playerManager._parent.setVelocityX(horizontalMovement);
 
         if(this._playerManager._parent.body.velocity.x < 0) this._playerManager._parent.flipX = true;
@@ -87,7 +88,7 @@ export class PlayerFallingState extends IState {
     }
 
     Tick(){
-        var horizontalMovement = this._playerManager._horizontalMovement * (this._playerManager._playerStats.speed);
+        var horizontalMovement = this._playerManager._horizontalMovement * (this._playerManager._gameManager._data.playerStats.speed);
         this._playerManager._parent.setVelocityX(horizontalMovement);
 
         if(this._playerManager._parent.body.velocity.x < 0) this._playerManager._parent.flipX = true;
@@ -109,7 +110,7 @@ export class PlayerLandState extends IState {
     }
 
     Tick(){
-        var horizontalMovement = this._playerManager._horizontalMovement * (this._playerManager._playerStats.speed);
+        var horizontalMovement = this._playerManager._horizontalMovement * (this._playerManager._gameManager._data.playerStats.speed);
         this._playerManager._parent.setVelocityX(horizontalMovement / 1.5);
     }
 
@@ -136,10 +137,10 @@ export class PlayerDashState extends IState {
         this._playerManager._parent.body.allowGravity = false;
         this._playerManager._parent.setVelocityY(0);
         this._playerManager._parent.anims.play("character_dash");
-        this._playerManager._parent.setVelocityX(this._playerManager._parent.body.velocity.x > 0 ? this._playerManager._playerStats.dashVelocity : -this._playerManager._playerStats.dashVelocity);
+        this._playerManager._parent.setVelocityX(this._playerManager._parent.body.velocity.x > 0 ? this._playerManager._gameManager._data.playerStats.dashVelocity : -this._playerManager._gameManager._data.playerStats.dashVelocity);
         this._playerManager._dashTimeout = setTimeout(() => {
             this._playerManager._isDashing = false;
-        }, this._playerManager._playerStats.dashDuration);
+        }, this._playerManager._gameManager._data.playerStats.dashDuration);
     }
 
     OnExitState(){
@@ -168,7 +169,7 @@ export class PlayerDashingState extends IState {
         this._playerManager._parent.body.allowGravity = true;
         setTimeout(() => {
             this._playerManager._dashAvailable = true;
-        }, this._playerManager._playerStats.dashRecoverTime);
+        }, this._playerManager._gameManager._data.playerStats.dashRecoverTime);
     }
 }
 
@@ -204,12 +205,17 @@ export class PlayerAttackStaticState extends IState {
         swordArea.setDepth(LAYERS.player + 1);
         swordArea.setOrigin(0.5, 1.2);
         swordArea.flipX = this._playerManager._parent.flipX;
-        swordArea.setVelocityX((this._playerManager._parent.flipX ? -1 : 1) * PLAYER_DEFAULT_ATTACK_SPEED);
+        swordArea.setVelocityX((this._playerManager._parent.flipX ? -1 : 1) * this._playerManager._gameManager._data.playerStats.attackSpeed);
         setTimeout(() => {
             swordArea.destroy();
-        }, PLAYER_DEFAULT_ATTACK_LIFETIME);
+        }, this._playerManager._gameManager._data.playerStats.attackLifetime);
 
         swordArea.anims.play("character_sword_area_attackStatic");
+
+        this._playerManager._scene.physics.add.overlap(this._playerManager._scene._enemiesGroup, swordArea, (enemy, attack) => {
+            attack.disableBody();
+            enemy.GetBehaviour("enemyManager").TakeDamage(this._playerManager._gameManager._data.playerStats.attackDamage);
+        }); // Enemies / attack
     }
 
     OnExitState(){
@@ -250,12 +256,17 @@ export class PlayerAttackRunState extends IState {
         swordArea.setOrigin(0.5, 1.2);
         swordArea.flipX = this._playerManager._parent.flipX;
         swordArea.x += (this._playerManager._parent.flipX ? -1 : 1) * 12;
-        swordArea.setVelocityX((this._playerManager._parent.flipX ? -1 : 1) * PLAYER_DEFAULT_ATTACK_SPEED * 1.25);
+        swordArea.setVelocityX((this._playerManager._parent.flipX ? -1 : 1) * this._playerManager._gameManager._data.playerStats.attackSpeed * 1.25);
         setTimeout(() => {
             swordArea.destroy();
-        }, PLAYER_DEFAULT_ATTACK_LIFETIME * 1.25);
+        }, this._playerManager._gameManager._data.playerStats.attackLifetime * 1.25);
 
         swordArea.anims.play("character_sword_area_attackRun");
+
+        this._playerManager._scene.physics.add.overlap(this._playerManager._scene._enemiesGroup, swordArea, (enemy, attack) => {
+            attack.disableBody();
+            enemy.GetBehaviour("enemyManager").TakeDamage(this._playerManager._gameManager._data.playerStats.attackDamage);
+        }); // Enemies / attack
     }
 
     OnExitState(){
@@ -298,13 +309,18 @@ export class PlayerAttackJumpState extends IState {
         swordArea.x += this._playerManager._parent.flipX ? 
             (-8 + (this._playerManager._parent.body.velocity.x) / 10) : 
             (8 + ((this._playerManager._parent.body.velocity.x) / 10));
-        swordArea.setVelocityX((this._playerManager._parent.flipX ? -1 : 1) * PLAYER_DEFAULT_ATTACK_SPEED);
-        swordArea.setVelocityY(PLAYER_DEFAULT_ATTACK_SPEED);
+        swordArea.setVelocityX((this._playerManager._parent.flipX ? -1 : 1) * this._playerManager._gameManager._data.playerStats.attackSpeed);
+        swordArea.setVelocityY(this._playerManager._gameManager._data.playerStats.attackSpeed);
         setTimeout(() => {
             swordArea.destroy();
-        }, PLAYER_DEFAULT_ATTACK_LIFETIME);
+        }, this._playerManager._gameManager._data.playerStats.attackLifetime);
 
         swordArea.anims.play("character_sword_area_attackJump");
+
+        this._playerManager._scene.physics.add.overlap(this._playerManager._scene._enemiesGroup, swordArea, (enemy, attack) => {
+            attack.disableBody();
+            enemy.GetBehaviour("enemyManager").TakeDamage(this._playerManager._gameManager._data.playerStats.attackDamage);
+        }); // Enemies / attack
     }
 
     OnExitState(){

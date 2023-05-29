@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="left-up" width="20" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="18" nextobjectid="37">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="left-up" width="20" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="18" nextobjectid="39">
  <editorsettings>
   <export target="../JSON/map_boss.tmj" format="json"/>
  </editorsettings>
@@ -501,6 +501,11 @@
     <property name="type" value="player"/>
    </properties>
    <point/>
+  </object>
+  <object id="38" x="32" y="32" width="576" height="416">
+   <properties>
+    <property name="type" value="enemies"/>
+   </properties>
   </object>
  </objectgroup>
 </map>

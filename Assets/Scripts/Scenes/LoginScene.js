@@ -16,6 +16,9 @@ export default class LoginScene extends BehaviourScene {
     create(){
         this._gameManager._playfabManager._connected = false;
         
+        this.StartMainMenuScene();
+        return;
+        
         // If we are already logged in
         if (PlayFab._internalSettings.authenticationContext.PlayFabId) {
             this.StartMainMenuScene();

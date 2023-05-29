@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="left-up" width="20" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="18" nextobjectid="28">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="left-up" width="20" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="18" nextobjectid="29">
  <editorsettings>
   <export target="../JSON/map_floor_07.tmj" format="json"/>
  </editorsettings>
@@ -499,6 +499,11 @@
     <property name="type" value="player"/>
    </properties>
    <point/>
+  </object>
+  <object id="28" x="96" y="96" width="448" height="288">
+   <properties>
+    <property name="type" value="enemies"/>
+   </properties>
   </object>
  </objectgroup>
 </map>

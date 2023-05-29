@@ -15,6 +15,10 @@ export default class DungeonEntranceScene extends BehaviourScene {
         // Assign the gamemanager
         this._gameManager = data.gameManager;
         this._gameManager.SetCurrentScene(this);
+
+        // Groups
+        this._enemiesGroup = this.add.group();
+        this._platformsGroup = this.add.group();
     }
 
     create(){
@@ -47,7 +51,7 @@ export default class DungeonEntranceScene extends BehaviourScene {
         spawnsObjectLayer.objects.forEach(spawn => {
             switch(spawn.properties[0].value){
                 case "player": 
-                    this._playerManager = this.CreatePlayer(spawn.x, spawn.y, this._gameManager._data.playerStats)
+                    this._playerManager = this.CreatePlayer(spawn.x, spawn.y, this._gameManager)
                     .GetBehaviour("player_manager");
                     break;
                 default:

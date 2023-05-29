@@ -6,6 +6,13 @@ export default class PreloadScene extends BehaviourScene{
     }
 
     preload(){
+        // Create a label to keep track of the loading
+        this._loadingText = this.add.text(
+            GAME_WIDTH/2, GAME_HEIGHT/2, 
+            `Chargement : ${0}%`, 
+            {fontFamily: 'Monogram', fontSize: 24},
+        ).setOrigin(.5, .5).setTint(0xFFFFFF).setDepth(LAYERS.walls);
+
         // image used as transition mask
         this.load.image("circle_mask", "Assets/Sprites/masks/circle_mask.png", {frameWidth: 2048});
 
@@ -78,6 +85,7 @@ export default class PreloadScene extends BehaviourScene{
         //#region loading states
         this.load.on('progress', (value) => {
             console.log(value);
+            this._loadingText.setText(`Chargement : ${Math.round(value * 100)}%`);
         });
                     
         this.load.on('fileprogress', (file) => {

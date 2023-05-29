@@ -34,10 +34,12 @@ const PLAYER_HEIGHT = 48;
 const PLAYER_DEFAULT_SPEED = 150;
 const PLAYER_GHOST_JUMP_DURATION = 100;
 const PLAYER_DEFAULT_JUMP_VELOCITY = 450;
-const PLAYER_DEFAULT_HEALTH = 100;
+const PLAYER_DEFAULT_HEALTH = 3;
+const PLAYER_DEFAULT_INVINCIBLE_DURATION = 1000;
 const PLAYER_DEFAULT_DASH_VELOCITY = 350;
 const PLAYER_DEFAULT_DASH_DURATION = 200;
 const PLAYER_DEFAULT_DASH_RECOVER_TIME = 1000;
+const PLAYER_DEFAULT_ATTACK_DAMAGE = 1;
 const PLAYER_DEFAULT_ATTACK_SPEED = 196;
 const PLAYER_DEFAULT_ATTACK_LIFETIME = 100;
 //#endregion
@@ -60,6 +62,66 @@ const MAP_DUNGEON_FLOORS = [
 const MAP_DUNGEON_DEATH = "map_dungeon_death";
 //#endregion
 
+const SPAWN_INTERVAL = 2000;
+
+const MAP_WAVES = [
+    [
+        {total: 1, enemies: ["greenSnake"]},
+        {total: 1, enemies: ["greenSnake", "redSnake"]},
+        {total: 1, enemies: ["greenSnake", "redSnake"]}
+    ],
+    [
+        {total: 1, enemies: ["greenSnake"]},
+        {total: 1, enemies: ["greenSnake", "redSnake"]},
+        {total: 1, enemies: ["greenSnake", "redSnake"]}
+    ],
+    [
+        {total: 1, enemies: ["greenSnake"]},
+        {total: 1, enemies: ["greenSnake", "redSnake"]},
+        {total: 1, enemies: ["greenSnake", "redSnake"]}
+    ],
+    [
+        {total: 1, enemies: ["greenSnake"]},
+        {total: 1, enemies: ["greenSnake", "redSnake"]},
+        {total: 1, enemies: ["greenSnake", "redSnake"]}
+    ],
+    [
+        {total: 1, enemies: ["greenSnake"]},
+        {total: 1, enemies: ["greenSnake", "redSnake"]},
+        {total: 1, enemies: ["greenSnake", "redSnake"]}
+    ],
+    [
+        {total: 1, enemies: ["greenSnake"]},
+        {total: 1, enemies: ["greenSnake", "redSnake"]},
+        {total: 1, enemies: ["greenSnake", "redSnake"]}
+    ],
+    [
+        {total: 1, enemies: ["greenSnake"]},
+        {total: 1, enemies: ["greenSnake", "redSnake"]},
+        {total: 1, enemies: ["greenSnake", "redSnake"]}
+    ],
+    [
+        {total: 1, enemies: ["greenSnake"]},
+        {total: 1, enemies: ["greenSnake", "redSnake"]},
+        {total: 1, enemies: ["greenSnake", "redSnake"]}
+    ],
+    [
+        {total: 1, enemies: ["greenSnake"]},
+        {total: 1, enemies: ["greenSnake", "redSnake"]},
+        {total: 1, enemies: ["greenSnake", "redSnake"]}
+    ],
+    [
+        {total: 1, enemies: ["greenSnake"]},
+        {total: 1, enemies: ["greenSnake", "redSnake"]},
+        {total: 1, enemies: ["greenSnake", "redSnake"]}
+    ],
+];
+
+const ENEMIES_STATS = {
+    "greenSnake": { damage: 1, speed: 1, health: 1, smart: 0},
+    "redSnake": { damage: 1, speed: 1, health: 1, smart: 2},
+}
+
 //#region Sprites keys
 const SPRITE_KEYS = {
     background: "sprite_background",
@@ -77,6 +139,15 @@ const SPRITE_KEYS = {
         "platform_03.png"
     ],
     rope: "platform_support.png",
+
+    enemies: {
+        greenSnake: "green_snake",
+        redSnake: "red_snake",
+        greenBat: "green_bat",
+        purpleBat: "purple_bat",
+        redBat: "red_bat",
+        boss: "boss",
+    }
 }
 //#endregion
 
@@ -114,7 +185,8 @@ const LAYERS = {
     walls: 20,
     interactObjects: 30,
     platforms: 40,
-    player: 50,
+    enemies: 50,
+    player: 60,
     ground: 100,
 }
 //#endregion
@@ -134,6 +206,10 @@ const EFFECTS = {
     auraColor: 0x6666FF,
     auraRange: 80,
     auraIntensity: 3,
+
+    enemyAuraColor: 0xFF2222,
+    enemyAuraRange: 64,
+    enemyAuraIntensity: 3,
     
     torchColor: 0xFF8800,
     torchRange: 56,

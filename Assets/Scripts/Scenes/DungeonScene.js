@@ -13,6 +13,10 @@ export default class DungeonScene extends BehaviourScene {
         this._gameManager = data.gameManager;
         this._gameManager.SetCurrentScene(this);
         this._gameManager._paused = false;
+
+        // Groups
+        this._enemiesGroup = this.add.group();
+        this._platformsGroup = this.add.group();
     }
 
     create(){
@@ -35,7 +39,7 @@ export default class DungeonScene extends BehaviourScene {
         this._floorManager.SetGameManager(this._gameManager);
 
         // Tilemap
-        var mapIndex = 8;
+        var mapIndex = this._gameManager._data.floor;
         this._tilemap = this.add.tilemap(MAP_DUNGEON_FLOORS[mapIndex], 0, 0);
         this._tileset = this._tilemap.addTilesetImage("tileset", TILESET_00);
         this._layers = {
@@ -58,11 +62,14 @@ export default class DungeonScene extends BehaviourScene {
         spawnsObjectLayer.objects.forEach(spawn => {
             switch(spawn.properties[0].value){
                 case "player": 
-                    this._playerManager = this.CreatePlayer(spawn.x, spawn.y, this._gameManager._data.playerStats)
+                    this._playerManager = this.CreatePlayer(spawn.x, spawn.y, this._gameManager)
                     .GetBehaviour("player_manager");
                     break;
+                case "enemies":
+                    this._floorManager.SetSpawnArea(spawn);
+                    break;
                 default:
-                    console.log("unknown interact object!");
+                    console.log("unknown spawn object!");
             }
         });
 
@@ -71,11 +78,12 @@ export default class DungeonScene extends BehaviourScene {
         interactObjectLayer.objects.forEach(interactObject => {
             switch(interactObject.properties[1].value){
                 case "door": 
-                    var doorController = this.CreateDoor(interactObject.x, interactObject.y, true);
+                    var doorController = this.CreateDoor(interactObject.x, interactObject.y, interactObject.properties[0].value);
                     doorController.SetOpenCallback(() => {
                         this.NextFloor();
                     });
                     doorController.SetPlayer(this._playerManager);
+                    this._floorManager.SetExitDoor(doorController);
                     break;
                 case "decorativeDoor":
                     this.CreateDecorativeDoor(interactObject.x, interactObject.y);
@@ -92,15 +100,11 @@ export default class DungeonScene extends BehaviourScene {
         });
 
         // Platforms objects
-        this._platformsGroup = this.add.group();
         var platformsObjectLayer = this._tilemap.getObjectLayer("Platforms");
         platformsObjectLayer.objects.forEach(platform => {
             var platform = this.CreatePlatform(platform.x, platform.y, platform.width/32);
             this._platformsGroup.add(platform);
         });
-
-        // Enemies group
-        this._enemiesGroup = this.add.group();
 
         // Collisions
         this.physics.add.collider(this._layers.platforms, this._playerManager._parent); // Player / ground
@@ -112,6 +116,13 @@ export default class DungeonScene extends BehaviourScene {
         this.physics.add.collider(this._layers.platforms, this._enemiesGroup); // Enemies / ground
         this.physics.add.collider(this._platformsGroup, this._enemiesGroup); // Enemies / platforms
 
+        this.physics.add.overlap(this._enemiesGroup, this._playerManager._parent, (enemy, player) => {
+            console.log("player hits enemy!");
+            this._playerManager.TakeDamage(enemy);
+        }, (platform, player) => { // Player / platforms
+            return !this._playerManager._invincible;
+        });
+
         // Fade in
         this._cameraController.FadeIn(this._playerManager._parent.x, this._playerManager._parent.y - PLAYER_HEIGHT);
 
@@ -120,6 +131,7 @@ export default class DungeonScene extends BehaviourScene {
     }
 
     NextFloor(){
+        this._floorManager.destroy();
         this.scene.pause();
         this._gameManager._paused = true;
         this._cameraController.FadeOut(this._playerManager._parent.x, this._playerManager._parent.y - PLAYER_HEIGHT, () => {

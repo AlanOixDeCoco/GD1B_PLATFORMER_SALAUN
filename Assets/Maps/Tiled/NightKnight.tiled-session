@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "",
+    "activeFile": "map_boss.tmx",
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "Tous les Fichiers (*)",
@@ -80,15 +80,15 @@
         },
         "map_boss.tmx": {
             "expandedObjectLayers": [
-                16,
                 11,
-                12
+                12,
+                16
             ],
             "scale": 1.5,
-            "selectedLayer": 4,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 322.66666666666663,
-                "y": 266
+                "x": 393.99999999999994,
+                "y": 233.33333333333331
             }
         },
         "map_boss.tmx#playerSketch": {
@@ -108,8 +108,8 @@
             "scale": 1.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 268.66666666666663,
-                "y": 264
+                "x": 325.3333333333333,
+                "y": 255.33333333333334
             }
         },
         "map_entrance.tmx#playerSketch": {
@@ -146,11 +146,11 @@
         "map_floor_00.tmx": {
             "expandedObjectLayers": [
                 11,
-                15,
-                12
+                12,
+                15
             ],
             "scale": 1.5,
-            "selectedLayer": -1,
+            "selectedLayer": 5,
             "viewCenter": {
                 "x": 345.33333333333326,
                 "y": 249.33333333333331
@@ -167,14 +167,14 @@
         },
         "map_floor_01.tmx": {
             "expandedObjectLayers": [
-                16,
                 11,
-                12
+                12,
+                16
             ],
             "scale": 1.5,
-            "selectedLayer": 5,
+            "selectedLayer": 6,
             "viewCenter": {
-                "x": 404.66666666666674,
+                "x": 405.33333333333326,
                 "y": 232.66666666666666
             }
         },
@@ -189,15 +189,15 @@
         },
         "map_floor_02.tmx": {
             "expandedObjectLayers": [
-                16,
                 11,
-                12
+                12,
+                16
             ],
             "scale": 2,
-            "selectedLayer": 1,
+            "selectedLayer": 6,
             "viewCenter": {
-                "x": 456,
-                "y": 237
+                "x": 468,
+                "y": 264.5
             }
         },
         "map_floor_02.tmx#playerSketch": {
@@ -211,15 +211,15 @@
         },
         "map_floor_03.tmx": {
             "expandedObjectLayers": [
-                16,
                 11,
-                12
+                12,
+                16
             ],
-            "scale": 1.5,
-            "selectedLayer": 0,
+            "scale": 1,
+            "selectedLayer": 6,
             "viewCenter": {
-                "x": 364.66666666666674,
-                "y": 230.66666666666666
+                "x": 656,
+                "y": 60
             }
         },
         "map_floor_03.tmx#playerSketch": {
@@ -233,12 +233,12 @@
         },
         "map_floor_04.tmx": {
             "expandedObjectLayers": [
-                16,
                 11,
-                12
+                12,
+                16
             ],
             "scale": 2,
-            "selectedLayer": 5,
+            "selectedLayer": 6,
             "viewCenter": {
                 "x": 373,
                 "y": 257.5
@@ -255,12 +255,12 @@
         },
         "map_floor_05.tmx": {
             "expandedObjectLayers": [
-                16,
                 11,
-                12
+                12,
+                16
             ],
             "scale": 1.5,
-            "selectedLayer": 1,
+            "selectedLayer": 6,
             "viewCenter": {
                 "x": 257.99999999999994,
                 "y": 246
@@ -277,12 +277,12 @@
         },
         "map_floor_06.tmx": {
             "expandedObjectLayers": [
-                16,
                 11,
-                12
+                12,
+                16
             ],
             "scale": 1.5,
-            "selectedLayer": 1,
+            "selectedLayer": 6,
             "viewCenter": {
                 "x": 291.33333333333326,
                 "y": 230.66666666666666
@@ -299,12 +299,12 @@
         },
         "map_floor_07.tmx": {
             "expandedObjectLayers": [
-                16,
                 11,
-                12
+                12,
+                16
             ],
             "scale": 2,
-            "selectedLayer": 1,
+            "selectedLayer": 6,
             "viewCenter": {
                 "x": 333,
                 "y": 229
@@ -321,11 +321,12 @@
         },
         "map_floor_08.tmx": {
             "expandedObjectLayers": [
-                16,
-                11
+                11,
+                12,
+                16
             ],
             "scale": 2,
-            "selectedLayer": 5,
+            "selectedLayer": 6,
             "viewCenter": {
                 "x": 320.5,
                 "y": 254
@@ -342,15 +343,15 @@
         },
         "map_floor_09.tmx": {
             "expandedObjectLayers": [
-                16,
                 11,
-                12
+                12,
+                16
             ],
             "scale": 1.5,
-            "selectedLayer": 1,
+            "selectedLayer": 6,
             "viewCenter": {
-                "x": 369.99999999999994,
-                "y": 236.66666666666666
+                "x": 369.33333333333326,
+                "y": 235.33333333333331
             }
         },
         "map_floor_09.tmx#playerSketch": {
@@ -389,21 +390,34 @@
     "map.renderOrder": null,
     "map.width": 20,
     "openFiles": [
+        "map_entrance.tmx",
+        "map_floor_00.tmx",
+        "map_floor_01.tmx",
+        "map_floor_02.tmx",
+        "map_floor_03.tmx",
+        "map_floor_04.tmx",
+        "map_floor_05.tmx",
+        "map_floor_06.tmx",
+        "map_floor_07.tmx",
+        "map_floor_08.tmx",
+        "map_floor_09.tmx",
+        "map_boss.tmx"
     ],
     "project": "NightKnight.tiled-project",
-    "property.type": "int",
+    "property.type": "string",
     "recentFiles": [
-        "map_floor_08.tmx",
-        "map_boss.tmx",
+        "map_entrance.tmx",
+        "map_floor_00.tmx",
+        "map_floor_01.tmx",
         "map_floor_02.tmx",
-        "map_floor_05.tmx",
+        "map_floor_03.tmx",
         "map_floor_04.tmx",
-        "map_10x5.tmx",
-        "map_seller.tmx",
-        "floor_10x5.tmx",
-        "floor_boss.tmx",
-        "floor_seller.tmx",
-        "playerSketch.tsx"
+        "map_floor_05.tmx",
+        "map_floor_06.tmx",
+        "map_floor_07.tmx",
+        "map_floor_08.tmx",
+        "map_floor_09.tmx",
+        "map_boss.tmx"
     ],
     "tileset.embedInMap": true,
     "tileset.lastUsedFormat": "tsx"
