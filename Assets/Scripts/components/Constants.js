@@ -66,57 +66,57 @@ const SPAWN_INTERVAL = 2000;
 
 const MAP_WAVES = [
     [
-        {total: 1, enemies: ["greenSnake"]},
-        {total: 1, enemies: ["greenSnake", "redSnake"]},
-        {total: 1, enemies: ["greenSnake", "redSnake"]}
+        {total: 10, enemies: ["greenSnake"]},
     ],
     [
-        {total: 1, enemies: ["greenSnake"]},
-        {total: 1, enemies: ["greenSnake", "redSnake"]},
-        {total: 1, enemies: ["greenSnake", "redSnake"]}
+        {total: 10, enemies: ["greenSnake"]},
+        {total: 10, enemies: ["greenSnake"]},
     ],
     [
-        {total: 1, enemies: ["greenSnake"]},
-        {total: 1, enemies: ["greenSnake", "redSnake"]},
-        {total: 1, enemies: ["greenSnake", "redSnake"]}
+        {total: 10, enemies: ["greenSnake"]},
+        {total: 10, enemies: ["greenSnake"]},
+        {total: 10, enemies: ["greenSnake"]},
     ],
     [
-        {total: 1, enemies: ["greenSnake"]},
-        {total: 1, enemies: ["greenSnake", "redSnake"]},
-        {total: 1, enemies: ["greenSnake", "redSnake"]}
+        {total: 10, enemies: ["greenSnake"]},
+        {total: 10, enemies: ["greenSnake"]},
+        {total: 10, enemies: ["greenSnake"]},
     ],
     [
-        {total: 1, enemies: ["greenSnake"]},
-        {total: 1, enemies: ["greenSnake", "redSnake"]},
-        {total: 1, enemies: ["greenSnake", "redSnake"]}
+        {total: 10, enemies: ["greenSnake"]},
+        {total: 10, enemies: ["greenSnake"]},
+        {total: 10, enemies: ["greenSnake"]},
     ],
     [
-        {total: 1, enemies: ["greenSnake"]},
-        {total: 1, enemies: ["greenSnake", "redSnake"]},
-        {total: 1, enemies: ["greenSnake", "redSnake"]}
+        {total: 10, enemies: ["greenSnake"]},
+        {total: 10, enemies: ["greenSnake"]},
+        {total: 10, enemies: ["greenSnake"]},
     ],
     [
-        {total: 1, enemies: ["greenSnake"]},
-        {total: 1, enemies: ["greenSnake", "redSnake"]},
-        {total: 1, enemies: ["greenSnake", "redSnake"]}
+        {total: 10, enemies: ["greenSnake"]},
+        {total: 10, enemies: ["greenSnake"]},
+        {total: 10, enemies: ["greenSnake"]},
     ],
     [
-        {total: 1, enemies: ["greenSnake"]},
-        {total: 1, enemies: ["greenSnake", "redSnake"]},
-        {total: 1, enemies: ["greenSnake", "redSnake"]}
+        {total: 10, enemies: ["greenSnake"]},
+        {total: 10, enemies: ["greenSnake"]},
+        {total: 10, enemies: ["greenSnake"]},
     ],
     [
-        {total: 1, enemies: ["greenSnake"]},
-        {total: 1, enemies: ["greenSnake", "redSnake"]},
-        {total: 1, enemies: ["greenSnake", "redSnake"]}
+        {total: 10, enemies: ["greenSnake"]},
+        {total: 10, enemies: ["greenSnake"]},
+        {total: 10, enemies: ["greenSnake"]},
     ],
     [
-        {total: 1, enemies: ["greenSnake"]},
-        {total: 1, enemies: ["greenSnake", "redSnake"]},
-        {total: 1, enemies: ["greenSnake", "redSnake"]}
+        {total: 10, enemies: ["greenSnake"]},
+        {total: 10, enemies: ["greenSnake"]},
+        {total: 10, enemies: ["greenSnake"]},
     ],
 ];
 
+const ENEMIES_BASE_STATS = {
+    speed: 64,
+}
 const ENEMIES_STATS = {
     "greenSnake": { damage: 1, speed: 1, health: 1, smart: 0},
     "redSnake": { damage: 1, speed: 1, health: 1, smart: 2},
@@ -147,7 +147,9 @@ const SPRITE_KEYS = {
         purpleBat: "purple_bat",
         redBat: "red_bat",
         boss: "boss",
-    }
+    },
+    enemySoul: "enemy_soul",
+    playerSoul: "player_soul"
 }
 //#endregion
 

@@ -11,9 +11,9 @@ export default class GameoverScene extends BehaviourScene {
 
     create(){
         this._timeText = this.add.text(
-            GAME_WIDTH/2, GAME_HEIGHT/2, 
+            GAME_WIDTH/2, GAME_HEIGHT/2 - 16, 
             `Vous avez survécu: ${this._gameManager.GetTimeInMinutes()}`, 
-            {fontFamily: 'Monogram', fontSize: 24},
+            {fontFamily: 'Arial', fontSize: 24},
         ).setOrigin(.5, .5).setTint(0xFFFFFF).setDepth(LAYERS.walls);
 
         setTimeout(() => {
@@ -21,9 +21,9 @@ export default class GameoverScene extends BehaviourScene {
                 location.reload();
             });
             this.add.text(
-                GAME_WIDTH/2, GAME_HEIGHT/2 + 32, 
+                GAME_WIDTH/2, GAME_HEIGHT/2 + 16, 
                 "Appuyez sur n'importe quelle touche pour relancer", 
-                {fontFamily: 'Monogram', fontSize: 24},
+                {fontFamily: 'Arial', fontSize: 24},
             ).setOrigin(.5, .5).setTint(0xFFFFFF).setDepth(LAYERS.walls);
         }, 2000);
     }

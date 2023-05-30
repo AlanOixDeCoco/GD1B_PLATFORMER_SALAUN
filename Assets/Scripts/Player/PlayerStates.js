@@ -215,7 +215,9 @@ export class PlayerAttackStaticState extends IState {
         this._playerManager._scene.physics.add.overlap(this._playerManager._scene._enemiesGroup, swordArea, (enemy, attack) => {
             attack.disableBody();
             enemy.GetBehaviour("enemyManager").TakeDamage(this._playerManager._gameManager._data.playerStats.attackDamage);
-        }); // Enemies / attack
+        }, (enemy, attack) => {
+            return enemy.GetBehaviour("enemyManager")._ready;
+        });
     }
 
     OnExitState(){
@@ -266,7 +268,9 @@ export class PlayerAttackRunState extends IState {
         this._playerManager._scene.physics.add.overlap(this._playerManager._scene._enemiesGroup, swordArea, (enemy, attack) => {
             attack.disableBody();
             enemy.GetBehaviour("enemyManager").TakeDamage(this._playerManager._gameManager._data.playerStats.attackDamage);
-        }); // Enemies / attack
+        }, (enemy, attack) => {
+            return enemy.GetBehaviour("enemyManager")._ready;
+        });
     }
 
     OnExitState(){
@@ -320,7 +324,9 @@ export class PlayerAttackJumpState extends IState {
         this._playerManager._scene.physics.add.overlap(this._playerManager._scene._enemiesGroup, swordArea, (enemy, attack) => {
             attack.disableBody();
             enemy.GetBehaviour("enemyManager").TakeDamage(this._playerManager._gameManager._data.playerStats.attackDamage);
-        }); // Enemies / attack
+        }, (enemy, attack) => {
+            return enemy.GetBehaviour("enemyManager")._ready;
+        });
     }
 
     OnExitState(){

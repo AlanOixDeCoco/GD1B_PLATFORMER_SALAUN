@@ -91,4 +91,9 @@ export default class GameManager extends Behaviour{
         var minutes = (seconds - remainingSeconds) / 60;
         return `${minutes}' ${remainingSeconds}"`;
     }
+
+    PickSoul(){
+        this._data.souls++;
+        console.log(`Total souls: ${this._data.souls}`);
+    }
 }

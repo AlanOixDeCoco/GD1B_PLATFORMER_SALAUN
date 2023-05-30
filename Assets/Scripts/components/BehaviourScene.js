@@ -1,4 +1,3 @@
-import CameraController from "../Camera/CameraController.js";
 import Torch from "../Decorations/Torch.js";
 import DoorController from "../InteractObjects/Door/DoorController.js";
 import PlayerAnimator from "../Player/PlayerAnimator.js";
@@ -26,8 +25,8 @@ export default class BehaviourScene extends Phaser.Scene {
                 gameobject._behaviours[identifier].update(time, deltatime);
             }
         };
-        gameobject.AddBehaviour = (behaviour, identifier = "unamed behaviour") => {
-            behaviour.init(gameobject, identifier);
+        gameobject.AddBehaviour = (identifier = "unamed behaviour", behaviour) => {
+            behaviour.init(identifier, gameobject);
         };
         gameobject.GetBehaviour = (identifier) => {
             return gameobject._behaviours[identifier];
@@ -46,7 +45,7 @@ export default class BehaviourScene extends Phaser.Scene {
     MakeBehaviors(gameobject, behaviors){
         this.MakeBehaviour(gameobject);
         for(let identifier in behaviors){
-            gameobject.AddBehaviour(behaviors[identifier], identifier);
+            gameobject.AddBehaviour(identifier, behaviors[identifier]);
         }
     }
 

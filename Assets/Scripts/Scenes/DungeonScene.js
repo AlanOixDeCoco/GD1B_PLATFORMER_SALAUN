@@ -17,6 +17,7 @@ export default class DungeonScene extends BehaviourScene {
         // Groups
         this._enemiesGroup = this.add.group();
         this._platformsGroup = this.add.group();
+        this._soulsGroup = this.add.group();
     }
 
     create(){
@@ -116,11 +117,18 @@ export default class DungeonScene extends BehaviourScene {
         this.physics.add.collider(this._layers.platforms, this._enemiesGroup); // Enemies / ground
         this.physics.add.collider(this._platformsGroup, this._enemiesGroup); // Enemies / platforms
 
-        this.physics.add.overlap(this._enemiesGroup, this._playerManager._parent, (enemy, player) => {
+        this.physics.add.collider(this._layers.platforms, this._soulsGroup); // Souls / ground
+        this.physics.add.collider(this._platformsGroup, this._soulsGroup); // Souls / platforms
+        this.physics.add.collider(this._playerManager._parent, this._soulsGroup, (player, soul) => {
+            this._gameManager.PickSoul();
+            soul.destroy();
+        }); // Souls / player
+
+        this.physics.add.overlap(this._enemiesGroup, this._playerManager._parent, (enemy, player) => { // Enemies / player
             console.log("player hits enemy!");
             this._playerManager.TakeDamage(enemy);
-        }, (platform, player) => { // Player / platforms
-            return !this._playerManager._invincible;
+        }, (enemy, player) => {
+            return !this._playerManager._invincible && enemy.GetBehaviour("enemyManager")._ready;
         });
 
         // Fade in

@@ -1,5 +1,6 @@
 import Behaviour from "../components/Behaviour.js";
 import StateMachine from "../components/StateMachine.js";
+import PlayerAura from "./PlayerAura.js";
 import { PlayerAttackJumpState, PlayerAttackRunState, PlayerAttackStaticState, PlayerDashState, PlayerDashingState, PlayerFallingState, PlayerIdleState, PlayerJumpState, PlayerJumpingState, PlayerLandState, PlayerRunState } from "./PlayerStates.js";
 
 export default class PlayerManager extends Behaviour {
@@ -277,7 +278,24 @@ export default class PlayerManager extends Behaviour {
         this._alive = false;
         
         // Death animation
-        this._parent.setTint(0xFF0000);
+        // Create new soul pickup
+        var soulSprite = this._scene.physics.add.sprite(this._parent.x, this._parent.y - 16, SPRITE_KEYS.playerSoul);
+        soulSprite.setDepth(LAYERS.enemies)
+        .setOrigin(.5, .5)
+        .setPipeline("Light2D");
+
+        soulSprite.setVelocity(0, -300);
+        soulSprite.setBounce(0.5);
+        soulSprite.body.setDrag(125);
+        soulSprite.body.setCircle(10, -5, -5);
+
+        this._scene.MakeBehaviors(soulSprite, {
+            "enemyAura": new PlayerAura(),
+        });
+        
+        this._scene._soulsGroup.add(soulSprite);
+
+        this._parent.destroy();
 
         // Then switch to gameover scene
         setTimeout(() => {

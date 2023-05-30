@@ -49,6 +49,9 @@ export default class PreloadScene extends BehaviourScene{
             textureURL: './Assets/Sprites/characters/player/sword_areas_atlas.png',
             atlasURL: './Assets/Sprites/characters/player/sword_areas_atlas.json'
         });
+        
+        this.load.image(SPRITE_KEYS.playerSoul, './Assets/Sprites/characters/player/playerSoul.png');
+        this.load.image(SPRITE_KEYS.enemySoul, './Assets/Sprites/characters/enemies/enemySoul.png');
         //#endregion
 
         //#region tilemaps

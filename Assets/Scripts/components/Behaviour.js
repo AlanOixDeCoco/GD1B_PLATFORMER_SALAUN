@@ -1,5 +1,5 @@
 export default class Behaviour {
-    init(gameobject, identifier){
+    init(identifier, gameobject){
         this._parent = gameobject;
         this._identifier = identifier;
         this.start();
