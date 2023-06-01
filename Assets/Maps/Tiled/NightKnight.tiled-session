@@ -87,8 +87,8 @@
             "scale": 1.5,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 345.33333333333326,
-                "y": 232.66666666666666
+                "x": 344.6666666666667,
+                "y": 232
             }
         },
         "map_boss.tmx#playerSketch": {
@@ -196,8 +196,8 @@
             "scale": 2,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 468,
-                "y": 264.5
+                "x": 307.5,
+                "y": 264
             }
         },
         "map_floor_02.tmx#playerSketch": {
@@ -262,8 +262,8 @@
             "scale": 1.5,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 44,
-                "y": 245.33333333333331
+                "x": 278,
+                "y": 242.66666666666666
             }
         },
         "map_floor_05.tmx#playerSketch": {
@@ -350,7 +350,7 @@
             "scale": 1.5,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 155.3333333333333,
+                "x": 327.33333333333326,
                 "y": 234.66666666666666
             }
         },

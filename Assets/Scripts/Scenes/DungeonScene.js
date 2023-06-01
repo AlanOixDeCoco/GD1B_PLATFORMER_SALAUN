@@ -16,6 +16,8 @@ export default class DungeonScene extends BehaviourScene {
 
         // Groups
         this._enemiesGroup = this.add.group();
+        this._groundEnemiesGroup = this.add.group();
+        this._flyingEnemiesGroup = this.add.group();
         this._platformsGroup = this.add.group();
         this._soulsGroup = this.add.group();
     }
@@ -62,7 +64,7 @@ export default class DungeonScene extends BehaviourScene {
         var spawnsObjectLayer = this._tilemap.getObjectLayer("Spawns");
         spawnsObjectLayer.objects.forEach(spawn => {
             switch(spawn.properties[0].value){
-                case "player": 
+                case "player":
                     this._playerManager = this.CreatePlayer(spawn.x, spawn.y, this._gameManager)
                     .GetBehaviour("player_manager");
                     break;
@@ -115,10 +117,10 @@ export default class DungeonScene extends BehaviourScene {
         });
 
         this.physics.add.collider(this._layers.platforms, this._enemiesGroup); // Enemies / ground
-        this.physics.add.collider(this._platformsGroup, this._enemiesGroup); // Enemies / platforms
+        this.physics.add.collider(this._platformsGroup, this._groundEnemiesGroup); // Enemies / platforms
 
         this.physics.add.collider(this._layers.platforms, this._soulsGroup); // Souls / ground
-        this.physics.add.collider(this._platformsGroup, this._soulsGroup); // Souls / platforms
+        //this.physics.add.collider(this._platformsGroup, this._soulsGroup); // Souls / platforms
         this.physics.add.collider(this._playerManager._parent, this._soulsGroup, (player, soul) => {
             this._gameManager.PickSoul();
             soul.destroy();
@@ -133,6 +135,7 @@ export default class DungeonScene extends BehaviourScene {
 
         // Fade in
         this._cameraController.FadeIn(this._playerManager._parent.x, this._playerManager._parent.y - PLAYER_HEIGHT);
+        this._gameManager._scene._cameraController.FadeIn(this._playerManager._parent.x, this._playerManager._parent.y - PLAYER_HEIGHT);
 
 
         console.log(this.lights);
@@ -142,6 +145,7 @@ export default class DungeonScene extends BehaviourScene {
         this._floorManager.destroy();
         this.scene.pause();
         this._gameManager._paused = true;
+        this._gameManager._scene._cameraController.FadeOut(this._playerManager._parent.x, this._playerManager._parent.y - PLAYER_HEIGHT);
         this._cameraController.FadeOut(this._playerManager._parent.x, this._playerManager._parent.y - PLAYER_HEIGHT, () => {
             setTimeout(() => {
                 this.scene.start(this._gameManager.GetNextFloor(), {gameManager: this._gameManager});

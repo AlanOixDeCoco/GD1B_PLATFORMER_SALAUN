@@ -34,9 +34,9 @@ const PLAYER_HEIGHT = 48;
 const PLAYER_DEFAULT_SPEED = 150;
 const PLAYER_GHOST_JUMP_DURATION = 100;
 const PLAYER_DEFAULT_JUMP_VELOCITY = 450;
-const PLAYER_DEFAULT_HEALTH = 3;
+const PLAYER_DEFAULT_HEALTH = 100;
 const PLAYER_DEFAULT_INVINCIBLE_DURATION = 1000;
-const PLAYER_DEFAULT_DASH_VELOCITY = 350;
+const PLAYER_DEFAULT_DASH_VELOCITY = 400;
 const PLAYER_DEFAULT_DASH_DURATION = 200;
 const PLAYER_DEFAULT_DASH_RECOVER_TIME = 1000;
 const PLAYER_DEFAULT_ATTACK_DAMAGE = 1;
@@ -66,60 +66,71 @@ const SPAWN_INTERVAL = 2000;
 
 const MAP_WAVES = [
     [
-        {total: 10, enemies: ["greenSnake"]},
+        {total: 10, enemies: ["purpleBat"]},
     ],
     [
-        {total: 10, enemies: ["greenSnake"]},
-        {total: 10, enemies: ["greenSnake"]},
+        {total: 10, enemies: ["greenBat"]},
+        {total: 15, enemies: ["greenSnake", "redSnake"]},
     ],
     [
-        {total: 10, enemies: ["greenSnake"]},
-        {total: 10, enemies: ["greenSnake"]},
-        {total: 10, enemies: ["greenSnake"]},
+        {total: 15, enemies: ["greenSnake", "redSnake"]},
+        {total: 20, enemies: ["greenSnake", "redSnake"]},
+        {total: 25, enemies: ["greenSnake", "redSnake"]},
     ],
     [
-        {total: 10, enemies: ["greenSnake"]},
-        {total: 10, enemies: ["greenSnake"]},
-        {total: 10, enemies: ["greenSnake"]},
+        {total: 20, enemies: ["greenSnake", "redSnake"]},
+        {total: 25, enemies: ["greenSnake", "redSnake", "greenBat"]},
+        {total: 30, enemies: ["greenSnake", "redSnake", "greenBat"]},
     ],
     [
-        {total: 10, enemies: ["greenSnake"]},
-        {total: 10, enemies: ["greenSnake"]},
-        {total: 10, enemies: ["greenSnake"]},
+        {total: 20, enemies: ["greenSnake", "redSnake"]},
+        {total: 25, enemies: ["greenSnake", "redSnake", "greenBat"]},
+        {total: 30, enemies: ["greenSnake", "redSnake", "greenBat"]},
     ],
     [
-        {total: 10, enemies: ["greenSnake"]},
-        {total: 10, enemies: ["greenSnake"]},
-        {total: 10, enemies: ["greenSnake"]},
+        {total: 20, enemies: ["greenSnake", "redSnake"]},
+        {total: 25, enemies: ["greenSnake", "redSnake", "greenBat"]},
+        {total: 30, enemies: ["greenSnake", "redSnake", "greenBat"]},
     ],
     [
-        {total: 10, enemies: ["greenSnake"]},
-        {total: 10, enemies: ["greenSnake"]},
-        {total: 10, enemies: ["greenSnake"]},
+        {total: 20, enemies: ["greenSnake", "redSnake"]},
+        {total: 25, enemies: ["greenSnake", "redSnake", "greenBat"]},
+        {total: 30, enemies: ["greenSnake", "redSnake", "greenBat"]},
     ],
     [
-        {total: 10, enemies: ["greenSnake"]},
-        {total: 10, enemies: ["greenSnake"]},
-        {total: 10, enemies: ["greenSnake"]},
+        {total: 20, enemies: ["greenSnake", "redSnake"]},
+        {total: 25, enemies: ["greenSnake", "redSnake", "greenBat"]},
+        {total: 30, enemies: ["greenSnake", "redSnake", "greenBat"]},
     ],
     [
-        {total: 10, enemies: ["greenSnake"]},
-        {total: 10, enemies: ["greenSnake"]},
-        {total: 10, enemies: ["greenSnake"]},
+        {total: 20, enemies: ["greenSnake", "redSnake"]},
+        {total: 25, enemies: ["greenSnake", "redSnake", "greenBat"]},
+        {total: 30, enemies: ["greenSnake", "redSnake", "greenBat"]},
     ],
     [
-        {total: 10, enemies: ["greenSnake"]},
-        {total: 10, enemies: ["greenSnake"]},
-        {total: 10, enemies: ["greenSnake"]},
+        {total: 20, enemies: ["greenSnake", "redSnake"]},
+        {total: 25, enemies: ["greenSnake", "redSnake", "greenBat"]},
+        {total: 30, enemies: ["greenSnake", "redSnake", "greenBat"]},
     ],
 ];
 
 const ENEMIES_BASE_STATS = {
     speed: 64,
+    redEnemiesDetectionRadius: 128,
+    purpleEnemiesDetectionRadius: 4,
 }
 const ENEMIES_STATS = {
-    "greenSnake": { damage: 1, speed: 1, health: 1, smart: 0},
-    "redSnake": { damage: 1, speed: 1, health: 1, smart: 2},
+    "greenSnake": { damage: 1, speed: 1, health: 1, smart: 0},  // total : 3
+    "redSnake": { damage: 1, speed: 1, health: 1, smart: 2},    // total : 5
+    "greenBat": { damage: 1, speed: 1, health: 1, smart: 1},    // total : 4
+    "purpleBat": { damage: 1, speed: 1, health: 1, smart: 2},   // total : 5
+    "redBat": { damage: 1, speed: 1, health: 1, smart: 4},      // total : 7
+}
+
+const ENEMIES_TINT = {
+    green: 0x00AA00,
+    red: 0xAA0000,
+    purple: 0x220088,
 }
 
 //#region Sprites keys

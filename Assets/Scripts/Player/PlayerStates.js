@@ -134,6 +134,7 @@ export class PlayerDashState extends IState {
     OnEnterState(){
         this._playerManager._dashAvailable = false;
         this._playerManager._isDashing = true;
+        this._playerManager._invincible = true;
         this._playerManager._parent.body.allowGravity = false;
         this._playerManager._parent.setVelocityY(0);
         this._playerManager._parent.anims.play("character_dash");
@@ -167,6 +168,7 @@ export class PlayerDashingState extends IState {
 
     OnExitState(){
         this._playerManager._parent.body.allowGravity = true;
+        this._playerManager._invincible = false;
         setTimeout(() => {
             this._playerManager._dashAvailable = true;
         }, this._playerManager._gameManager._data.playerStats.dashRecoverTime);

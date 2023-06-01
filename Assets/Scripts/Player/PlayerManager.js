@@ -280,7 +280,7 @@ export default class PlayerManager extends Behaviour {
         // Death animation
         // Create new soul pickup
         var soulSprite = this._scene.physics.add.sprite(this._parent.x, this._parent.y - 16, SPRITE_KEYS.playerSoul);
-        soulSprite.setDepth(LAYERS.enemies)
+        soulSprite.setDepth(LAYERS.player)
         .setOrigin(.5, .5)
         .setPipeline("Light2D");
 
@@ -290,7 +290,7 @@ export default class PlayerManager extends Behaviour {
         soulSprite.body.setCircle(10, -5, -5);
 
         this._scene.MakeBehaviors(soulSprite, {
-            "enemyAura": new PlayerAura(),
+            "playerAura": new PlayerAura(),
         });
         
         this._scene._soulsGroup.add(soulSprite);

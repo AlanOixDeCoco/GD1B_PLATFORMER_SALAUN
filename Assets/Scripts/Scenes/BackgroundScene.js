@@ -30,6 +30,7 @@ export default class BackgroundScene extends BehaviourScene {
         this.MakeBehaviors(this._camera, {
             "camera_controller": new CameraController(),
         });
+        this._cameraController = this.cameras.main.GetBehaviour("camera_controller");
 
         this.LaunchLoginScene();
     }

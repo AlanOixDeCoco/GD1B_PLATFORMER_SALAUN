@@ -1,3 +1,5 @@
+import GreenBatController from "../Enemies/Bats/GreenBatController.js";
+import PurpleBatController from "../Enemies/Bats/PurpleBatController.js";
 import EnemyAura from "../Enemies/EnemyAura.js";
 import EnemyManager from "../Enemies/EnemyManager.js";
 import GreenSnakeController from "../Enemies/Snakes/GreenSnakeController.js";
@@ -11,6 +13,60 @@ export default class FloorManager extends Behaviour{
             min: 0,
             max: 0
         }
+
+        // Create enemies anims
+        this._scene.anims.create({
+            key: 'snake_spawn',
+            frames: this._scene.anims.generateFrameNames("enemies_atlas", {
+                prefix: 'snake_spawn_',
+                suffix: '.png',
+                start: 0,
+                end: 0,
+                zeroPad: 2
+            }),
+            frameRate: 1,
+            repeat: 0,
+        });
+
+        this._scene.anims.create({
+            key: 'snake_move',
+            frames: this._scene.anims.generateFrameNames("enemies_atlas", {
+                prefix: 'snake_move_',
+                suffix: '.png',
+                start: 0,
+                end: 0,
+                zeroPad: 2
+            }),
+            frameRate: 1,
+            repeat: 0,
+        });
+
+        this._scene.anims.create({
+            key: 'bat_spawn',
+            frames: this._scene.anims.generateFrameNames("enemies_atlas", {
+                prefix: 'bat_spawn_',
+                suffix: '.png',
+                start: 0,
+                end: 0,
+                zeroPad: 2
+            }),
+            frameRate: 1,
+            repeat: 0,
+        });
+
+        this._scene.anims.create({
+            key: 'bat_move',
+            frames: this._scene.anims.generateFrameNames("enemies_atlas", {
+                prefix: 'bat_move_',
+                suffix: '.png',
+                start: 0,
+                end: 0,
+                zeroPad: 2
+            }),
+            frameRate: 1,
+            repeat: 0,
+        });
+
         super.start();
     }
 
@@ -32,7 +88,7 @@ export default class FloorManager extends Behaviour{
     }
 
     SetSpawnArea(spawnArea){
-        this._spawnY.min = spawnArea.y + 32;
+        this._spawnY.min = spawnArea.y + 64;
         this._spawnY.max = spawnArea.y + spawnArea.height + 32;
     }
 
@@ -62,7 +118,7 @@ export default class FloorManager extends Behaviour{
     }
 
     WaitForEnemiesKilled(){
-        var enemiesAlive = this._scene._enemiesGroup.children.entries.length;
+        var enemiesAlive = this._scene._groundEnemiesGroup.children.entries.length + this._scene._flyingEnemiesGroup.children.entries.length;
         var remainingEnemies = this._waveEnemies.length;
 
         if((enemiesAlive + remainingEnemies) == 0){
@@ -80,45 +136,60 @@ export default class FloorManager extends Behaviour{
     }
 
     SpawnEnemy(type, x){
-        var enemySprite = this._scene.physics.add.sprite(x, this.GetRandomHeight(), SPRITE_KEYS.sign);
+        var enemySprite = this._scene.physics.add.sprite(x, this.GetRandomHeight(), "");
         enemySprite.setOrigin(.5, 1)
         .setPipeline('Light2D')
         .setDepth(LAYERS.enemies);
+        enemySprite.body.allowGravity = false;
         this._scene.MakeBehaviors(enemySprite, {
             "enemyManager": new EnemyManager(this._gameManager),
             "enemyAura": new EnemyAura(),
         });
         var enemyManager = enemySprite.GetBehaviour("enemyManager");
+        enemyManager.SetTarget(this._scene._playerManager._parent);
+        enemyManager.SetSpawnY(this._spawnY.min, this._spawnY.max);
+        this._scene._enemiesGroup.add(enemySprite);
         switch(type){
             case "greenSnake":
                 console.log("Green snake");
+                enemySprite.setTint(ENEMIES_TINT.green);
                 enemySprite.AddBehaviour("greenSnakeController", new GreenSnakeController(enemyManager));
+                this._scene._groundEnemiesGroup.add(enemySprite);
                 break;
             case "redSnake":
                 console.log("Red snake");
-                enemySprite.AddBehaviour("greenSnakeController", new RedSnakeController(enemyManager));
+                enemySprite.setTint(ENEMIES_TINT.red);
+                enemySprite.AddBehaviour("redSnakeController", new RedSnakeController(enemyManager));
+                this._scene._groundEnemiesGroup.add(enemySprite);
                 break;
             case "greenBat":
                 console.log("Green bat");
-                enemySprite.AddBehaviour("greenSnakeController", new GreenSnakeController(enemyManager));
+                enemySprite.setTint(ENEMIES_TINT.green);
+                enemySprite.AddBehaviour("greenBatController", new GreenBatController(enemyManager));
+                this._scene._flyingEnemiesGroup.add(enemySprite);
                 break;
             case "purpleBat":
                 console.log("Purple bat");
-                enemySprite.AddBehaviour("greenSnakeController", new GreenSnakeController(enemyManager));
+                enemySprite.setTint(ENEMIES_TINT.purple);
+                enemySprite.AddBehaviour("purpleBatController", new PurpleBatController(enemyManager));
+                this._scene._flyingEnemiesGroup.add(enemySprite);
                 break;
             case "redBat":
                 console.log("Red bat");
+                enemySprite.setTint(ENEMIES_TINT.red);
                 enemySprite.AddBehaviour("greenSnakeController", new GreenSnakeController(enemyManager));
+                this._scene._flyingEnemiesGroup.add(enemySprite);
                 break;
             case "boss":
                 console.log("Boss");
+                enemySprite.setTint(ENEMIES_TINT.purple);
                 enemySprite.AddBehaviour("greenSnakeController", new GreenSnakeController(enemyManager));
+                this._scene._flyingEnemiesGroup.add(enemySprite);
                 break;
             default:
                 console.log("Unknown enemy type!");
                 return;
         }
-        this._scene._enemiesGroup.add(enemySprite);
     }
 
     GenerateWaveEnemies(wave){

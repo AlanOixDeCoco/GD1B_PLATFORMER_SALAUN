@@ -1,5 +1,6 @@
 import Behaviour from "../../components/Behaviour.js";
 import StateMachine from "../../components/StateMachine.js";
+import { RedSnakeAttackState, RedSnakePatrolState, RedSnakeSpawnState } from "./RedSnakeStates.js";
 
 export default class RedSnakeController extends Behaviour {
     constructor(enemyManager){
@@ -10,7 +11,34 @@ export default class RedSnakeController extends Behaviour {
     start(){
         this._stateMachine = new StateMachine();
 
-        this._enemyManager._ready = true;
+        var snakeSpawnState = new RedSnakeSpawnState(this);
+        var snakePatrolState = new RedSnakePatrolState(this);
+        var snakeAttackState = new RedSnakeAttackState(this);
+        
+        // Spawn --> Patrol
+        this._stateMachine.AddTransition(snakeSpawnState, snakePatrolState, () => {
+            return !this._parent.anims.isPlaying;
+        });
+
+        // Patrol --> Attack
+        this._stateMachine.AddTransition(snakePatrolState, snakeAttackState, () => {
+            const direction = this._parent.body.velocity.x > 0 ? 1 : -1;
+            const directionVerif = (this._enemyManager._target.x - this._parent.x) * direction > 0;
+            const rangeVerif = Math.abs(this._enemyManager._target.x - this._parent.x) < ENEMIES_BASE_STATS.redEnemiesDetectionRadius;
+            const verticalAxisVerif = Math.abs(this._enemyManager._target.y - this._parent.y) < 32;
+            return rangeVerif && verticalAxisVerif;
+        });
+
+        // Attack --> Patrol
+        this._stateMachine.AddTransition(snakeAttackState, snakePatrolState, () => {
+            const direction = this._parent.body.velocity.x > 0 ? 1 : -1;
+            const directionVerif = (this._enemyManager._target.x - this._parent.x) * direction > 0;
+            const rangeVerif = Math.abs(this._enemyManager._target.x - this._parent.x) < ENEMIES_BASE_STATS.redEnemiesDetectionRadius;
+            const verticalAxisVerif = Math.abs(this._enemyManager._target.y - this._parent.y) < 32;
+            return !(rangeVerif && verticalAxisVerif);
+        });
+        
+        this._stateMachine.SetState(snakeSpawnState);
 
         super.start();
     }

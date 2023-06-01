@@ -4,19 +4,6 @@ export class GreenSnakeSpawnState extends IState {
     constructor(greenSnakeController) {
         super("greenSnake_spawn");
         this._greenSnakeController = greenSnakeController;
-
-        this._greenSnakeController._parent.anims.create({
-            key: 'greenSnake_spawn',
-            frames: this._greenSnakeController._parent.anims.generateFrameNames("character_atlas", {
-                prefix: 'character_idle_',
-                suffix: '.png',
-                start: 0,
-                end: 10,
-                zeroPad: 2
-            }),
-            frameRate: 10,
-            repeat: 0,
-        });
     }
 
     Tick(){
@@ -24,7 +11,7 @@ export class GreenSnakeSpawnState extends IState {
 
     OnEnterState(){
         console.log("Green snake spawns!");
-        this._greenSnakeController._parent.anims.play("greenSnake_spawn");
+        this._greenSnakeController._parent.anims.play("snake_spawn");
     }
 
     OnExitState(){
@@ -36,19 +23,6 @@ export class GreenSnakeMoveState extends IState {
     constructor(greenSnakeController) {
         super("greenSnake_move");
         this._greenSnakeController = greenSnakeController;
-
-        this._greenSnakeController._parent.anims.create({
-            key: 'greenSnake_move',
-            frames: this._greenSnakeController._parent.anims.generateFrameNames("character_atlas", {
-                prefix: 'character_run_',
-                suffix: '.png',
-                start: 0,
-                end: 46,
-                zeroPad: 2
-            }),
-            frameRate: 80,
-            repeat: -1,
-        });
     }
 
     Tick(){
@@ -60,7 +34,8 @@ export class GreenSnakeMoveState extends IState {
 
     OnEnterState(){
         console.log("Green snake moves!");
-        this._greenSnakeController._parent.anims.play("greenSnake_move");
+        this._greenSnakeController._parent.body.allowGravity = true;
+        this._greenSnakeController._parent.anims.play("snake_move");
 
         var randomDirection = Math.random() >= 0.5 ? 1 : -1;
         this._velocity = randomDirection * (ENEMIES_STATS.greenSnake.speed * ENEMIES_BASE_STATS.speed);
