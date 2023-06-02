@@ -1,5 +1,6 @@
 import GreenBatController from "../Enemies/Bats/GreenBatController.js";
 import PurpleBatController from "../Enemies/Bats/PurpleBatController.js";
+import RedBatController from "../Enemies/Bats/RedBatController.js";
 import EnemyAura from "../Enemies/EnemyAura.js";
 import EnemyManager from "../Enemies/EnemyManager.js";
 import GreenSnakeController from "../Enemies/Snakes/GreenSnakeController.js";
@@ -177,7 +178,7 @@ export default class FloorManager extends Behaviour{
             case "redBat":
                 console.log("Red bat");
                 enemySprite.setTint(ENEMIES_TINT.red);
-                enemySprite.AddBehaviour("greenSnakeController", new GreenSnakeController(enemyManager));
+                enemySprite.AddBehaviour("redBatController", new RedBatController(enemyManager));
                 this._scene._flyingEnemiesGroup.add(enemySprite);
                 break;
             case "boss":

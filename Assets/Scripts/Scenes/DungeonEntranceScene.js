@@ -94,7 +94,7 @@ export default class DungeonEntranceScene extends BehaviourScene {
     StartDungeonTransitionScene(){
         this.scene.pause();
         this._gameManager._paused = true;
-        this._gameManager._scene._cameraController.FadeOut(this._playerManager._parent.x, this._playerManager._parent.y - PLAYER_HEIGHT);
+        this._gameManager._scene._cameraController.FadeOut(this._playerManager._parent.x, this._playerManager._parent.y - PLAYER_HEIGHT, ()=>{});
         this._cameraController.FadeOut(this._playerManager._parent.x, this._playerManager._parent.y - PLAYER_HEIGHT, () => {
             setTimeout(() => {
                 this.scene.start(SCENE_DUNGEON_FLOOR, {gameManager: this._gameManager});

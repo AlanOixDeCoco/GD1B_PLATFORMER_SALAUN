@@ -57,15 +57,20 @@ export class RedSnakeAttackState extends IState {
     }
 
     Tick(){
+        const targetPos = {x: this._redSnakeController._enemyManager._target.x, y: this._redSnakeController._parent.y};
+        const snakePos = {x: this._redSnakeController._parent.x, y: this._redSnakeController._parent.y};
+        const direction = new Phaser.Math.Vector2(targetPos.x - snakePos.x, targetPos.y - snakePos.y).normalize();
+        const speed = ENEMIES_STATS.redSnake.speed * ENEMIES_BASE_STATS.speed;
+        this._redSnakeController._parent.setVelocityX(direction.x * speed);
     }
 
     OnEnterState(){
         console.log("Red snake attacks!");
         this._redSnakeController._enemyManager._attackUI.setVisible(true);
 
-        const direction = (this._redSnakeController._enemyManager._target.x - this._redSnakeController._parent.x) >= 0 ? 1 : -1;
-        this._velocity = direction * (ENEMIES_STATS.greenSnake.speed * ENEMIES_BASE_STATS.speed);
-        this._redSnakeController._parent.setVelocityX(this._velocity);
+        //const direction = (this._redSnakeController._enemyManager._target.x - this._redSnakeController._parent.x) >= 0 ? 1 : -1;
+        //this._velocity = direction * (ENEMIES_STATS.greenSnake.speed * ENEMIES_BASE_STATS.speed);
+        //this._redSnakeController._parent.setVelocityX(this._velocity);
     }
 
     OnExitState(){

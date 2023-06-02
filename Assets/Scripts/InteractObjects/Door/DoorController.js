@@ -6,6 +6,10 @@ export default class DoorController extends Behaviour{
 
         this._locked = true;
 
+        this._interactUI = this._scene.add.sprite(this._parent.x + (this._parent.width/2), this._parent.y, "");
+        this._interactUI.setDepth(LAYERS.interactObjects + 1).setOrigin(.5, 1);
+        this._interactUI.setVisible(false);
+
         //#region Animations
         this._parent.anims.create({
             key: ANIMATIONS_KEYS.doorUnlock,
@@ -51,15 +55,18 @@ export default class DoorController extends Behaviour{
     SetUnlocked(){
         this._parent.anims.play(ANIMATIONS_KEYS.doorUnlocked);
         this._locked = false;
+        this._interactUI.setVisible(true);
     }
 
     Unlock(){
         this._parent.anims.play(ANIMATIONS_KEYS.doorUnlock);
         this._scene.sound.play(AUDIO_KEYS.doorUnlock, {volume: VOLUME.door, loop: false});
         this._locked = false;
+        this._interactUI.setVisible(true);
     }
 
     Open(){
+        this._interactUI.setVisible(false);
         this._parent.anims.play(ANIMATIONS_KEYS.doorOpen, true);
         this._scene.sound.play(AUDIO_KEYS.doorOpen, {volume: VOLUME.door, loop: false});
         this._openCallback();

@@ -145,7 +145,7 @@ export default class DungeonScene extends BehaviourScene {
         this._floorManager.destroy();
         this.scene.pause();
         this._gameManager._paused = true;
-        this._gameManager._scene._cameraController.FadeOut(this._playerManager._parent.x, this._playerManager._parent.y - PLAYER_HEIGHT);
+        this._gameManager._scene._cameraController.FadeOut(this._playerManager._parent.x, this._playerManager._parent.y - PLAYER_HEIGHT, ()=>{});
         this._cameraController.FadeOut(this._playerManager._parent.x, this._playerManager._parent.y - PLAYER_HEIGHT, () => {
             setTimeout(() => {
                 this.scene.start(this._gameManager.GetNextFloor(), {gameManager: this._gameManager});

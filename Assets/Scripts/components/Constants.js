@@ -34,7 +34,7 @@ const PLAYER_HEIGHT = 48;
 const PLAYER_DEFAULT_SPEED = 150;
 const PLAYER_GHOST_JUMP_DURATION = 100;
 const PLAYER_DEFAULT_JUMP_VELOCITY = 450;
-const PLAYER_DEFAULT_HEALTH = 100;
+const PLAYER_DEFAULT_HEALTH = 5;
 const PLAYER_DEFAULT_INVINCIBLE_DURATION = 1000;
 const PLAYER_DEFAULT_DASH_VELOCITY = 400;
 const PLAYER_DEFAULT_DASH_DURATION = 200;
@@ -66,10 +66,10 @@ const SPAWN_INTERVAL = 2000;
 
 const MAP_WAVES = [
     [
-        {total: 10, enemies: ["purpleBat"]},
+        {total: 10, enemies: ["greenSnake"]},
     ],
     [
-        {total: 10, enemies: ["greenBat"]},
+        {total: 10, enemies: ["greenSnake"]},
         {total: 15, enemies: ["greenSnake", "redSnake"]},
     ],
     [
@@ -89,8 +89,8 @@ const MAP_WAVES = [
     ],
     [
         {total: 20, enemies: ["greenSnake", "redSnake"]},
-        {total: 25, enemies: ["greenSnake", "redSnake", "greenBat"]},
-        {total: 30, enemies: ["greenSnake", "redSnake", "greenBat"]},
+        {total: 25, enemies: ["greenSnake", "redSnake", "purpleBat"]},
+        {total: 30, enemies: ["greenSnake", "redSnake", "purpleBat"]},
     ],
     [
         {total: 20, enemies: ["greenSnake", "redSnake"]},
@@ -104,8 +104,8 @@ const MAP_WAVES = [
     ],
     [
         {total: 20, enemies: ["greenSnake", "redSnake"]},
-        {total: 25, enemies: ["greenSnake", "redSnake", "greenBat"]},
-        {total: 30, enemies: ["greenSnake", "redSnake", "greenBat"]},
+        {total: 25, enemies: ["greenSnake", "redSnake", "redBat"]},
+        {total: 30, enemies: ["greenSnake", "redSnake", "redBat"]},
     ],
     [
         {total: 20, enemies: ["greenSnake", "redSnake"]},

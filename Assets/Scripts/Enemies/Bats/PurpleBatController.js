@@ -16,7 +16,6 @@ export default class PurpleBatController extends Behaviour {
         var batAttackState = new PurpleBatAttackState(this);
         
         this._stateMachine.AddTransition(batSpawnState, batMoveState, () => {
-            console.log(this._parent.anims.isPlaying);
             return !this._parent.anims.isPlaying;
         });
 
