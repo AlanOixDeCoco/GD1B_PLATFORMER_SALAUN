@@ -46,8 +46,16 @@ export default class DungeonEntranceScene extends BehaviourScene {
             ).setDepth(LAYERS.ground).setCollisionByProperty({collides: true})
         };
 
+        // UI
+        const uiObjectLayer = this._tilemap.getObjectLayer("UI");
+        uiObjectLayer.objects.forEach(uiElement => {
+            if(uiElement.properties[0].value == "uiOrigin"){
+                this.CreateUI(uiElement.x, uiElement.y, FLOOR_TYPES.safe, this._gameManager);
+            }
+        });
+
         // Spawns
-        var spawnsObjectLayer = this._tilemap.getObjectLayer("Spawns");
+        const spawnsObjectLayer = this._tilemap.getObjectLayer("Spawns");
         spawnsObjectLayer.objects.forEach(spawn => {
             switch(spawn.properties[0].value){
                 case "player": 
@@ -60,7 +68,7 @@ export default class DungeonEntranceScene extends BehaviourScene {
         });
 
         // Interact objects
-        var interactObjectLayer = this._tilemap.getObjectLayer("Interact");
+        const interactObjectLayer = this._tilemap.getObjectLayer("Interact");
         interactObjectLayer.objects.forEach(interactObject => {
             switch(interactObject.properties[1].value){
                 case "door": 
@@ -97,7 +105,7 @@ export default class DungeonEntranceScene extends BehaviourScene {
         this._gameManager._scene._cameraController.FadeOut(this._playerManager._parent.x, this._playerManager._parent.y - PLAYER_HEIGHT, ()=>{});
         this._cameraController.FadeOut(this._playerManager._parent.x, this._playerManager._parent.y - PLAYER_HEIGHT, () => {
             setTimeout(() => {
-                this.scene.start(SCENE_DUNGEON_FLOOR, {gameManager: this._gameManager});
+                this.scene.start(this._gameManager.GetNextFloor(), {gameManager: this._gameManager});
             }, 500);
         });
     }

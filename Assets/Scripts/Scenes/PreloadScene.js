@@ -36,6 +36,11 @@ export default class PreloadScene extends BehaviourScene{
             normalMap: './Assets/Sprites/Environment/environment_atlas_n.png',
             atlasURL: './Assets/Sprites/Environment/environment_atlas.json'
         });
+        this.load.atlas({
+            key: 'environment_ui_atlas',
+            textureURL: './Assets/Sprites/UI/Environment/environment_ui_atlas.png',
+            atlasURL: './Assets/Sprites/UI/Environment/environment_ui_atlas.json'
+        });
 
         // Characters
         this.load.atlas({
@@ -90,6 +95,10 @@ export default class PreloadScene extends BehaviourScene{
 
         // Torch
         this.load.audio(AUDIO_KEYS.torch, './Assets/Audio/Torch/audio_torch_fire.wav');
+        //#endregion
+
+        //#region Bitmap fonts
+        this.load.bitmapFont('CursedScript', 'Assets/Fonts/CursedScript.png', 'Assets/Fonts/CursedScript.fnt');
         //#endregion
 
         //#region loading states

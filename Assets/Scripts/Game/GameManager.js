@@ -7,8 +7,9 @@ export default class GameManager extends Behaviour{
         this._scene = this._parent.scene;
         this._startTime = this._scene.time.now;
         this._data = {
-            floor: 0,
+            floorCount: 0,
             souls: 0,
+            remainingTime: GAME_DEFAULT_TIME, // 
             time: 0,
 
             playerStats: {
@@ -63,17 +64,19 @@ export default class GameManager extends Behaviour{
             this._paused ? this._currentScene.scene.pause() : this._currentScene.scene.resume();
         }
 
-        if(!this._paused) this._data.time += deltatime;
+        if(!this._paused) {
+            this._data.time += deltatime;
+            this._data.remainingTime -= deltatime;
+        }
     }
 
     GetNextFloor(){
-        if(this._data.floor < 9){
-            this._data.floor++;
-            return SCENE_DUNGEON_FLOOR;
+        this._data.floorCount++;
+        if((this._data.floorCount%10) == 0){
+            return SCENE_DUNGEON_BOSS;
         }
         else {
-            this._data.floor = 0;
-            return SCENE_DUNGEON_BOSS;
+            return SCENE_DUNGEON_FLOOR;
         }
     }
 
@@ -87,6 +90,13 @@ export default class GameManager extends Behaviour{
 
     GetTimeInMinutes(){
         var seconds = (Math.round(this._data.time / 1000));
+        var remainingSeconds = seconds % 60;
+        var minutes = (seconds - remainingSeconds) / 60;
+        return `${minutes}' ${remainingSeconds}"`;
+    }
+
+    GetRemainingTimeInMinutes(){
+        var seconds = (Math.round(this._data.remainingTime / 1000));
         var remainingSeconds = seconds % 60;
         var minutes = (seconds - remainingSeconds) / 60;
         return `${minutes}' ${remainingSeconds}"`;

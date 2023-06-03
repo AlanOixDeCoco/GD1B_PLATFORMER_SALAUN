@@ -80,15 +80,15 @@
         },
         "map_boss.tmx": {
             "expandedObjectLayers": [
-                11,
+                16,
                 12,
-                16
+                11
             ],
-            "scale": 1.5,
-            "selectedLayer": 2,
+            "scale": 1,
+            "selectedLayer": 7,
             "viewCenter": {
-                "x": 344.6666666666667,
-                "y": 232
+                "x": 374,
+                "y": 293
             }
         },
         "map_boss.tmx#playerSketch": {
@@ -102,14 +102,15 @@
         },
         "map_entrance.tmx": {
             "expandedObjectLayers": [
-                11,
-                12
+                15,
+                12,
+                11
             ],
             "scale": 1.5,
-            "selectedLayer": 0,
+            "selectedLayer": 5,
             "viewCenter": {
-                "x": 325.3333333333333,
-                "y": 255.33333333333334
+                "x": 341.33333333333326,
+                "y": 254.66666666666666
             }
         },
         "map_entrance.tmx#playerSketch": {
@@ -145,15 +146,15 @@
         },
         "map_floor_00.tmx": {
             "expandedObjectLayers": [
-                11,
+                15,
                 12,
-                15
+                11
             ],
             "scale": 1.5,
-            "selectedLayer": 5,
+            "selectedLayer": 6,
             "viewCenter": {
-                "x": 131.33333333333331,
-                "y": 248.66666666666666
+                "x": 340.6666666666667,
+                "y": 235.33333333333331
             }
         },
         "map_floor_00.tmx#playerSketch": {
@@ -167,15 +168,15 @@
         },
         "map_floor_01.tmx": {
             "expandedObjectLayers": [
-                11,
+                16,
                 12,
-                16
+                11
             ],
             "scale": 1.5,
-            "selectedLayer": 6,
+            "selectedLayer": 7,
             "viewCenter": {
-                "x": 191.3333333333333,
-                "y": 232
+                "x": 345.33333333333326,
+                "y": 224
             }
         },
         "map_floor_01.tmx#playerSketch": {
@@ -189,12 +190,12 @@
         },
         "map_floor_02.tmx": {
             "expandedObjectLayers": [
-                11,
+                16,
                 12,
-                16
+                11
             ],
             "scale": 2,
-            "selectedLayer": 6,
+            "selectedLayer": 7,
             "viewCenter": {
                 "x": 307.5,
                 "y": 264
@@ -211,12 +212,12 @@
         },
         "map_floor_03.tmx": {
             "expandedObjectLayers": [
-                11,
+                16,
                 12,
-                16
+                11
             ],
             "scale": 1,
-            "selectedLayer": 6,
+            "selectedLayer": 7,
             "viewCenter": {
                 "x": 335,
                 "y": 59
@@ -233,15 +234,15 @@
         },
         "map_floor_04.tmx": {
             "expandedObjectLayers": [
-                11,
+                16,
                 12,
-                16
+                11
             ],
-            "scale": 2,
-            "selectedLayer": 6,
+            "scale": 1.5,
+            "selectedLayer": 7,
             "viewCenter": {
-                "x": 212.5,
-                "y": 257
+                "x": 348.6666666666667,
+                "y": 231.33333333333331
             }
         },
         "map_floor_04.tmx#playerSketch": {
@@ -255,12 +256,12 @@
         },
         "map_floor_05.tmx": {
             "expandedObjectLayers": [
-                11,
+                16,
                 12,
-                16
+                11
             ],
             "scale": 1.5,
-            "selectedLayer": 6,
+            "selectedLayer": 7,
             "viewCenter": {
                 "x": 278,
                 "y": 242.66666666666666
@@ -277,15 +278,15 @@
         },
         "map_floor_06.tmx": {
             "expandedObjectLayers": [
-                11,
+                16,
                 12,
-                16
+                11
             ],
             "scale": 1.5,
-            "selectedLayer": 6,
+            "selectedLayer": 7,
             "viewCenter": {
-                "x": 77.33333333333337,
-                "y": 230
+                "x": 306,
+                "y": 220
             }
         },
         "map_floor_06.tmx#playerSketch": {
@@ -299,15 +300,15 @@
         },
         "map_floor_07.tmx": {
             "expandedObjectLayers": [
-                11,
+                16,
                 12,
-                16
+                11
             ],
-            "scale": 2,
-            "selectedLayer": 6,
+            "scale": 1.5,
+            "selectedLayer": 7,
             "viewCenter": {
-                "x": 172.5,
-                "y": 228.5
+                "x": 283.33333333333326,
+                "y": 234
             }
         },
         "map_floor_07.tmx#playerSketch": {
@@ -321,12 +322,12 @@
         },
         "map_floor_08.tmx": {
             "expandedObjectLayers": [
-                11,
+                16,
                 12,
-                16
+                11
             ],
             "scale": 1.5,
-            "selectedLayer": 6,
+            "selectedLayer": 7,
             "viewCenter": {
                 "x": 281.33333333333326,
                 "y": 227.33333333333331
@@ -343,12 +344,13 @@
         },
         "map_floor_09.tmx": {
             "expandedObjectLayers": [
-                11,
+                18,
+                16,
                 12,
-                16
+                11
             ],
             "scale": 1.5,
-            "selectedLayer": 6,
+            "selectedLayer": 7,
             "viewCenter": {
                 "x": 327.33333333333326,
                 "y": 234.66666666666666

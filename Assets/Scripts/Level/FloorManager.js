@@ -75,8 +75,8 @@ export default class FloorManager extends Behaviour{
         this._gameManager = gameManager;
         this._gameManager.SetFloorManager(this);
         
-        this._floor = this._gameManager._data.floor;
-        this._floorWaves = MAP_WAVES[this._gameManager._data.floor].length;
+        this._floor = this._gameManager._data.floorCount - 1;
+        this._floorWaves = MAP_WAVES[this._floor].length;
 
         this._wave = 0;
         this._waveEnemies = [];
@@ -95,7 +95,7 @@ export default class FloorManager extends Behaviour{
 
     StartWave(){
         // Procedural enemies preparation
-        this._waveEnemies = this.GenerateWaveEnemies(MAP_WAVES[this._gameManager._data.floor][this._wave]);
+        this._waveEnemies = this.GenerateWaveEnemies(MAP_WAVES[this._floor][this._wave]);
         
         // Start the spawner after a delay
         this._scene.time.delayedCall(1000, this.TickSpawner, null, this);

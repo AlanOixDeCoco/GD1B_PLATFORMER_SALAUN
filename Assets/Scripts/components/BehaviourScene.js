@@ -1,5 +1,6 @@
 import Torch from "../Decorations/Torch.js";
 import DoorController from "../InteractObjects/Door/DoorController.js";
+import FloorUIController from "../Level/FloorUIController.js";
 import PlayerAnimator from "../Player/PlayerAnimator.js";
 import PlayerAura from "../Player/PlayerAura.js";
 import PlayerBody from "../Player/PlayerBody.js";
@@ -120,6 +121,31 @@ export default class BehaviourScene extends Phaser.Scene {
         .setOrigin(0, 1);
 
         return platformSprite;
+    }
+
+
+    CreateUI(x, y, floorType, gameManager){
+        var bannerSprite = this.add.sprite(x, y - 18, 'environment_ui_atlas', SPRITE_KEYS.uiBanner[floorType]);
+        bannerSprite.setDepth(LAYERS.environmentUI).setOrigin(.5, 0);
+        
+        var bannerText = this.add.bitmapText(
+            x + 1, 
+            y - 9, 
+            "CursedScript",
+            gameManager._data.floorCount, 
+            24
+        );
+        bannerText.setDepth(LAYERS.environmentUI + 1).setOrigin(.5, .5);
+
+        var cylinderShellSprite = this.add.sprite(x - 40, y - 18, 'environment_ui_atlas', SPRITE_KEYS.uiCylinderShell);
+        cylinderShellSprite.setDepth(LAYERS.environmentUI + 1).setOrigin(.5, 0);
+
+        var cylinderSprite = this.add.sprite(x - 40, y - 15, 'environment_ui_atlas', `${SPRITE_KEYS.uiCylinder}00.png`);
+        cylinderSprite.setDepth(LAYERS.environmentUI).setOrigin(.5, 0);
+
+        this.MakeBehaviors(bannerSprite, {
+            "floorUIController": new FloorUIController(gameManager, cylinderSprite)
+        });
     }
 
     CreatePlayer(x, y, gameManager){

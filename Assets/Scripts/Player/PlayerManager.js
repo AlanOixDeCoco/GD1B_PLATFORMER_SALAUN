@@ -222,7 +222,7 @@ export default class PlayerManager extends Behaviour {
 
         // Jump (with tolerance)
         if(!this._parent.body.blocked.down){
-            setTimeout(() => {
+            this._groundedTimeout = setTimeout(() => {
                 this._grounded = this._parent.body.blocked.down;
             }, PLAYER_GHOST_JUMP_DURATION);
         }
@@ -232,7 +232,7 @@ export default class PlayerManager extends Behaviour {
         // Get off platform
         if(this._parent.body.blocked.down && this._ignorePlatformButton) {
             this._ignorePlatform = true;
-            setTimeout(() => {
+            this._ignorePlatformTimeout = setTimeout(() => {
                 this._ignorePlatform = false;
             }, 200);
         }
@@ -338,5 +338,7 @@ export default class PlayerManager extends Behaviour {
 
     destroy(){
         clearInterval(this._endInvicibleTimeout);
+        clearInterval(this._groundedTimeout);
+        clearInterval(this._ignorePlatformTimeout);
     }
 }

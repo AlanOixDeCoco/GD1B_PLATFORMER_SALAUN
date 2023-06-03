@@ -42,7 +42,7 @@ export default class DungeonScene extends BehaviourScene {
         this._floorManager.SetGameManager(this._gameManager);
 
         // Tilemap
-        var mapIndex = this._gameManager._data.floor;
+        var mapIndex = this._gameManager._data.floorCount - 1;
         this._tilemap = this.add.tilemap(MAP_DUNGEON_FLOORS[mapIndex], 0, 0);
         this._tileset = this._tilemap.addTilesetImage("tileset", TILESET_00);
         this._layers = {
@@ -59,6 +59,14 @@ export default class DungeonScene extends BehaviourScene {
                 this._tileset,
             ).setDepth(LAYERS.ground).setCollisionByProperty({collides: true})
         };
+
+        // UI
+        const uiObjectLayer = this._tilemap.getObjectLayer("UI");
+        uiObjectLayer.objects.forEach(uiElement => {
+            if(uiElement.properties[0].value == "uiOrigin"){
+                this.CreateUI(uiElement.x, uiElement.y, FLOOR_TYPES.dungeon, this._gameManager);
+            }
+        });
 
         // Spawns
         var spawnsObjectLayer = this._tilemap.getObjectLayer("Spawns");

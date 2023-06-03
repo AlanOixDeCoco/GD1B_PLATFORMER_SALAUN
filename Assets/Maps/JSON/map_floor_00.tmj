@@ -306,9 +306,56 @@
          "visible":true,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":16,
+         "name":"UI",
+         "objects":[
+                {
+                 "class":"",
+                 "height":0,
+                 "id":15,
+                 "name":"",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"type",
+                         "type":"string",
+                         "value":"uiOrigin"
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":745.333333333333,
+                 "y":432.666666666667
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":17,
+                 "name":"",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"type",
+                         "type":"string",
+                         "value":"uiOrigin"
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":320,
+                 "y":160
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":16,
- "nextobjectid":14,
+ "nextlayerid":17,
+ "nextobjectid":18,
  "orientation":"orthogonal",
  "renderorder":"left-up",
  "tiledversion":"1.9.2",

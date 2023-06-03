@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="left-up" width="20" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="15" nextobjectid="11">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="left-up" width="20" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="16" nextobjectid="14">
  <editorsettings>
   <export target="../JSON/map_entrance.tmj" format="json"/>
  </editorsettings>
@@ -435,6 +435,14 @@
   <object id="5" x="192" y="319.998">
    <properties>
     <property name="type" value="player"/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup id="15" name="UI">
+  <object id="13" x="320" y="192">
+   <properties>
+    <property name="type" value="uiOrigin"/>
    </properties>
    <point/>
   </object>

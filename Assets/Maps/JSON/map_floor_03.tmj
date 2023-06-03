@@ -457,9 +457,38 @@
          "visible":true,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":18,
+         "name":"UI",
+         "objects":[
+                {
+                 "class":"",
+                 "height":0,
+                 "id":25,
+                 "name":"",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"type",
+                         "type":"string",
+                         "value":"uiOrigin"
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":320,
+                 "y":128
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":18,
- "nextobjectid":25,
+ "nextlayerid":19,
+ "nextobjectid":26,
  "orientation":"orthogonal",
  "renderorder":"left-up",
  "tiledversion":"1.9.2",

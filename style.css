@@ -2,6 +2,10 @@
     font-family: Monogram;
     src: url('Assets/Fonts/monogram-extended.ttf');
 }
+@font-face {
+    font-family: CursedScriptBold;
+    src: url('Assets/Fonts/CursedScript-Bold.ttf');
+}
 
 html, body { 
     background: #000;

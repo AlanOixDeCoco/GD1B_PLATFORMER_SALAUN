@@ -1,5 +1,5 @@
 // Debug mode
-const DEBUG = true;
+const DEBUG = false;
 
 //#region Game constants
 const GAME_TITLE = "Night Knight";
@@ -27,6 +27,10 @@ const SCENE_DUNGEON_FLOOR = "scene_dungeon_floor";
 const SCENE_DUNGEON_BOSS_TRANSITION = "scene_dungeon_boss_transition";
 const SCENE_DUNGEON_BOSS = "scene_dungeon_boss";
 const SCENE_GAMEOVER = "scene_gameover";
+//#endregion
+
+//#region Game DEFAULT stats constants
+const GAME_DEFAULT_TIME = 300000; // in milliseconds --> 5min
 //#endregion
 
 //#region Player DEFAULT stats constants
@@ -62,6 +66,14 @@ const MAP_DUNGEON_FLOORS = [
 const MAP_DUNGEON_DEATH = "map_dungeon_death";
 //#endregion
 
+//#region Floor types
+const FLOOR_TYPES = {
+    safe: "safe",
+    dungeon: "dungeon",
+    boss: "boss"
+};
+//#endregion
+
 const SPAWN_INTERVAL = 2000;
 
 const MAP_WAVES = [
@@ -94,23 +106,23 @@ const MAP_WAVES = [
     ],
     [
         {total: 20, enemies: ["greenSnake", "redSnake"]},
-        {total: 25, enemies: ["greenSnake", "redSnake", "greenBat"]},
-        {total: 30, enemies: ["greenSnake", "redSnake", "greenBat"]},
+        {total: 25, enemies: ["greenSnake", "redSnake", "purpleBat"]},
+        {total: 30, enemies: ["greenSnake", "redSnake", "purpleBat"]},
     ],
     [
         {total: 20, enemies: ["greenSnake", "redSnake"]},
-        {total: 25, enemies: ["greenSnake", "redSnake", "greenBat"]},
-        {total: 30, enemies: ["greenSnake", "redSnake", "greenBat"]},
+        {total: 25, enemies: ["greenSnake", "redSnake", "purpleRed"]},
+        {total: 30, enemies: ["greenSnake", "redSnake", "purpleRed"]},
     ],
     [
         {total: 20, enemies: ["greenSnake", "redSnake"]},
-        {total: 25, enemies: ["greenSnake", "redSnake", "redBat"]},
-        {total: 30, enemies: ["greenSnake", "redSnake", "redBat"]},
+        {total: 25, enemies: ["greenSnake", "redSnake", "purpleRed"]},
+        {total: 30, enemies: ["greenSnake", "redSnake", "purpleRed"]},
     ],
     [
         {total: 20, enemies: ["greenSnake", "redSnake"]},
-        {total: 25, enemies: ["greenSnake", "redSnake", "greenBat"]},
-        {total: 30, enemies: ["greenSnake", "redSnake", "greenBat"]},
+        {total: 25, enemies: ["greenSnake", "redSnake", "purpleRed"]},
+        {total: 30, enemies: ["greenSnake", "redSnake", "purpleRed"]},
     ],
 ];
 
@@ -160,7 +172,16 @@ const SPRITE_KEYS = {
         boss: "boss",
     },
     enemySoul: "enemy_soul",
-    playerSoul: "player_soul"
+    playerSoul: "player_soul",
+
+    uiBanner: {
+        "safe": "banner_00.png",
+        "dungeon": "banner_01.png",
+        "boss": "banner_02.png"
+    },
+
+    uiCylinder: "timer_",
+    uiCylinderShell: "timer_shell.png"
 }
 //#endregion
 
@@ -201,6 +222,8 @@ const LAYERS = {
     enemies: 50,
     player: 60,
     ground: 100,
+    environmentUI: 150,
+    overlayUI: 200
 }
 //#endregion
 
