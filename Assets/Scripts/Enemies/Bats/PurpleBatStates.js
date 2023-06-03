@@ -1,4 +1,4 @@
-import IState from "../../components/State.js";
+import IState from "../../Components/State.js";
 
 export class PurpleBatSpawnState extends IState {
     constructor(purpleBatController) {

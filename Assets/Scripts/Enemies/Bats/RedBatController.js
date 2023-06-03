@@ -1,5 +1,5 @@
-import Behaviour from "../../components/Behaviour.js";
-import StateMachine from "../../components/StateMachine.js";
+import Behaviour from "../../Components/Behaviour.js";
+import StateMachine from "../../Components/StateMachine.js";
 import { RedBatAttackState, RedBatMoveState, RedBatSpawnState } from "./RedBatStates.js";
 
 export default class RedBatController extends Behaviour {

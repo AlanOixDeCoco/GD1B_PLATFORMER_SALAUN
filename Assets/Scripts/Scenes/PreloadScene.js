@@ -1,4 +1,4 @@
-import BehaviourScene from "../components/BehaviourScene.js";
+import BehaviourScene from "../Components/BehaviourScene.js";
 
 export default class PreloadScene extends BehaviourScene{
     constructor() {

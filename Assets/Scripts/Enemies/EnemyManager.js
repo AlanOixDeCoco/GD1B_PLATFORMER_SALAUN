@@ -1,4 +1,4 @@
-import Behaviour from "../components/Behaviour.js";
+import Behaviour from "../Components/Behaviour.js";
 import EnemyAura from "./EnemyAura.js";
 
 export default class EnemyManager extends Behaviour {

@@ -5,7 +5,7 @@ import EnemyAura from "../Enemies/EnemyAura.js";
 import EnemyManager from "../Enemies/EnemyManager.js";
 import GreenSnakeController from "../Enemies/Snakes/GreenSnakeController.js";
 import RedSnakeController from "../Enemies/Snakes/RedSnakeController.js";
-import Behaviour from "../components/Behaviour.js";
+import Behaviour from "../Components/Behaviour.js";
 
 export default class FloorManager extends Behaviour{
     start(){

@@ -1,5 +1,5 @@
 import CameraController from "../Camera/CameraController.js";
-import BehaviourScene from "../components/BehaviourScene.js";
+import BehaviourScene from "../Components/BehaviourScene.js";
 import GameManager from "../Game/GameManager.js";
 import SoundManager from "../Level/SoundManager.js";
 

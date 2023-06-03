@@ -4,7 +4,7 @@ import SoundManager from "../Level/SoundManager.js";
 import PlayerAnimator from "../Player/PlayerAnimator.js";
 import PlayerBody from "../Player/PlayerBody.js";
 import PlayerManager from "../Player/PlayerManager.js";
-import BehaviourScene from "../components/BehaviourScene.js";
+import BehaviourScene from "../Components/BehaviourScene.js";
 
 export default class DungeonEntranceScene extends BehaviourScene {
     constructor() {

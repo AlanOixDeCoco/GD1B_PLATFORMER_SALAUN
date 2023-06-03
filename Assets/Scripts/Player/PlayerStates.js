@@ -1,4 +1,4 @@
-import IState from "../components/State.js";
+import IState from "../Components/State.js";
 
 export class PlayerIdleState extends IState {
     constructor(playerManager) {

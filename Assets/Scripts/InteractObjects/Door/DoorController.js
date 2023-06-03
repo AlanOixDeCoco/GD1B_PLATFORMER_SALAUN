@@ -1,4 +1,4 @@
-import Behaviour from "../../components/Behaviour.js";
+import Behaviour from "../../Components/Behaviour.js";
 
 export default class DoorController extends Behaviour{
     start(){

@@ -1,4 +1,4 @@
-import Behaviour from "../components/Behaviour.js";
+import Behaviour from "../Components/Behaviour.js";
 import PlayfabManager from "./PlayfabManager.js";
 import SaveManager from "./SaveManager.js";
 

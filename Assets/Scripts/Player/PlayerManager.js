@@ -1,5 +1,5 @@
-import Behaviour from "../components/Behaviour.js";
-import StateMachine from "../components/StateMachine.js";
+import Behaviour from "../Components/Behaviour.js";
+import StateMachine from "../Components/StateMachine.js";
 import PlayerAura from "./PlayerAura.js";
 import { PlayerAttackJumpState, PlayerAttackRunState, PlayerAttackStaticState, PlayerDashState, PlayerDashingState, PlayerFallingState, PlayerIdleState, PlayerJumpState, PlayerJumpingState, PlayerLandState, PlayerRunState } from "./PlayerStates.js";
 

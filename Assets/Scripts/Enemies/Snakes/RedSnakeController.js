@@ -1,5 +1,5 @@
-import Behaviour from "../../components/Behaviour.js";
-import StateMachine from "../../components/StateMachine.js";
+import Behaviour from "../../Components/Behaviour.js";
+import StateMachine from "../../Components/StateMachine.js";
 import { RedSnakeAttackState, RedSnakePatrolState, RedSnakeSpawnState } from "./RedSnakeStates.js";
 
 export default class RedSnakeController extends Behaviour {

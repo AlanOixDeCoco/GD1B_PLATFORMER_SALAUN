@@ -1,4 +1,4 @@
-import BehaviourScene from "../components/BehaviourScene.js";
+import BehaviourScene from "../Components/BehaviourScene.js";
 
 export default class DungeonTransitionScene extends BehaviourScene {
     constructor() {

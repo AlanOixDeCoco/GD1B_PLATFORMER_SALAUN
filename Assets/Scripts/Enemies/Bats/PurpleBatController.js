@@ -1,5 +1,5 @@
-import Behaviour from "../../components/Behaviour.js";
-import StateMachine from "../../components/StateMachine.js";
+import Behaviour from "../../Components/Behaviour.js";
+import StateMachine from "../../Components/StateMachine.js";
 import { PurpleBatAttackState, PurpleBatMoveState, PurpleBatSpawnState } from "./PurpleBatStates.js";
 
 export default class PurpleBatController extends Behaviour {
