@@ -147,6 +147,7 @@ export default class FloorManager extends Behaviour{
             "enemyAura": new EnemyAura(),
         });
         var enemyManager = enemySprite.GetBehaviour("enemyManager");
+        enemyManager.SetStats(ENEMIES_STATS[type]);
         enemyManager.SetTarget(this._scene._playerManager._parent);
         enemyManager.SetSpawnY(this._spawnY.min, this._spawnY.max);
         this._scene._enemiesGroup.add(enemySprite);

@@ -10,6 +10,10 @@ export default class GameoverScene extends BehaviourScene {
     }
 
     create(){
+        // This game's stats
+        const gameStats = this._gameManager._data;
+        console.log(gameStats);
+
         this._timeText = this.add.text(
             GAME_WIDTH/2, GAME_HEIGHT/2 - 16, 
             `Vous avez survécu: ${this._gameManager.GetTimeInMinutes()}`, 

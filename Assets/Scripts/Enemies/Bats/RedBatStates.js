@@ -91,7 +91,7 @@ export class RedBatMoveState extends IState {
         this._redBatController._parent.anims.play("bat_move");
 
         const randomDirection = Math.random() >= 0.5 ? 1 : -1;
-        this._velocity = randomDirection * (ENEMIES_STATS.redBat.speed * ENEMIES_BASE_STATS.speed);
+        this._velocity = randomDirection * this._redBatController._enemyManager._stats.speed * ENEMIES_BASE_STATS.speed;
         this._redBatController._parent.setVelocityX(this._velocity);
     }
 
@@ -109,18 +109,13 @@ export class RedBatAttackState extends IState {
         const targetPos = {x: this._redBatController._enemyManager._target.x, y: this._redBatController._enemyManager._target.y};
         const batPos = {x: this._redBatController._parent.x, y: this._redBatController._parent.y};
         const direction = new Phaser.Math.Vector2(targetPos.x - batPos.x, targetPos.y - batPos.y).normalize();
-        const speed = ENEMIES_STATS.redBat.speed * ENEMIES_BASE_STATS.speed;
+        const speed = this._redBatController._enemyManager._stats.speed * ENEMIES_BASE_STATS.speed;
         this._redBatController._parent.setVelocity(direction.x * speed, direction.y * speed);
     }
 
     OnEnterState(){
         console.log("Red bat attacks!");
         this._redBatController._enemyManager._attackUI.setVisible(true);
-
-        //this._redBatController._initialPos = {
-        //    x: this._redBatController._parent.x, 
-        //    y: this._redBatController._parent.y
-        //};
     }
 
     OnExitState(){

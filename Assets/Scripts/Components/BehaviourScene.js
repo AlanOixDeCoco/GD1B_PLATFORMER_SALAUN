@@ -5,6 +5,7 @@ import PlayerAnimator from "../Player/PlayerAnimator.js";
 import PlayerAura from "../Player/PlayerAura.js";
 import PlayerBody from "../Player/PlayerBody.js";
 import PlayerManager from "../Player/PlayerManager.js";
+import PlayerUIController from "../Player/PlayerUIController.js";
 
 export default class BehaviourScene extends Phaser.Scene {
     constructor(key, active = true, visible = true) {
@@ -157,9 +158,9 @@ export default class BehaviourScene extends Phaser.Scene {
             "player_animator": new PlayerAnimator(),
             "player_body": new PlayerBody(),
             "player_manager": new PlayerManager(gameManager),
+            "player_UI_controller": new PlayerUIController(gameManager),
             "player_aura": new PlayerAura(),
         });
-
         return playerSprite;
     }
 }

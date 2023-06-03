@@ -46,6 +46,9 @@ const PLAYER_DEFAULT_DASH_RECOVER_TIME = 1000;
 const PLAYER_DEFAULT_ATTACK_DAMAGE = 1;
 const PLAYER_DEFAULT_ATTACK_SPEED = 196;
 const PLAYER_DEFAULT_ATTACK_LIFETIME = 100;
+
+const PLAYER_DEFAULT_LEVEL_EXPERIENCE = 10;
+const PLAYER_DEFAULT_LEVEL_EXPERIENCE_MULTIPLICATOR = 1.5;
 //#endregion
 
 //#region Maps keys
@@ -76,9 +79,25 @@ const FLOOR_TYPES = {
 
 const SPAWN_INTERVAL = 2000;
 
+const ENEMIES_BASE_STATS = {
+    damage: 1,
+    speed: 64,
+    health: 1,
+    smart: 1,
+    redEnemiesDetectionRadius: 128,
+    purpleEnemiesDetectionRadius: 4,
+}
+const ENEMIES_STATS = {
+    "greenSnake": { damage: 1, speed: 1, health: 1, smart: 0},  // total : 3
+    "redSnake": { damage: 1, speed: 1, health: 1, smart: 2},    // total : 5
+    "greenBat": { damage: 1, speed: 1, health: 1, smart: 1},    // total : 4
+    "purpleBat": { damage: 1, speed: 1, health: 1, smart: 2},   // total : 5
+    "redBat": { damage: 1, speed: 1, health: 1, smart: 4},      // total : 7
+}
+
 const MAP_WAVES = [
     [
-        {total: 10, enemies: ["greenSnake"]},
+        {total: 10, enemies: ["redBat"]},
     ],
     [
         {total: 10, enemies: ["greenSnake"]},
@@ -125,19 +144,6 @@ const MAP_WAVES = [
         {total: 30, enemies: ["greenSnake", "redSnake", "purpleRed"]},
     ],
 ];
-
-const ENEMIES_BASE_STATS = {
-    speed: 64,
-    redEnemiesDetectionRadius: 128,
-    purpleEnemiesDetectionRadius: 4,
-}
-const ENEMIES_STATS = {
-    "greenSnake": { damage: 1, speed: 1, health: 1, smart: 0},  // total : 3
-    "redSnake": { damage: 1, speed: 1, health: 1, smart: 2},    // total : 5
-    "greenBat": { damage: 1, speed: 1, health: 1, smart: 1},    // total : 4
-    "purpleBat": { damage: 1, speed: 1, health: 1, smart: 2},   // total : 5
-    "redBat": { damage: 1, speed: 1, health: 1, smart: 4},      // total : 7
-}
 
 const ENEMIES_TINT = {
     green: 0x00AA00,

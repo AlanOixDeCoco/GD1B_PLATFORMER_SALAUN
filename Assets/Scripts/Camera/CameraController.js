@@ -33,7 +33,7 @@ export default class CameraController extends Behaviour{
         this._circle.setScale(0);
     }
 
-    FadeIn(x, y){
+    FadeIn(x, y, callback){
         this._circle.x = x;
         this._circle.y = y;
 
@@ -45,6 +45,7 @@ export default class CameraController extends Behaviour{
             scale += .01;
             if(scale >= 1) {
                 this._circle.setScale(1);
+                if(callback) callback();
                 clearInterval(this._fadeInInterval);
                 this._parent.clearMask();
             }

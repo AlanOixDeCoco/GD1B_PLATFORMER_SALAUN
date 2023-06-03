@@ -91,7 +91,7 @@ export class PurpleBatMoveState extends IState {
         this._purpleBatController._parent.anims.play("bat_move");
 
         var randomDirection = Math.random() >= 0.5 ? 1 : -1;
-        this._velocity = randomDirection * (ENEMIES_STATS.greenBat.speed * ENEMIES_BASE_STATS.speed);
+        this._velocity = randomDirection * this._purpleBatController._enemyManager._stats.speed * ENEMIES_BASE_STATS.speed;
         this._purpleBatController._parent.setVelocityX(this._velocity);
     }
 

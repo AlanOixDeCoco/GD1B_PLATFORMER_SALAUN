@@ -54,6 +54,11 @@ export default class PreloadScene extends BehaviourScene{
             textureURL: './Assets/Sprites/Characters/Player/sword_areas_atlas.png',
             atlasURL: './Assets/Sprites/Characters/Player/sword_areas_atlas.json'
         });
+        this.load.atlas({
+            key: 'player_ui_atlas',
+            textureURL: './Assets/Sprites/UI/Player/player_ui_atlas.png',
+            atlasURL: './Assets/Sprites/UI/Player/player_ui_atlas.json'
+        });
 
         this.load.atlas({
             key: 'enemies_atlas',
@@ -61,6 +66,8 @@ export default class PreloadScene extends BehaviourScene{
             //normalMap: './Assets/Sprites/Characters/Enemies/enemies_atlas_n.png',
             atlasURL: './Assets/Sprites/Characters/Enemies/enemies_atlas.json'
         });
+        
+
         
         this.load.image(SPRITE_KEYS.playerSoul, './Assets/Sprites/Characters/Player/playerSoul.png');
         this.load.image(SPRITE_KEYS.enemySoul, './Assets/Sprites/Characters/Enemies/enemySoul.png');

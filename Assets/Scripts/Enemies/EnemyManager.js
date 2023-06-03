@@ -8,7 +8,9 @@ export default class EnemyManager extends Behaviour {
         this._stats = {
             damage: 1,
             speed: 1,
+            initialHealth: 1,
             health: 1,
+            smart: 1
         };
         this._ready = false;
     }
@@ -29,6 +31,14 @@ export default class EnemyManager extends Behaviour {
         this._attackUI.y = this._parent.y - this._parent.height;
 
         this._parent.setFlipX(this._parent.body.velocity.x < 0);
+    }
+
+    SetStats(stats){
+        this._stats.damage = stats.damage;
+        this._stats.initialHealth = stats.health;
+        this._stats.health = stats.health;
+        this._stats.speed = stats.speed;
+        this._stats.smart = stats.smart;
     }
 
     SetTarget(playerSprite){
@@ -63,6 +73,8 @@ export default class EnemyManager extends Behaviour {
         this._scene.MakeBehaviors(soulSprite, {
             "enemyAura": new EnemyAura(),
         });
+
+        soulSprite._exp = this._stats.damage + this._stats.initialHealth + this._stats.speed + this._stats.smart;
         
         this._scene._soulsGroup.add(soulSprite);
 

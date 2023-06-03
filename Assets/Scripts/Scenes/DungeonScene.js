@@ -130,7 +130,7 @@ export default class DungeonScene extends BehaviourScene {
         this.physics.add.collider(this._layers.platforms, this._soulsGroup); // Souls / ground
         //this.physics.add.collider(this._platformsGroup, this._soulsGroup); // Souls / platforms
         this.physics.add.collider(this._playerManager._parent, this._soulsGroup, (player, soul) => {
-            this._gameManager.PickSoul();
+            this._gameManager.PickSoul(soul._exp);
             soul.destroy();
         }); // Souls / player
 
@@ -143,14 +143,18 @@ export default class DungeonScene extends BehaviourScene {
 
         // Fade in
         this._cameraController.FadeIn(this._playerManager._parent.x, this._playerManager._parent.y - PLAYER_HEIGHT);
-        this._gameManager._scene._cameraController.FadeIn(this._playerManager._parent.x, this._playerManager._parent.y - PLAYER_HEIGHT);
+        this._gameManager._scene._cameraController.FadeIn(this._playerManager._parent.x, this._playerManager._parent.y - PLAYER_HEIGHT, () => {
+            this._playerManager._parent.GetBehaviour("player_UI_controller").ShowUI();
+        });
 
+        this._playerManager._parent.GetBehaviour("player_UI_controller").HideUI();
 
-        console.log(this.lights);
+        this._gameManager.SetPlayerUIController(this._playerManager._parent.GetBehaviour("player_UI_controller"));
     }
 
     NextFloor(){
         this._floorManager.destroy();
+        this._playerManager._parent.GetBehaviour("player_UI_controller").HideUI();
         this.scene.pause();
         this._gameManager._paused = true;
         this._gameManager._scene._cameraController.FadeOut(this._playerManager._parent.x, this._playerManager._parent.y - PLAYER_HEIGHT, ()=>{});

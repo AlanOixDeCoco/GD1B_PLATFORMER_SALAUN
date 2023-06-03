@@ -80,7 +80,7 @@ export class GreenBatMoveState extends IState {
         this._greenBatController._parent.anims.play("bat_move");
 
         var randomDirection = Math.random() >= 0.5 ? 1 : -1;
-        this._velocity = randomDirection * (ENEMIES_STATS.greenBat.speed * ENEMIES_BASE_STATS.speed);
+        this._velocity = randomDirection * this._greenBatController._enemyManager._stats.speed * ENEMIES_BASE_STATS.speed;
         this._greenBatController._parent.setVelocityX(this._velocity);
     }
 

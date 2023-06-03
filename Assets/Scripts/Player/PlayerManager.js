@@ -251,11 +251,15 @@ export default class PlayerManager extends Behaviour {
         // Deal damage to the player
         var enemyStats = enemySprite.GetBehaviour("enemyManager")._stats;
         this._gameManager._data.playerStats.health -= enemyStats.damage;
-        console.log(this._gameManager._data.playerStats.health);
+
+        // Call UI update
+        this._parent.GetBehaviour("player_UI_controller").UpdateHealthFill();
+
+        // Kill player if health at 0
         if(this._gameManager._data.playerStats.health <= 0){
             this.Die();
             return;
-        } 
+        }
 
         // Set invincible & blink during invincible duration
         this._invincible = true;

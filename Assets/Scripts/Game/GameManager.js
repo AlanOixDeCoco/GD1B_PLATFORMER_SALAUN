@@ -15,6 +15,7 @@ export default class GameManager extends Behaviour{
             playerStats: {
                 level: 1,
                 experience: 0,
+                experienceNeeded: PLAYER_DEFAULT_LEVEL_EXPERIENCE,
                 skills: [],
                 maxHealth: PLAYER_DEFAULT_HEALTH,
                 health: PLAYER_DEFAULT_HEALTH,
@@ -88,6 +89,10 @@ export default class GameManager extends Behaviour{
         this._floorManager = floorManager;
     }
 
+    SetPlayerUIController(playerUIController){
+        this._playerUIController = playerUIController;
+    }
+
     GetTimeInMinutes(){
         var seconds = (Math.round(this._data.time / 1000));
         var remainingSeconds = seconds % 60;
@@ -102,8 +107,20 @@ export default class GameManager extends Behaviour{
         return `${minutes}' ${remainingSeconds}"`;
     }
 
-    PickSoul(){
+    PickSoul(experience){
         this._data.souls++;
-        console.log(`Total souls: ${this._data.souls}`);
+        this._data.playerStats.experience += experience;
+        if(this._data.playerStats.experience >= this._data.playerStats.experienceNeeded){
+            this.LevelUp();
+        }
+        this._playerUIController.UpdateExperienceFill();
+    }
+
+    LevelUp(){
+        this._data.playerStats.experience -= this._data.playerStats.experienceNeeded;
+        this._data.playerStats.level++;
+        this._data.playerStats.experienceNeeded *= PLAYER_DEFAULT_LEVEL_EXPERIENCE_MULTIPLICATOR;
+        this._data.playerStats.health = this._data.playerStats.maxHealth;
+        this._playerUIController.UpdateHealthFill();
     }
 }

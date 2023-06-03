@@ -38,7 +38,7 @@ export class GreenSnakeMoveState extends IState {
         this._greenSnakeController._parent.anims.play("snake_move");
 
         var randomDirection = Math.random() >= 0.5 ? 1 : -1;
-        this._velocity = randomDirection * (ENEMIES_STATS.greenSnake.speed * ENEMIES_BASE_STATS.speed);
+        this._velocity = randomDirection * (this._greenSnakeController._enemyManager._stats.speed * ENEMIES_BASE_STATS.speed);
         this._greenSnakeController._parent.setVelocityX(this._velocity);
     }
 
