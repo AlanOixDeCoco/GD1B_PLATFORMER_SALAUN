@@ -14,7 +14,7 @@ export default class PreloadScene extends BehaviourScene{
         ).setOrigin(.5, .5).setTint(0xFFFFFF).setDepth(LAYERS.walls);
 
         // image used as transition mask
-        this.load.image("circle_mask", "Assets/Sprites/masks/circle_mask.png", {frameWidth: 2048});
+        this.load.image("circle_mask", "Assets/Sprites/Masks/circle_mask.png", {frameWidth: 2048});
 
         //#region placeholder content
         // Background
@@ -45,25 +45,25 @@ export default class PreloadScene extends BehaviourScene{
         // Characters
         this.load.atlas({
             key: 'character_atlas',
-            textureURL: './Assets/Sprites/characters/player/character_atlas.png',
-            normalMap: './Assets/Sprites/characters/player/character_atlas_n.png',
-            atlasURL: './Assets/Sprites/characters/player/character_atlas.json'
+            textureURL: './Assets/Sprites/Characters/Player/character_atlas.png',
+            normalMap: './Assets/Sprites/Characters/Player/character_atlas_n.png',
+            atlasURL: './Assets/Sprites/Characters/Player/character_atlas.json'
         });
         this.load.atlas({
             key: 'sword_areas_atlas',
-            textureURL: './Assets/Sprites/characters/player/sword_areas_atlas.png',
-            atlasURL: './Assets/Sprites/characters/player/sword_areas_atlas.json'
+            textureURL: './Assets/Sprites/Characters/Player/sword_areas_atlas.png',
+            atlasURL: './Assets/Sprites/Characters/Player/sword_areas_atlas.json'
         });
 
         this.load.atlas({
             key: 'enemies_atlas',
-            textureURL: './Assets/Sprites/characters/enemies/enemies_atlas.png',
-            //normalMap: './Assets/Sprites/characters/enemies/enemies_atlas_n.png',
-            atlasURL: './Assets/Sprites/characters/enemies/enemies_atlas.json'
+            textureURL: './Assets/Sprites/Characters/Enemies/enemies_atlas.png',
+            //normalMap: './Assets/Sprites/Characters/Enemies/enemies_atlas_n.png',
+            atlasURL: './Assets/Sprites/Characters/Enemies/enemies_atlas.json'
         });
         
-        this.load.image(SPRITE_KEYS.playerSoul, './Assets/Sprites/characters/player/playerSoul.png');
-        this.load.image(SPRITE_KEYS.enemySoul, './Assets/Sprites/characters/enemies/enemySoul.png');
+        this.load.image(SPRITE_KEYS.playerSoul, './Assets/Sprites/Characters/Player/playerSoul.png');
+        this.load.image(SPRITE_KEYS.enemySoul, './Assets/Sprites/Characters/Enemies/enemySoul.png');
         //#endregion
 
         //#region tilemaps
