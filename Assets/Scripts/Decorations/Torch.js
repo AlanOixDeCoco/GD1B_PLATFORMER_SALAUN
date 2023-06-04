@@ -7,9 +7,9 @@ export default class Torch extends Behaviour{
         this._baseIntensity = EFFECTS.torchIntensity;
 
         this._torch = this._scene.lights.addLight(this._parent.x, this._parent.y, EFFECTS.torchRange, EFFECTS.torchColor, this._baseIntensity);
-        this._fireSound = this._scene.sound.add(AUDIO_KEYS.torch, {loop: true, volume: VOLUME.torch});
-
-        this._fireSound.play();
+        
+        //this._fireSound = this._scene.sound.add(AUDIO_KEYS.torch, {loop: true, volume: VOLUME.torch});
+        //this._fireSound.play();
 
         this._randomIntensityInterval = setInterval(() => {
             var randomSign = Math.random() > 0.5 ? 1 : -1;
@@ -26,7 +26,7 @@ export default class Torch extends Behaviour{
 
     destroy(){
         clearInterval(this._randomIntensityInterval);
-        this._fireSound.stop();
+        //this._fireSound.stop();
         this._scene.lights.removeLight(this._torch);
     }
 }

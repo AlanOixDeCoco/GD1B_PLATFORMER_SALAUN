@@ -101,7 +101,7 @@ export default class PreloadScene extends BehaviourScene{
         this.load.audio(AUDIO_KEYS.doorOpen, './Assets/Audio/Door/audio_door_open.wav');
 
         // Torch
-        this.load.audio(AUDIO_KEYS.torch, './Assets/Audio/Torch/audio_torch_fire.wav');
+        //this.load.audio(AUDIO_KEYS.torch, './Assets/Audio/Torch/audio_torch_fire.wav');
         //#endregion
 
         //#region Bitmap fonts
