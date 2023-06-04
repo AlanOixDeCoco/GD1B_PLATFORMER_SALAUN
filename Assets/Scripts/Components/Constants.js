@@ -239,7 +239,7 @@ const LAYERS = {
 
 //#region Sound volume
 const VOLUME = {
-    ambianceOwl: .2,
+    ambianceOwl: .5,
     door: 1.5,
     torch: 0.1,
 }
