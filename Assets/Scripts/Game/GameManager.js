@@ -68,11 +68,17 @@ export default class GameManager extends Behaviour{
         if(!this._paused) {
             this._data.time += deltatime;
             this._data.remainingTime -= deltatime;
+            if(this._data.remainingTime <= 0) {
+                this._scene.scene.pause();
+                this._playerUIController._parent.GetBehaviour("player_manager").Die();
+            }
         }
     }
 
     GetNextFloor(){
         this._data.floorCount++;
+        this._data.remainingTime += MAP_BASE_STATS.timeRefill;
+        if(this._data.remainingTime > GAME_DEFAULT_TIME)this._data.remainingTime = GAME_DEFAULT_TIME;
         if((this._data.floorCount%10) == 0){
             return SCENE_DUNGEON_BOSS;
         }

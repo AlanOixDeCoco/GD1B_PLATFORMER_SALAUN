@@ -95,6 +95,10 @@ const ENEMIES_STATS = {
     "redBat": { damage: 1, speed: 1, health: 1, smart: 4},      // total : 7
 }
 
+const MAP_BASE_STATS = {
+    timeRefill: 30000, // 30s
+};
+
 const MAP_WAVES = [
     [
         {total: 10, enemies: ["greenSnake"]},
