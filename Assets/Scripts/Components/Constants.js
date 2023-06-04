@@ -97,7 +97,7 @@ const ENEMIES_STATS = {
 
 const MAP_WAVES = [
     [
-        {total: 10, enemies: ["redBat"]},
+        {total: 10, enemies: ["greenSnake"]},
     ],
     [
         {total: 10, enemies: ["greenSnake"]},

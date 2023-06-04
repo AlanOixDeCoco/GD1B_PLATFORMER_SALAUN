@@ -6,7 +6,7 @@ export default class DoorController extends Behaviour{
 
         this._locked = true;
 
-        this._interactUI = this._scene.add.sprite(this._parent.x + (this._parent.width/2), this._parent.y, "");
+        this._interactUI = this._scene.add.sprite(this._parent.x + (this._parent.width/2), this._parent.y, "interact_ui_atlas", "exclamation.png");
         this._interactUI.setDepth(LAYERS.interactObjects + 1).setOrigin(.5, 1);
         this._interactUI.setVisible(false);
 

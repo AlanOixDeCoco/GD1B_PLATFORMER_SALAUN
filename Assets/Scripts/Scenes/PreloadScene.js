@@ -41,6 +41,11 @@ export default class PreloadScene extends BehaviourScene{
             textureURL: './Assets/Sprites/UI/Environment/environment_ui_atlas.png',
             atlasURL: './Assets/Sprites/UI/Environment/environment_ui_atlas.json'
         });
+        this.load.atlas({
+            key: 'interact_ui_atlas',
+            textureURL: './Assets/Sprites/UI/Interact/interact_ui_atlas.png',
+            atlasURL: './Assets/Sprites/UI/Interact/interact_ui_atlas.json'
+        });
 
         // Characters
         this.load.atlas({
@@ -110,15 +115,15 @@ export default class PreloadScene extends BehaviourScene{
 
         //#region loading states
         this.load.on('progress', (value) => {
-            console.log(value);
+            if(DEBUG) console.log(value);
             this._loadingText.setText(`Chargement : ${Math.round(value * 100)}%`);
         });
                     
         this.load.on('fileprogress', (file) => {
-            console.log(file.key);
+            if(DEBUG) console.log(file.key);
         });
         this.load.on('complete', () => {
-            console.log('complete');
+            if(DEBUG) console.log('complete');
             this.StartBackgroundScene();
         });
         //#endregion

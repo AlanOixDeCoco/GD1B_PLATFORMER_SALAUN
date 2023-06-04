@@ -18,7 +18,8 @@ export default class EnemyManager extends Behaviour {
     start(){
         this._scene = this._parent.scene;
 
-        this._attackUI = this._scene.add.sprite(this._parent.x, this._parent.y - this._parent.height, "");
+        this._attackUI = this._scene.add.sprite(this._parent.x, this._parent.y - this._parent.height, "interact_ui_atlas", "exclamation.png");
+        this._attackUI.setTint(0xFF2222);
         this._attackUI.setDepth(LAYERS.enemies + 1).setOrigin(.5, 1);
         this._attackUI.setVisible(false);
 
