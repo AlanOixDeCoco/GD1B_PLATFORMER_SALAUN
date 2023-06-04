@@ -134,18 +134,18 @@ const MAP_WAVES = [
     ],
     [
         {total: 20, enemies: ["greenSnake", "redSnake"]},
-        {total: 25, enemies: ["greenSnake", "redSnake", "purpleRed"]},
-        {total: 30, enemies: ["greenSnake", "redSnake", "purpleRed"]},
+        {total: 25, enemies: ["greenSnake", "redSnake", "redBat"]},
+        {total: 30, enemies: ["greenSnake", "redSnake", "redBat"]},
     ],
     [
         {total: 20, enemies: ["greenSnake", "redSnake"]},
-        {total: 25, enemies: ["greenSnake", "redSnake", "purpleRed"]},
-        {total: 30, enemies: ["greenSnake", "redSnake", "purpleRed"]},
+        {total: 25, enemies: ["greenSnake", "redSnake", "redBat"]},
+        {total: 30, enemies: ["greenSnake", "redSnake", "redBat"]},
     ],
     [
         {total: 20, enemies: ["greenSnake", "redSnake"]},
-        {total: 25, enemies: ["greenSnake", "redSnake", "purpleRed"]},
-        {total: 30, enemies: ["greenSnake", "redSnake", "purpleRed"]},
+        {total: 25, enemies: ["greenSnake", "redSnake", "redBat"]},
+        {total: 30, enemies: ["greenSnake", "redSnake", "redBat"]},
     ],
 ];
 
