@@ -3,7 +3,7 @@
 Vous pouvez tester le jeu à cette adresse : https://alanoixdecoco.github.io/GD1B_PLATFORMER_SALAUN
 
 ## Fonctionnalités manquantes
-[ ] Boss
+[ ] Boss\n
 [ ] Visuels des ennemis et du boss
 [ ] Musique d'ambiance
 [ ] SFX
