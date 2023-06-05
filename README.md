@@ -17,4 +17,8 @@ Vous pouvez tester le jeu à cette adresse : https://alanoixdecoco.github.io/GD1
 
 [ ] Menu
 
+[ ] Skills
+
+[ ] Skill-tree
+
 [ ] Ensemble des statistiques en fin de partie + score
