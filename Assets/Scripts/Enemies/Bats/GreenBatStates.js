@@ -26,7 +26,9 @@ export class GreenBatMoveState extends IState {
     }
 
     Tick(){
+        if(!this._greenBatController._enemyManager._ready) return;
         if(this._movingVertically) return;
+
         if(Math.abs(this._greenBatController._parent.body.velocity.x) < 0.1){
             if(this._greenBatController._parent.y < this._greenBatController._enemyManager._spawnY.max - 32){
                 var moveDown = this._greenBatController._parent.scene.tweens.add({
@@ -73,6 +75,7 @@ export class GreenBatMoveState extends IState {
                 });
             }
         }
+        this._greenBatController._parent.setVelocityX(this._velocity);
     }
 
     OnEnterState(){

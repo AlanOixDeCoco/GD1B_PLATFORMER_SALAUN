@@ -26,16 +26,18 @@ export class GreenSnakeMoveState extends IState {
     }
 
     Tick(){
+        if(!this._greenSnakeController._enemyManager._ready) return;
         if(Math.abs(this._greenSnakeController._parent.body.velocity.x) < 0.1){
             this._velocity = -this._velocity;
-            this._greenSnakeController._parent.setVelocityX(this._velocity);
         }
+        this._greenSnakeController._parent.setVelocityX(this._velocity);
     }
 
     OnEnterState(){
         console.log("Green snake moves!");
         this._greenSnakeController._parent.body.allowGravity = true;
         this._greenSnakeController._parent.anims.play("snake_move");
+        this._greenSnakeController._parent.anims.msPerFrame /= this._greenSnakeController._enemyManager._stats.speed;
 
         var randomDirection = Math.random() >= 0.5 ? 1 : -1;
         this._velocity = randomDirection * (this._greenSnakeController._enemyManager._stats.speed * ENEMIES_BASE_STATS.speed);

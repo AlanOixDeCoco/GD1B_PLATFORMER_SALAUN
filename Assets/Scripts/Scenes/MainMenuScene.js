@@ -17,12 +17,35 @@ export default class MainMenuScene extends BehaviourScene {
             "camera_controller": new CameraController(),
         });
 
-        this.add.text(
-            GAME_WIDTH/2, GAME_HEIGHT/2, 
-            `MAIN MENU SCENE`, 
-            {fontFamily: 'Monogram', fontSize: 48}
-        ).setOrigin(.5, .5);
+        this._menuImage = this.add.image(0, 0, SPRITE_KEYS.menu.loading).setOrigin(0, 0);
+        
+        this._continueText = this.add.text(GAME_WIDTH/2, GAME_HEIGHT - 25, "Appuyez sur n'importe quelle touche pour continuer...", {fontFamily: "Monogram"})
+        .setOrigin(.5, 1)
+        .setTint(UI_COLORS.light);
+        this._continueText.setVisible(false);
 
-        setTimeout(() => {this.scene.start(SCENE_DUNGEON_ENTRANCE, {gameManager: this._gameManager})}, 1000);
+        this._screenIndex = 0;
+        setTimeout(() => {
+            this.input.keyboard.on('keydown', () => {
+                this._screenIndex++;
+                switch(this._screenIndex){
+                    case 1: 
+                        this._menuImage.setTexture(SPRITE_KEYS.menu.objective);
+                        break;
+                    case 2: 
+                        this._menuImage.setTexture(SPRITE_KEYS.menu.keyboardControls);
+                        break;
+                    case 3: 
+                        this._menuImage.setTexture(SPRITE_KEYS.menu.gamepadControls);
+                        break;
+                    default:
+                        break;
+                }
+                if(this._screenIndex > 3){
+                    this.scene.start(SCENE_DUNGEON_ENTRANCE, {gameManager: this._gameManager});
+                }
+            });
+            this._continueText.setVisible(true);
+        }, 100);
     }
 }

@@ -31,7 +31,8 @@ export default class GameManager extends Behaviour{
                 dashRecoverTime: PLAYER_DEFAULT_DASH_RECOVER_TIME,
                 attackDamage: PLAYER_DEFAULT_ATTACK_DAMAGE,
                 attackSpeed: PLAYER_DEFAULT_ATTACK_SPEED,
-                attackLifetime: PLAYER_DEFAULT_ATTACK_LIFETIME
+                attackLifetime: PLAYER_DEFAULT_ATTACK_LIFETIME,
+                recoil: PLAYER_DEFAULT_RECOIL
             }
         }
 
@@ -53,6 +54,7 @@ export default class GameManager extends Behaviour{
         });
         
         this._paused = true;
+        this._ended = false;
         //#endregion
 
         super.start();
@@ -65,7 +67,7 @@ export default class GameManager extends Behaviour{
             this._paused ? this._currentScene.scene.pause() : this._currentScene.scene.resume();
         }
 
-        if(!this._paused) {
+        if(!this._paused && !this._ended) {
             this._data.time += deltatime;
             this._data.remainingTime -= deltatime;
             if(this._data.remainingTime <= 0) {
@@ -76,8 +78,9 @@ export default class GameManager extends Behaviour{
     }
 
     GetNextFloor(){
+        if((this._data.floorCount%10) == 0) this._data.remainingTime += MAP_BASE_STATS.timeRefill * 2;
+        else this._data.remainingTime += MAP_BASE_STATS.timeRefill;
         this._data.floorCount++;
-        this._data.remainingTime += MAP_BASE_STATS.timeRefill;
         if(this._data.remainingTime > GAME_DEFAULT_TIME)this._data.remainingTime = GAME_DEFAULT_TIME;
         if((this._data.floorCount%10) == 0){
             return SCENE_DUNGEON_BOSS;
@@ -125,6 +128,7 @@ export default class GameManager extends Behaviour{
     LevelUp(){
         this._data.playerStats.experience -= this._data.playerStats.experienceNeeded;
         this._data.playerStats.level++;
+        this._data.playerStats.maxHealth += 0.5;
         this._data.playerStats.experienceNeeded *= PLAYER_DEFAULT_LEVEL_EXPERIENCE_MULTIPLICATOR;
         this._data.playerStats.health = this._data.playerStats.maxHealth;
         this._playerUIController.UpdateHealthFill();

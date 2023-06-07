@@ -10,20 +10,20 @@ export default class PlayerUIController extends Behaviour {
         this._scene = this._parent.scene;
 
         // Experience
-        const playerExpShell = this._scene.add.sprite(320, 32, "player_ui_atlas", "exp_shell.png");
+        const playerExpShell = this._scene.add.sprite(320, 64, "player_ui_atlas", "exp_shell.png");
         playerExpShell.setDepth(LAYERS.overlayUI).setOrigin(.5, .5);
 
-        this._playerExpMaskImage = this._scene.add.sprite(159, 32, "player_ui_atlas", "exp_mask.png");
+        this._playerExpMaskImage = this._scene.add.sprite(159, 64, "player_ui_atlas", "exp_mask.png");
         this._playerExpMaskImage.setOrigin(.5, .5);
         const playerExpMask = this._playerExpMaskImage.createBitmapMask();
 
-        this._playerExpFill = this._scene.add.image(320, 32, "player_ui_atlas", "exp_fill.png");
+        this._playerExpFill = this._scene.add.image(320, 64, "player_ui_atlas", "exp_fill.png");
         this._playerExpFill.setDepth(LAYERS.overlayUI + 1).setOrigin(.5, .5);
         this._playerExpFill.setMask(playerExpMask);
 
         this._currentLevelText = this._scene.add.bitmapText(
             145, 
-            30, 
+            62, 
             "CursedScript",
             this._gameManager._data.playerStats.level,
             this._gameManager._data.playerStats.level < 10 ? 24 : 12
@@ -31,7 +31,7 @@ export default class PlayerUIController extends Behaviour {
 
         this._nextLevelText = this._scene.add.bitmapText(
             497, 
-            30, 
+            62, 
             "CursedScript",
             this._gameManager._data.playerStats.level + 1,
             this._gameManager._data.playerStats.level + 1 < 10 ? 24 : 12

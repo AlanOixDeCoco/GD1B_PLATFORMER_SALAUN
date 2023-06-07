@@ -50,11 +50,19 @@ export default class EnemyManager extends Behaviour {
         this._spawnY = {min: yMin, max: yMax};
     }
 
-    TakeDamage(amount){
+    TakeDamage(amount, playerDirectionX){
+        this._ready = false;
+        console.log(this._gameManager._data.playerStats);
+        this._parent.setVelocityX(playerDirectionX * this._gameManager._data.playerStats.recoil);
         this._stats.health -= amount;
         if(this._stats.health <= 0){
             this._parent.destroy();
-        } 
+            return;
+        }
+
+        this._scene.time.delayedCall(128, () => {
+            this._ready = true;
+        })
     }
 
     destroy(){

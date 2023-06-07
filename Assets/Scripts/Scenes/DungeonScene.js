@@ -1,7 +1,6 @@
 import CameraController from "../Camera/CameraController.js";
 import BehaviourScene from "../Components/BehaviourScene.js";
 import FloorManager from "../Level/FloorManager.js";
-import LevelManager from "../Level/FloorManager.js";
 
 export default class DungeonScene extends BehaviourScene {
     constructor() {
@@ -42,7 +41,7 @@ export default class DungeonScene extends BehaviourScene {
         this._floorManager.SetGameManager(this._gameManager);
 
         // Tilemap
-        var mapIndex = this._gameManager._data.floorCount - 1;
+        var mapIndex = (this._gameManager._data.floorCount - 1)%10;
         this._tilemap = this.add.tilemap(MAP_DUNGEON_FLOORS[mapIndex], 0, 0);
         this._tileset = this._tilemap.addTilesetImage("tileset", TILESET_00);
         this._layers = {

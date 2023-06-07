@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "map_boss.tmx",
+    "activeFile": "map_floor_09.tmx",
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "Tous les Fichiers (*)",
@@ -80,15 +80,15 @@
         },
         "map_boss.tmx": {
             "expandedObjectLayers": [
-                16,
+                11,
                 12,
-                11
+                16
             ],
             "scale": 1,
             "selectedLayer": 7,
             "viewCenter": {
-                "x": 374,
-                "y": 293
+                "x": 956,
+                "y": 521
             }
         },
         "map_boss.tmx#playerSketch": {
@@ -102,15 +102,15 @@
         },
         "map_entrance.tmx": {
             "expandedObjectLayers": [
-                15,
+                11,
                 12,
-                11
+                15
             ],
             "scale": 1.5,
             "selectedLayer": 5,
             "viewCenter": {
-                "x": 341.33333333333326,
-                "y": 254.66666666666666
+                "x": 320,
+                "y": 239.66666666666669
             }
         },
         "map_entrance.tmx#playerSketch": {
@@ -146,15 +146,15 @@
         },
         "map_floor_00.tmx": {
             "expandedObjectLayers": [
-                15,
+                11,
                 12,
-                11
+                15
             ],
             "scale": 1.5,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 340.6666666666667,
-                "y": 235.33333333333331
+                "x": 320,
+                "y": 239.66666666666666
             }
         },
         "map_floor_00.tmx#playerSketch": {
@@ -168,15 +168,15 @@
         },
         "map_floor_01.tmx": {
             "expandedObjectLayers": [
-                16,
+                11,
                 12,
-                11
+                16
             ],
             "scale": 1.5,
             "selectedLayer": 7,
             "viewCenter": {
-                "x": 345.33333333333326,
-                "y": 224
+                "x": 320,
+                "y": 239.66666666666666
             }
         },
         "map_floor_01.tmx#playerSketch": {
@@ -190,15 +190,15 @@
         },
         "map_floor_02.tmx": {
             "expandedObjectLayers": [
-                16,
+                11,
                 12,
-                11
+                16
             ],
             "scale": 2,
             "selectedLayer": 7,
             "viewCenter": {
-                "x": 307.5,
-                "y": 264
+                "x": 320,
+                "y": 239.75
             }
         },
         "map_floor_02.tmx#playerSketch": {
@@ -212,15 +212,15 @@
         },
         "map_floor_03.tmx": {
             "expandedObjectLayers": [
-                16,
+                11,
                 12,
-                11
+                16
             ],
             "scale": 1,
             "selectedLayer": 7,
             "viewCenter": {
-                "x": 335,
-                "y": 59
+                "x": 320,
+                "y": 239.5
             }
         },
         "map_floor_03.tmx#playerSketch": {
@@ -234,15 +234,15 @@
         },
         "map_floor_04.tmx": {
             "expandedObjectLayers": [
-                16,
+                11,
                 12,
-                11
+                16
             ],
             "scale": 1.5,
             "selectedLayer": 7,
             "viewCenter": {
-                "x": 348.6666666666667,
-                "y": 231.33333333333331
+                "x": 320,
+                "y": 239.66666666666666
             }
         },
         "map_floor_04.tmx#playerSketch": {
@@ -256,15 +256,15 @@
         },
         "map_floor_05.tmx": {
             "expandedObjectLayers": [
-                16,
+                11,
                 12,
-                11
+                16
             ],
             "scale": 1.5,
             "selectedLayer": 7,
             "viewCenter": {
-                "x": 278,
-                "y": 242.66666666666666
+                "x": 320,
+                "y": 239.66666666666666
             }
         },
         "map_floor_05.tmx#playerSketch": {
@@ -278,15 +278,15 @@
         },
         "map_floor_06.tmx": {
             "expandedObjectLayers": [
-                16,
+                11,
                 12,
-                11
+                16
             ],
             "scale": 1.5,
             "selectedLayer": 7,
             "viewCenter": {
-                "x": 306,
-                "y": 220
+                "x": 320,
+                "y": 239.66666666666666
             }
         },
         "map_floor_06.tmx#playerSketch": {
@@ -300,9 +300,9 @@
         },
         "map_floor_07.tmx": {
             "expandedObjectLayers": [
-                16,
+                11,
                 12,
-                11
+                16
             ],
             "scale": 1.5,
             "selectedLayer": 7,
@@ -322,9 +322,9 @@
         },
         "map_floor_08.tmx": {
             "expandedObjectLayers": [
-                16,
+                11,
                 12,
-                11
+                16
             ],
             "scale": 1.5,
             "selectedLayer": 7,
@@ -344,10 +344,10 @@
         },
         "map_floor_09.tmx": {
             "expandedObjectLayers": [
-                18,
-                16,
+                11,
                 12,
-                11
+                16,
+                18
             ],
             "scale": 1.5,
             "selectedLayer": 7,
@@ -418,8 +418,8 @@
         "map_floor_06.tmx",
         "map_floor_07.tmx",
         "map_floor_08.tmx",
-        "map_floor_09.tmx",
-        "map_boss.tmx"
+        "map_boss.tmx",
+        "map_floor_09.tmx"
     ],
     "tileset.embedInMap": true,
     "tileset.lastUsedFormat": "tsx"

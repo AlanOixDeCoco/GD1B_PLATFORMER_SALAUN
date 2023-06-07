@@ -33,6 +33,10 @@ const SCENE_GAMEOVER = "scene_gameover";
 const GAME_DEFAULT_TIME = 300000; // in milliseconds --> 5min
 //#endregion
 
+const MAP_BASE_STATS = {
+    timeRefill: 30000, // 30s
+};
+
 //#region Player DEFAULT stats constants
 const PLAYER_HEIGHT = 48;
 const PLAYER_DEFAULT_SPEED = 150;
@@ -46,6 +50,7 @@ const PLAYER_DEFAULT_DASH_RECOVER_TIME = 1000;
 const PLAYER_DEFAULT_ATTACK_DAMAGE = 1;
 const PLAYER_DEFAULT_ATTACK_SPEED = 196;
 const PLAYER_DEFAULT_ATTACK_LIFETIME = 100;
+const PLAYER_DEFAULT_RECOIL = 512;
 
 const PLAYER_DEFAULT_LEVEL_EXPERIENCE = 10;
 const PLAYER_DEFAULT_LEVEL_EXPERIENCE_MULTIPLICATOR = 1.5;
@@ -64,7 +69,6 @@ const MAP_DUNGEON_FLOORS = [
     "map_dungeon_floor_06",
     "map_dungeon_floor_07",
     "map_dungeon_floor_08",
-    "map_dungeon_floor_09",
 ];
 const MAP_DUNGEON_DEATH = "map_dungeon_death";
 //#endregion
@@ -88,16 +92,14 @@ const ENEMIES_BASE_STATS = {
     purpleEnemiesDetectionRadius: 4,
 }
 const ENEMIES_STATS = {
-    "greenSnake": { damage: 1, speed: 1, health: 1, smart: 0},  // total : 3
-    "redSnake": { damage: 1, speed: 1, health: 1, smart: 2},    // total : 5
-    "greenBat": { damage: 1, speed: 1, health: 1, smart: 1},    // total : 4
-    "purpleBat": { damage: 1, speed: 1, health: 1, smart: 2},   // total : 5
-    "redBat": { damage: 1, speed: 1, health: 1, smart: 4},      // total : 7
-}
+    "greenSnake": { damage: 1, speed: 1.25, health: 1.5, smart: 0},  // total : 3
+    "redSnake": { damage: 1, speed: 1, health: 2.5, smart: 2},    // total : 5
+    "greenBat": { damage: 1, speed: 1.25, health: 1.5, smart: 1},    // total : 4
+    "purpleBat": { damage: 1, speed: 1.25, health: 2, smart: 2},   // total : 5
+    "redBat": { damage: 1, speed: 1, health: 2.5, smart: 4},      // total : 7
 
-const MAP_BASE_STATS = {
-    timeRefill: 30000, // 30s
-};
+    "boss": { damage: 1, speed: 1, health: 30, smart: 10}, // total 22
+}
 
 const MAP_WAVES = [
     [
@@ -131,11 +133,6 @@ const MAP_WAVES = [
         {total: 20, enemies: ["greenSnake", "redSnake"]},
         {total: 25, enemies: ["greenSnake", "redSnake", "purpleBat"]},
         {total: 30, enemies: ["greenSnake", "redSnake", "purpleBat"]},
-    ],
-    [
-        {total: 20, enemies: ["greenSnake", "redSnake"]},
-        {total: 25, enemies: ["greenSnake", "redSnake", "redBat"]},
-        {total: 30, enemies: ["greenSnake", "redSnake", "redBat"]},
     ],
     [
         {total: 20, enemies: ["greenSnake", "redSnake"]},
@@ -191,7 +188,15 @@ const SPRITE_KEYS = {
     },
 
     uiCylinder: "timer_",
-    uiCylinderShell: "timer_shell.png"
+    uiCylinderShell: "timer_shell.png",
+
+    menu: {
+        loading: "menu_loading",
+        objective: "menu_objective",
+        keyboardControls: "menu_keyboardControls",
+        gamepadControls: "menu_gamepadControls",
+        gameover: "menu_gameover"
+    }
 }
 //#endregion
 
@@ -248,18 +253,23 @@ const VOLUME = {
 //#region Effects tweaking
 const EFFECTS = {
     ambianceColor: 0x220088,
+    bossAmbianceColor: 0x060033,
 
     auraColor: 0x6666FF,
     auraRange: 80,
     auraIntensity: 3,
 
-    enemyAuraColor: 0xFF2222,
+    enemyAuraColor: 0xFFAAAA,
     enemyAuraRange: 64,
-    enemyAuraIntensity: 3,
+    enemyAuraIntensity: 1,
+
+    bossAuraColor: 0xFF2222,
+    bossAuraRange: 192,
+    bossAuraIntensity: 3,
     
-    torchColor: 0xFF8800,
-    torchRange: 56,
-    torchIntensity: 2.5,
+    torchColor: 0xFF7700,
+    torchRange: 64,
+    torchIntensity: 2,
     torchVariationRange: 0.2,
     torchVariationInterval: 100,
 }
@@ -273,4 +283,11 @@ const BUTTON_INTERACT = 2;
 const BUTTON_LEFT = 14;
 const BUTTON_RIGHT = 15;
 const BUTTON_DOWN = 13;
+//#endregion
+
+//#region UI
+const UI_COLORS = {
+    light: 0xA4C2F4,
+    dark: 0x393053
+}
 //#endregion

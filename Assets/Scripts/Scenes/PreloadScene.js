@@ -6,12 +6,28 @@ export default class PreloadScene extends BehaviourScene{
     }
 
     preload(){
+        this.cameras.main.setBackgroundColor(0x18122B);
+        
+        //#region Menu images
+        this.load.image(SPRITE_KEYS.menu.loading, "Assets/Menus/menu_loadingScreen.png");
+        this.load.image(SPRITE_KEYS.menu.keyboardControls, "Assets/Menus/menu_keyboardTuto.png");
+        this.load.image(SPRITE_KEYS.menu.gamepadControls, "Assets/Menus/menu_gamepadTuto.png");
+        this.load.image(SPRITE_KEYS.menu.objective, "Assets/Menus/menu_gameObjective.png");
+        this.load.image(SPRITE_KEYS.menu.gameover, "Assets/Menus/menu_gameover.png");
+        //#endregion
+
+        //#region Bitmap fonts
+        this.load.bitmapFont('CursedScript', 'Assets/Fonts/CursedScript.png', 'Assets/Fonts/CursedScript.fnt');
+        //#endregion
+
+
         // Create a label to keep track of the loading
         this._loadingText = this.add.text(
             GAME_WIDTH/2, GAME_HEIGHT/2, 
             `Chargement : ${0}%`, 
             {fontFamily: 'Monogram', fontSize: 24},
-        ).setOrigin(.5, .5).setTint(0xFFFFFF).setDepth(LAYERS.walls);
+        ).setOrigin(.5, .5).setTint(UI_COLORS.light).setDepth(LAYERS.walls);
+
 
         // image used as transition mask
         this.load.image("circle_mask", "Assets/Sprites/Masks/circle_mask.png", {frameWidth: 2048});
@@ -66,10 +82,17 @@ export default class PreloadScene extends BehaviourScene{
         });
 
         this.load.atlas({
-            key: 'enemies_atlas',
-            textureURL: './Assets/Sprites/Characters/Enemies/enemies_atlas.png',
-            //normalMap: './Assets/Sprites/Characters/Enemies/enemies_atlas_n.png',
-            atlasURL: './Assets/Sprites/Characters/Enemies/enemies_atlas.json'
+            key: 'bat_atlas',
+            textureURL: './Assets/Sprites/Characters/Enemies/bat_atlas.png',
+            normalMap: './Assets/Sprites/Characters/Enemies/bat_atlas_n.png',
+            atlasURL: './Assets/Sprites/Characters/Enemies/bat_atlas.json'
+        });
+
+        this.load.atlas({
+            key: 'snake_atlas',
+            textureURL: './Assets/Sprites/Characters/Enemies/snake_atlas.png',
+            normalMap: './Assets/Sprites/Characters/Enemies/snake_atlas_n.png',
+            atlasURL: './Assets/Sprites/Characters/Enemies/snake_atlas.json'
         });
         
 
@@ -90,7 +113,7 @@ export default class PreloadScene extends BehaviourScene{
         this.load.tilemapTiledJSON(MAP_DUNGEON_FLOORS[6], './Assets/Maps/JSON/map_floor_06.tmj');
         this.load.tilemapTiledJSON(MAP_DUNGEON_FLOORS[7], './Assets/Maps/JSON/map_floor_07.tmj');
         this.load.tilemapTiledJSON(MAP_DUNGEON_FLOORS[8], './Assets/Maps/JSON/map_floor_08.tmj');
-        this.load.tilemapTiledJSON(MAP_DUNGEON_FLOORS[9], './Assets/Maps/JSON/map_floor_09.tmj');
+        //this.load.tilemapTiledJSON(MAP_DUNGEON_FLOORS[9], './Assets/Maps/JSON/map_floor_09.tmj');
         //#endregion
 
         //#region audio files
@@ -107,10 +130,6 @@ export default class PreloadScene extends BehaviourScene{
 
         // Torch
         //this.load.audio(AUDIO_KEYS.torch, './Assets/Audio/Torch/audio_torch_fire.wav');
-        //#endregion
-
-        //#region Bitmap fonts
-        this.load.bitmapFont('CursedScript', 'Assets/Fonts/CursedScript.png', 'Assets/Fonts/CursedScript.fnt');
         //#endregion
 
         //#region loading states
@@ -130,7 +149,7 @@ export default class PreloadScene extends BehaviourScene{
     }
 
     StartBackgroundScene(){
-        this.scene.start(SCENE_BACKGROUND);
+        setTimeout(() => {this.scene.start(SCENE_BACKGROUND)}, 1000);
     }
 }
 //#endregion

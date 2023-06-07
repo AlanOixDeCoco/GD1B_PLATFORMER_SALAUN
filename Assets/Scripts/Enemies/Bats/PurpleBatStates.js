@@ -26,6 +26,7 @@ export class PurpleBatMoveState extends IState {
     }
 
     Tick(){
+        if(!this._purpleBatController._enemyManager._ready) return;
         if(this._movingVertically) return;
         if(Math.abs(this._purpleBatController._parent.body.velocity.x) < 0.1){
             if(this._purpleBatController._parent.y < this._purpleBatController._enemyManager._spawnY.max - 32){
@@ -106,6 +107,7 @@ export class PurpleBatAttackState extends IState {
     }
 
     Tick(){
+        if(!this._purpleBatController._enemyManager._ready) return;
     }
 
     OnEnterState(){
@@ -122,7 +124,7 @@ export class PurpleBatAttackState extends IState {
             ease: "Linear",
             duration: 1000,
             yoyo: false,
-            y: `-=${this._purpleBatController._enemyManager._parent.y + 32 - this._purpleBatController._enemyManager._spawnY.max}`,
+            y: `-=${this._purpleBatController._enemyManager._parent.y + 32 - this._purpleBatController._enemyManager._spawnY.max - 8}`,
             repeat: 0
         });
         moveDown.setCallback("onStart", () => {

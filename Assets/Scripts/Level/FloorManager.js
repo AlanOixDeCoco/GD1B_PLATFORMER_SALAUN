@@ -6,6 +6,7 @@ import EnemyManager from "../Enemies/EnemyManager.js";
 import GreenSnakeController from "../Enemies/Snakes/GreenSnakeController.js";
 import RedSnakeController from "../Enemies/Snakes/RedSnakeController.js";
 import Behaviour from "../Components/Behaviour.js";
+import BossController from "../Enemies/Boss/BossController.js";
 
 export default class FloorManager extends Behaviour{
     start(){
@@ -18,54 +19,54 @@ export default class FloorManager extends Behaviour{
         // Create enemies anims
         this._scene.anims.create({
             key: 'snake_spawn',
-            frames: this._scene.anims.generateFrameNames("enemies_atlas", {
+            frames: this._scene.anims.generateFrameNames("snake_atlas", {
                 prefix: 'snake_spawn_',
                 suffix: '.png',
                 start: 0,
-                end: 0,
+                end: 30,
                 zeroPad: 2
             }),
-            frameRate: 1,
+            frameRate: 30,
             repeat: 0,
         });
 
         this._scene.anims.create({
             key: 'snake_move',
-            frames: this._scene.anims.generateFrameNames("enemies_atlas", {
+            frames: this._scene.anims.generateFrameNames("snake_atlas", {
                 prefix: 'snake_move_',
                 suffix: '.png',
                 start: 0,
-                end: 0,
+                end: 40,
                 zeroPad: 2
             }),
-            frameRate: 1,
-            repeat: 0,
+            frameRate: 40,
+            repeat: -1,
         });
 
         this._scene.anims.create({
             key: 'bat_spawn',
-            frames: this._scene.anims.generateFrameNames("enemies_atlas", {
+            frames: this._scene.anims.generateFrameNames("bat_atlas", {
                 prefix: 'bat_spawn_',
                 suffix: '.png',
                 start: 0,
-                end: 0,
+                end: 30,
                 zeroPad: 2
             }),
-            frameRate: 1,
+            frameRate: 30,
             repeat: 0,
         });
 
         this._scene.anims.create({
             key: 'bat_move',
-            frames: this._scene.anims.generateFrameNames("enemies_atlas", {
+            frames: this._scene.anims.generateFrameNames("bat_atlas", {
                 prefix: 'bat_move_',
                 suffix: '.png',
                 start: 0,
-                end: 0,
+                end: 30,
                 zeroPad: 2
             }),
-            frameRate: 1,
-            repeat: 0,
+            frameRate: 30,
+            repeat: -1,
         });
 
         super.start();
@@ -76,7 +77,7 @@ export default class FloorManager extends Behaviour{
         this._gameManager.SetFloorManager(this);
         
         this._floor = this._gameManager._data.floorCount - 1;
-        this._floorWaves = MAP_WAVES[this._floor].length;
+        this._floorWaves = MAP_WAVES[(this._floor%10)].length;
 
         this._wave = 0;
         this._waveEnemies = [];
@@ -95,7 +96,7 @@ export default class FloorManager extends Behaviour{
 
     StartWave(){
         // Procedural enemies preparation
-        this._waveEnemies = this.GenerateWaveEnemies(MAP_WAVES[this._floor][this._wave]);
+        this._waveEnemies = this.GenerateWaveEnemies(MAP_WAVES[(this._floor%10)][this._wave]);
         
         // Start the spawner after a delay
         this._scene.time.delayedCall(1000, this.TickSpawner, null, this);
@@ -136,7 +137,7 @@ export default class FloorManager extends Behaviour{
         }
     }
 
-    SpawnEnemy(type, x){
+    SpawnEnemy(type, x, y){
         var enemySprite = this._scene.physics.add.sprite(x, this.GetRandomHeight(), "");
         enemySprite.setOrigin(.5, 1)
         .setPipeline('Light2D')
@@ -154,38 +155,42 @@ export default class FloorManager extends Behaviour{
         switch(type){
             case "greenSnake":
                 console.log("Green snake");
+                enemySprite.body.setSize(16, 24);
+                enemySprite.body.setOffset(8, 8);
                 enemySprite.setTint(ENEMIES_TINT.green);
                 enemySprite.AddBehaviour("greenSnakeController", new GreenSnakeController(enemyManager));
                 this._scene._groundEnemiesGroup.add(enemySprite);
                 break;
             case "redSnake":
                 console.log("Red snake");
+                enemySprite.body.setSize(16, 24);
+                enemySprite.body.setOffset(8, 8);
                 enemySprite.setTint(ENEMIES_TINT.red);
                 enemySprite.AddBehaviour("redSnakeController", new RedSnakeController(enemyManager));
                 this._scene._groundEnemiesGroup.add(enemySprite);
                 break;
             case "greenBat":
                 console.log("Green bat");
+                enemySprite.body.setSize(28, 10);
+                enemySprite.body.setOffset(4, 11);
                 enemySprite.setTint(ENEMIES_TINT.green);
                 enemySprite.AddBehaviour("greenBatController", new GreenBatController(enemyManager));
                 this._scene._flyingEnemiesGroup.add(enemySprite);
                 break;
             case "purpleBat":
                 console.log("Purple bat");
+                enemySprite.body.setSize(28, 10);
+                enemySprite.body.setOffset(4, 11);
                 enemySprite.setTint(ENEMIES_TINT.purple);
                 enemySprite.AddBehaviour("purpleBatController", new PurpleBatController(enemyManager));
                 this._scene._flyingEnemiesGroup.add(enemySprite);
                 break;
             case "redBat":
                 console.log("Red bat");
+                enemySprite.body.setSize(28, 10);
+                enemySprite.body.setOffset(4, 11);
                 enemySprite.setTint(ENEMIES_TINT.red);
                 enemySprite.AddBehaviour("redBatController", new RedBatController(enemyManager));
-                this._scene._flyingEnemiesGroup.add(enemySprite);
-                break;
-            case "boss":
-                console.log("Boss");
-                enemySprite.setTint(ENEMIES_TINT.purple);
-                enemySprite.AddBehaviour("greenSnakeController", new GreenSnakeController(enemyManager));
                 this._scene._flyingEnemiesGroup.add(enemySprite);
                 break;
             default:

@@ -280,6 +280,7 @@ export default class PlayerManager extends Behaviour {
     Die(){
         console.log("Player dies!");
         this._alive = false;
+        this._gameManager._ended = true;
         
         // Death animation
         // Create new soul pickup

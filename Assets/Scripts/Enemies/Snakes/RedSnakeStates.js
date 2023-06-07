@@ -26,6 +26,7 @@ export class RedSnakePatrolState extends IState {
     }
 
     Tick(){
+        if(!this._redSnakeController._enemyManager._ready) return;
         if(Math.abs(this._redSnakeController._parent.body.velocity.x) < 0.1){
             this._velocity = -this._velocity;
             this._redSnakeController._parent.setVelocityX(this._velocity);
@@ -57,6 +58,7 @@ export class RedSnakeAttackState extends IState {
     }
 
     Tick(){
+        if(!this._redSnakeController._enemyManager._ready) return;
         const targetPos = {x: this._redSnakeController._enemyManager._target.x, y: this._redSnakeController._parent.y};
         const snakePos = {x: this._redSnakeController._parent.x, y: this._redSnakeController._parent.y};
         const direction = new Phaser.Math.Vector2(targetPos.x - snakePos.x, targetPos.y - snakePos.y).normalize();

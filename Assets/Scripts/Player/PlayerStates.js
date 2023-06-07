@@ -205,7 +205,7 @@ export class PlayerAttackStaticState extends IState {
         swordArea.body.allowGravity = false;
         swordArea.body.immovable = true;
         swordArea.setDepth(LAYERS.player + 1);
-        swordArea.setOrigin(0.5, 1.2);
+        swordArea.setOrigin(0.5, 1.3);
         swordArea.flipX = this._playerManager._parent.flipX;
         swordArea.setVelocityX((this._playerManager._parent.flipX ? -1 : 1) * this._playerManager._gameManager._data.playerStats.attackSpeed);
         setTimeout(() => {
@@ -215,8 +215,9 @@ export class PlayerAttackStaticState extends IState {
         swordArea.anims.play("character_sword_area_attackStatic");
 
         this._playerManager._scene.physics.add.overlap(this._playerManager._scene._enemiesGroup, swordArea, (enemy, attack) => {
+            const playerDirection = this._playerManager._parent.flipX ? -1 : 1;
             attack.disableBody();
-            enemy.GetBehaviour("enemyManager").TakeDamage(this._playerManager._gameManager._data.playerStats.attackDamage);
+            enemy.GetBehaviour("enemyManager").TakeDamage(this._playerManager._gameManager._data.playerStats.attackDamage, playerDirection);
         }, (enemy, attack) => {
             return enemy.GetBehaviour("enemyManager")._ready;
         });
@@ -268,8 +269,9 @@ export class PlayerAttackRunState extends IState {
         swordArea.anims.play("character_sword_area_attackRun");
 
         this._playerManager._scene.physics.add.overlap(this._playerManager._scene._enemiesGroup, swordArea, (enemy, attack) => {
+            const playerDirection = this._playerManager._parent.flipX ? -1 : 1;
             attack.disableBody();
-            enemy.GetBehaviour("enemyManager").TakeDamage(this._playerManager._gameManager._data.playerStats.attackDamage);
+            enemy.GetBehaviour("enemyManager").TakeDamage(this._playerManager._gameManager._data.playerStats.attackDamage, playerDirection);
         }, (enemy, attack) => {
             return enemy.GetBehaviour("enemyManager")._ready;
         });
@@ -324,8 +326,9 @@ export class PlayerAttackJumpState extends IState {
         swordArea.anims.play("character_sword_area_attackJump");
 
         this._playerManager._scene.physics.add.overlap(this._playerManager._scene._enemiesGroup, swordArea, (enemy, attack) => {
+            const playerDirection = this._playerManager._parent.flipX ? -1 : 1;
             attack.disableBody();
-            enemy.GetBehaviour("enemyManager").TakeDamage(this._playerManager._gameManager._data.playerStats.attackDamage);
+            enemy.GetBehaviour("enemyManager").TakeDamage(this._playerManager._gameManager._data.playerStats.attackDamage, playerDirection);
         }, (enemy, attack) => {
             return enemy.GetBehaviour("enemyManager")._ready;
         });

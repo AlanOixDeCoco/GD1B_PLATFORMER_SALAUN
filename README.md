@@ -3,7 +3,7 @@
 Vous pouvez tester le jeu à cette adresse : https://alanoixdecoco.github.io/GD1B_PLATFORMER_SALAUN
 
 ## Fonctionnalités manquantes
-[ ] Boss
+[x] Boss
 
 [ ] Visuels des ennemis et du boss
 
@@ -11,14 +11,6 @@ Vous pouvez tester le jeu à cette adresse : https://alanoixdecoco.github.io/GD1
 
 [ ] SFX
 
-[ ] Sauvegarde
-
-[ ] Sauvegarde cloud
-
 [ ] Menu
-
-[ ] Skills
-
-[ ] Skill-tree
 
 [ ] Ensemble des statistiques en fin de partie + score

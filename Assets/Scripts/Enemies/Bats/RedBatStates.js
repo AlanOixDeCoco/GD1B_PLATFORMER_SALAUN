@@ -26,6 +26,7 @@ export class RedBatMoveState extends IState {
     }
 
     Tick(){
+        if(!this._redBatController._enemyManager._ready) return;
         if(this._movingVertically) return;
         if(Math.abs(this._redBatController._parent.body.velocity.x) < 0.1){
             if(this._redBatController._parent.y < this._redBatController._enemyManager._spawnY.max - 32){
@@ -106,6 +107,7 @@ export class RedBatAttackState extends IState {
     }
 
     Tick(){
+        if(!this._redBatController._enemyManager._ready) return;
         const targetPos = {x: this._redBatController._enemyManager._target.x, y: this._redBatController._enemyManager._target.y};
         const batPos = {x: this._redBatController._parent.x, y: this._redBatController._parent.y};
         const direction = new Phaser.Math.Vector2(targetPos.x - batPos.x, targetPos.y - batPos.y).normalize();
